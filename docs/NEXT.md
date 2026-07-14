@@ -22,7 +22,6 @@ Work from the top downward unless a dependency or verified defect changes the or
 
 - Expand beyond the intentions family while preserving reproducible source locks.
 - Add canonical collections incrementally, with licensing and provenance reviewed before import.
-- Add parallel-narration discovery with explainable similarity evidence.
 
 ## Phase 4 — scholarly collaboration
 

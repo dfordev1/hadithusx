@@ -1,0 +1,16 @@
+{
+  "format": "unified-hadith-parallel-candidates-0.1",
+  "candidateCount": 39634,
+  "sourceCorpusSha256": "f861f7b7babad30564fe856ba7dca93df4436ee4388b48cfea3d76ed27afb8ad",
+  "uncompressedSha256": "def308fca1a47ace86e91562d3113413319d9603cb541efee1c80f56cb69d4b3",
+  "compressedSha256": "a8acfe727595780ae976ffc1e9f5d611bf4c34ddbd717759ece65c218e9dcfda",
+  "compressedBytes": 1920142,
+  "method": {
+    "shingleSize": 4,
+    "maxShingleFrequency": 60,
+    "minimumSharedSequences": 2,
+    "minimumTokenJaccard": 0.16,
+    "minimumShorterTextContainment": 0.42,
+    "crossCollectionOnly": true
+  }
+}

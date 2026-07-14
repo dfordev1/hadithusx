@@ -2,7 +2,7 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
-## Release 1.5
+## Release 1.6
 
 ### Standard and data model
 
@@ -36,6 +36,10 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Conservative corpus-wide structure processing proposes matn boundaries for 24,991 reports and finds transmission expressions in 26,633 reports.
 - The remaining 1,736 reports are explicitly marked `unsegmented` instead of receiving invented boundaries.
 - Chain, matn, and transmission-term candidates retain character offsets into normalized evidence text.
+- Deterministic discovery produces 39,634 cross-collection parallel candidates tied to the exact corpus checksum.
+- Every parallel candidate includes shared four-word evidence, token Jaccard, shorter-text containment, method version, confidence category, and machine-review state.
+- Common phrases occurring in more than 60 reports and same-collection pairs are excluded from candidate generation.
+- Parallel candidates can be accepted for further study, rejected, or marked as needing evidence; decisions persist locally and export without changing corpus alignments.
 
 ### Scholarly workbench
 

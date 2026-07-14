@@ -13,9 +13,14 @@ const securityHeaders = {
   "X-Frame-Options": "DENY"
 };
 let wholeCorpus;
+let parallelIndex;
 async function getWholeCorpus() {
   if (!wholeCorpus) wholeCorpus = JSON.parse(gunzipSync(await readFile(join(root, "openiti-five-collections.json.gz"))).toString("utf8"));
   return wholeCorpus;
+}
+async function getParallelIndex() {
+  if (!parallelIndex) parallelIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-parallel-candidates.json.gz"))).toString("utf8"));
+  return parallelIndex;
 }
 const normalizeSearch = (value) => value.normalize("NFC").replace(/[ًٌٍَُِّْـ]/gu, "").replace(/[إأآٱ]/gu, "ا").toLocaleLowerCase("ar");
 const exactSearch = (value) => value.normalize("NFC").toLocaleLowerCase("ar");
@@ -49,6 +54,23 @@ createServer(async (request, response) => {
     if (urlPath === "/api/corpus/meta") {
       const corpus = await getWholeCorpus();
       const body = JSON.stringify({ format: corpus.format, reportCount: corpus.reportCount, structureCoverage: corpus.structureCoverage, searchModes: ["normalized", "exact"], license: corpus.license, licenseUrl: corpus.licenseUrl, attribution: corpus.attribution, sources: corpus.sources });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders });
+      response.end(request.method === "HEAD" ? undefined : body);
+      return;
+    }
+    if (urlPath === "/api/parallels") {
+      const report = requestUrl.searchParams.get("report")?.trim() || "";
+      if (!report) { response.writeHead(400, { "Content-Type": "application/json; charset=utf-8", ...securityHeaders }); response.end(JSON.stringify({ error: "report is required" })); return; }
+      const limit = Math.min(20, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "10", 10) || 10));
+      const confidence = requestUrl.searchParams.get("confidence") || "";
+      const [corpus, parallels] = await Promise.all([getWholeCorpus(), getParallelIndex()]);
+      const records = new Map(corpus.records.map((record) => [record.id, record]));
+      const matches = parallels.candidates.filter((candidate) => (candidate.left === report || candidate.right === report) && (!confidence || candidate.confidence === confidence)).slice(0, limit).map((candidate) => {
+        const counterpartId = candidate.left === report ? candidate.right : candidate.left;
+        const counterpart = records.get(counterpartId);
+        return { ...candidate, counterpart: counterpart ? { id: counterpart.id, collectionLabel: counterpart.collectionLabel, reportNumber: counterpart.reportNumber, occurrence: counterpart.occurrence, normalizedText: counterpart.normalizedText } : null };
+      });
+      const body = JSON.stringify({ format: "unified-hadith-parallel-search-0.1", sourceCorpusSha256: parallels.sourceCorpusSha256, report, total: parallels.candidates.filter((candidate) => candidate.left === report || candidate.right === report).length, returned: matches.length, candidates: matches });
       response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders });
       response.end(request.method === "HEAD" ? undefined : body);
       return;

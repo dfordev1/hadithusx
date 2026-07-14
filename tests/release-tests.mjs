@@ -46,6 +46,11 @@ try {
     check("normalized Arabic search folds hamza", normalizedSearch.mode === "normalized" && normalizedSearch.total > exactSearch.total);
     check("exact Arabic search preserves spelling", exactSearch.mode === "exact");
     check("corpus metadata reports search modes and structure coverage", corpusMeta.searchModes.includes("exact") && corpusMeta.structureCoverage.withMatnBoundary === 24991);
+    const parallelResponse = await fetch(`http://127.0.0.1:${port}/api/parallels?report=${encodeURIComponent("openiti:0256Bukhari.Sahih.Shamela0001681-ara1:1117")}&limit=3`);
+    const parallelSearch = await parallelResponse.json();
+    check("parallel API returns bounded explainable candidates", parallelResponse.ok && parallelSearch.candidates.length > 0 && parallelSearch.candidates.length <= 3 && parallelSearch.candidates.every((candidate) => candidate.sharedFourWordSequences.length >= 2 && candidate.counterpart));
+    const missingReportResponse = await fetch(`http://127.0.0.1:${port}/api/parallels`);
+    check("parallel API requires a report identifier", missingReportResponse.status === 400);
   }
 } finally {
   server.kill();

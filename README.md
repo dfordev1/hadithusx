@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.5
+# Unified Hadith Workbench 1.6
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -11,6 +11,8 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 - Paginated server API and white-theme whole-corpus browser
 - Exact and normalized Arabic search modes
 - Corpus-wide machine-proposed isnad/matn boundaries with exact evidence spans and measured coverage
+- 39,634 explainable cross-collection parallel-narration candidates
+- Non-destructive parallel-candidate review, persistence, and export
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison

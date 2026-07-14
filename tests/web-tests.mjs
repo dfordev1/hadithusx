@@ -26,6 +26,10 @@ check("whole-corpus browser follows white theme", /href="styles\.css"/.test(corp
 check("whole-corpus browser uses paginated API", /\/api\/corpus/.test(corpusApp) && /data-page/.test(corpusApp));
 check("whole-corpus browser exposes exact and normalized modes", /value="normalized"/.test(corpusHtml) && /value="exact"/.test(corpusHtml) && /form\.get\("mode"\)/.test(corpusApp));
 check("whole-corpus browser labels machine boundaries", /boundaryMethod/.test(corpusApp));
+check("whole-corpus browser exposes parallel discovery", /data-find-parallels/.test(corpusApp) && /\/api\/parallels/.test(corpusApp));
+check("parallel candidates show evidence and warning", /sharedFourWordSequences/.test(corpusApp) && /does not prove/.test(corpusApp));
+check("parallel decisions persist and export", /localStorage\.setItem\(PARALLEL_REVIEW_KEY/.test(corpusApp) && /unified-hadith-parallel-review\.json/.test(corpusApp));
+check("parallel acceptance does not create alignment", /accept-candidate/.test(corpusApp) && !/acceptedAlignment\s*=/.test(corpusApp));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));
