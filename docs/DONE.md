@@ -2,7 +2,7 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
-## Release 1.6
+## Release 1.7
 
 ### Standard and data model
 
@@ -40,6 +40,11 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Every parallel candidate includes shared four-word evidence, token Jaccard, shorter-text containment, method version, confidence category, and machine-review state.
 - Common phrases occurring in more than 60 reports and same-collection pairs are excluded from candidate generation.
 - Parallel candidates can be accepted for further study, rejected, or marked as needing evidence; decisions persist locally and export without changing corpus alignments.
+- Corpus processing extracts 156,330 occurrence-specific narrator mention candidates with transmission-term and source spans.
+- Explicit chain-switch markers assign branch numbers without joining evidence across switches.
+- Repeated narrator surfaces form 6,992 checksum-bound retrieval clusters with counts, collection distribution, variants, and source examples.
+- Mention and cluster identities remain null, and the method declares that automatic person creation is disabled.
+- A responsive white-theme narrator browser provides Arabic search and occurrence evidence through bounded APIs.
 
 ### Scholarly workbench
 

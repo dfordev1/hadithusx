@@ -11,9 +11,9 @@
       "unsegmented": 1736
     }
   },
-  "uncompressedSha256": "9530bfea525da7e70b0e9c6184994a76dc222bfd9aec26388c99c9a81dc33a83",
-  "compressedSha256": "f861f7b7babad30564fe856ba7dca93df4436ee4388b48cfea3d76ed27afb8ad",
-  "compressedBytes": 6521052,
+  "uncompressedSha256": "614d85c1f8a365ebbca60f362b7f0e6b6c58c510e7d9f224ed4b00abc137bb77",
+  "compressedSha256": "c877b85a1b3510c66cde30b782e1e38fe5c3c96eb9292287210622ad54436a4f",
+  "compressedBytes": 9860444,
   "sources": [
     {
       "sourceKey": "openitiBukhari",

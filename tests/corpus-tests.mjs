@@ -24,6 +24,9 @@ check("transmission term spans reproduce exact text", corpus.records.every((reco
 check("chain spans reproduce exact text", corpus.records.every((record) => record.normalizedText.slice(record.structure.chainSpan.start, record.structure.chainSpan.end) === record.structure.chainSpan.text));
 check("matn spans reproduce candidate text", corpus.records.every((record) => !record.structure.matnSpan || record.normalizedText.slice(record.structure.matnSpan.start, record.structure.matnSpan.end).trim() === record.structure.matnSpan.text));
 check("all structural proposals remain machine-suggested", corpus.records.every((record) => record.structure.reviewState === "machine-suggested"));
+check("corpus mention spans reproduce exact evidence", corpus.records.every((record) => record.structure.narratorMentions.every((mention) => record.normalizedText.slice(mention.transmissionTermSpan.start, mention.transmissionTermSpan.end) === mention.transmissionTerm && record.normalizedText.slice(mention.sourceSpan.start, mention.sourceSpan.end) === mention.sourceSpan.text)));
+check("chain-switch markers reproduce exact evidence", corpus.records.every((record) => record.structure.branchMarkers.every((marker) => record.normalizedText.slice(marker.start, marker.end) === marker.marker) && record.structure.branchCount === record.structure.branchMarkers.length + 1));
+check("corpus mentions never resolve identity automatically", corpus.records.every((record) => record.structure.narratorMentions.every((mention) => mention.identity === null && mention.reviewState === "machine-suggested")));
 
 let failures = 0;
 for (const [name, passed] of checks) { console.log(`${passed ? "PASS" : "FAIL"} ${name}`); if (!passed) failures++; }

@@ -16,6 +16,8 @@ await cp(new URL("data/staging/openiti-five-collections.json.gz", root), new URL
 await cp(new URL("data/staging/openiti-five-collections.manifest.json", root), new URL("corpus-manifest.json", dist));
 await cp(new URL("data/staging/openiti-parallel-candidates.json.gz", root), new URL("openiti-parallel-candidates.json.gz", dist));
 await cp(new URL("data/staging/openiti-parallel-candidates.manifest.json", root), new URL("parallel-manifest.json", dist));
+await cp(new URL("data/staging/openiti-narrator-mentions.json.gz", root), new URL("openiti-narrator-mentions.json.gz", dist));
+await cp(new URL("data/staging/openiti-narrator-mentions.manifest.json", root), new URL("narrator-manifest.json", dist));
 
 const nodes = corpus.persons.map((person) => ({ id: person.id, label: person.preferredName, type: "person", reviewState: person.reviewState }));
 const edges = [];
@@ -108,5 +110,5 @@ for (let left = 0; left < importedNodes.length; left++) {
 }
 await writeFile(new URL("identity-suggestions.json", dist), `${JSON.stringify({ source: imported.source, suggestions: identitySuggestions }, null, 2)}\n`);
 const hash = createHash("sha256").update(corpusText).digest("hex");
-await writeFile(new URL("build-manifest.json", dist), `${JSON.stringify({ releaseVersion: packageJson.version, standardVersion: corpus.standardVersion, sourceSha256: hash, generatedFiles: ["corpus.json", "graph.json", "imported-witnesses.json", "imported-graph.json", "identity-suggestions.json", "openiti-five-collections.json.gz", "corpus-manifest.json", "openiti-parallel-candidates.json.gz", "parallel-manifest.json"] }, null, 2)}\n`);
+await writeFile(new URL("build-manifest.json", dist), `${JSON.stringify({ releaseVersion: packageJson.version, standardVersion: corpus.standardVersion, sourceSha256: hash, generatedFiles: ["corpus.json", "graph.json", "imported-witnesses.json", "imported-graph.json", "identity-suggestions.json", "openiti-five-collections.json.gz", "corpus-manifest.json", "openiti-parallel-candidates.json.gz", "parallel-manifest.json", "openiti-narrator-mentions.json.gz", "narrator-manifest.json"] }, null, 2)}\n`);
 console.log(`Built deterministic workbench with ${nodes.length} graph nodes and ${edges.length} evidence-linked edges.`);

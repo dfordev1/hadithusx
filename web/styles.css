@@ -107,5 +107,12 @@ footer { border-top:1px solid var(--line); padding:28px max(24px,6vw); color:var
 .parallel-candidate { border:1px solid var(--line); border-radius:8px; padding:12px; background:#fbfcfb; }
 .parallel-candidate p { margin:7px 0; }
 .parallel-candidate ul { margin:6px 0; padding-right:22px; }
+.compact-search { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:end; margin-bottom:24px; }
+.compact-search label { display:grid; gap:5px; color:var(--muted); font-size:12px; font-weight:700; }
+.compact-search input { min-height:44px; padding:10px 12px; border:1px solid #bcc8c1; border-radius:8px; background:#fff; color:var(--ink); font:15px inherit; }
+.narrator-cluster h2 { font:700 25px/1.5 "Noto Naskh Arabic","Segoe UI",serif; }
+.mention-evidence { display:grid; gap:7px; margin-top:12px; }
+.mention-evidence article { border:1px solid var(--line); background:#fbfcfb; border-radius:7px; padding:10px; }
+.mention-evidence p { margin:5px 0; }
 @media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)}.hero-grid{grid-template-columns:1fr}}
-@media(max-width:760px){.masthead{align-items:flex-start;flex-direction:column}.header-actions{justify-items:start}.toolbar{align-items:stretch;flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.variant-row{grid-template-columns:1fr}.route{flex-direction:column;gap:5px}.arrow{transform:rotate(90deg)}.section-heading{align-items:flex-start;flex-direction:column}.suggestion-summary{grid-template-columns:1fr}.identity-pair{font-size:17px}dl{grid-template-columns:1fr}.candidate-chain{align-items:stretch;flex-direction:column}.candidate-arrow{transform:rotate(90deg);text-align:center}.corpus-search{grid-template-columns:1fr}}
+@media(max-width:760px){.masthead{align-items:flex-start;flex-direction:column}.header-actions{justify-items:start}.toolbar{align-items:stretch;flex-direction:column}.metrics{grid-template-columns:repeat(2,1fr)}.variant-row{grid-template-columns:1fr}.route{flex-direction:column;gap:5px}.arrow{transform:rotate(90deg)}.section-heading{align-items:flex-start;flex-direction:column}.suggestion-summary{grid-template-columns:1fr}.identity-pair{font-size:17px}dl{grid-template-columns:1fr}.candidate-chain{align-items:stretch;flex-direction:column}.candidate-arrow{transform:rotate(90deg);text-align:center}.corpus-search,.compact-search{grid-template-columns:1fr}}

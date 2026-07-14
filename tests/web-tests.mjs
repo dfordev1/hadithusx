@@ -12,6 +12,8 @@ const [html, css, app, corpusText, graphText, importedGraphText, identityText] =
 ]);
 const corpusHtml = await readFile(new URL("web/corpus.html", root), "utf8");
 const corpusApp = await readFile(new URL("web/corpus.js", root), "utf8");
+const narratorHtml = await readFile(new URL("web/narrators.html", root), "utf8");
+const narratorApp = await readFile(new URL("web/narrators.js", root), "utf8");
 
 const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);
@@ -30,6 +32,9 @@ check("whole-corpus browser exposes parallel discovery", /data-find-parallels/.t
 check("parallel candidates show evidence and warning", /sharedFourWordSequences/.test(corpusApp) && /does not prove/.test(corpusApp));
 check("parallel decisions persist and export", /localStorage\.setItem\(PARALLEL_REVIEW_KEY/.test(corpusApp) && /unified-hadith-parallel-review\.json/.test(corpusApp));
 check("parallel acceptance does not create alignment", /accept-candidate/.test(corpusApp) && !/acceptedAlignment\s*=/.test(corpusApp));
+check("narrator corpus browser follows white theme", /href="styles\.css"/.test(narratorHtml) && /theme-color" content="#ffffff"/.test(narratorHtml));
+check("narrator browser warns clusters are not people", /not automatic identity/i.test(narratorHtml) && /not a person/.test(narratorApp));
+check("narrator browser exposes source evidence", /\/api\/narrator-cluster/.test(narratorApp) && /sourceSpan/.test(narratorApp));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));

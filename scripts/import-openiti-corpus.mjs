@@ -22,12 +22,39 @@ function proposeStructure(text) {
   else if (quotationStart >= 0) { boundary = quotationStart; matnStart = quotationStart + 1; method = "arabic-quotation-boundary"; }
   while (matnStart >= 0 && /\s/u.test(text[matnStart])) matnStart++;
   const chainEnd = boundary >= 0 ? boundary : text.length;
-  const transmissionTerms = [...text.slice(0, chainEnd).matchAll(/(?<![\p{L}\p{M}])(حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني|سمعت|عن|قال)(?![\p{L}\p{M}])/gu)].map((match) => ({ term: match[0], start: match.index, end: match.index + match[0].length }));
+  const chainText = text.slice(0, chainEnd);
+  const termMatches = [...chainText.matchAll(/(?<![\p{L}\p{M}])(حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني|سمعت|عن|قال)(?![\p{L}\p{M}])/gu)];
+  const transmissionTerms = termMatches.map((match) => ({ term: match[0], start: match.index, end: match.index + match[0].length }));
+  const branchMarkers = [...chainText.matchAll(/(?<![\p{L}\p{M}])ح(?=\s+و?(?:حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني))/gu)].map((match, index) => ({ marker: match[0], start: match.index, end: match.index + match[0].length, beforeBranch: index + 1, afterBranch: index + 2 }));
+  const normalizeName = (value) => value.normalize("NFC").replace(/^[\s،:؛و]+|[\s،:؛.]+$/gu, "").replace(/\s+(?:رضي الله عنه(?:ما)?|رحمه الله|عليه السلام)(?:\s.*)?$/u, "").replace(/\s+/g, " ").trim();
+  const narratorMentions = [];
+  for (let index = 0; index < termMatches.length; index++) {
+    const term = termMatches[index][0], start = termMatches[index].index, termEnd = start + term.length;
+    const nextTermStart = termMatches[index + 1]?.index ?? chainText.length;
+    const interveningMarker = branchMarkers.find((marker) => marker.start > termEnd && marker.start < nextTermStart);
+    const end = interveningMarker?.start ?? nextTermStart;
+    const rawSurface = chainText.slice(termEnd, end);
+    const surface = normalizeName(rawSurface);
+    if (!surface || surface.length > 220 || !/[\p{L}]/u.test(surface)) continue;
+    narratorMentions.push({
+      position: narratorMentions.length + 1,
+      branch: 1 + branchMarkers.filter((marker) => marker.start < start).length,
+      transmissionTerm: term,
+      transmissionTermSpan: { start, end: termEnd, text: term },
+      sourceSpan: { start, end, text: chainText.slice(start, end) },
+      surface,
+      identity: null,
+      reviewState: "machine-suggested"
+    });
+  }
   return {
     boundaryMethod: method,
     chainSpan: { start: 0, end: chainEnd, text: text.slice(0, chainEnd) },
     matnSpan: matnStart >= 0 ? { start: matnStart, end: text.length, text: text.slice(matnStart).trim() } : null,
     transmissionTerms,
+    branchMarkers,
+    branchCount: branchMarkers.length + 1,
+    narratorMentions,
     reviewState: "machine-suggested"
   };
 }

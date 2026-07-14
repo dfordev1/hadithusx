@@ -51,6 +51,17 @@ try {
     check("parallel API returns bounded explainable candidates", parallelResponse.ok && parallelSearch.candidates.length > 0 && parallelSearch.candidates.length <= 3 && parallelSearch.candidates.every((candidate) => candidate.sharedFourWordSequences.length >= 2 && candidate.counterpart));
     const missingReportResponse = await fetch(`http://127.0.0.1:${port}/api/parallels`);
     check("parallel API requires a report identifier", missingReportResponse.status === 400);
+    const narratorMetaResponse = await fetch(`http://127.0.0.1:${port}/api/narrators/meta`);
+    const narratorMeta = await narratorMetaResponse.json();
+    check("narrator metadata API reports occurrence evidence", narratorMetaResponse.ok && narratorMeta.mentionCount === 156330 && narratorMeta.clusterCount === 6992 && narratorMeta.method.automaticPersonCreation === false);
+    const narratorSearchResponse = await fetch(`http://127.0.0.1:${port}/api/narrators?q=${encodeURIComponent("عمر بن الخطاب")}&limit=5`);
+    const narratorSearch = await narratorSearchResponse.json();
+    check("Arabic narrator cluster search is bounded", narratorSearchResponse.ok && narratorSearch.results.length > 0 && narratorSearch.results.length <= 5 && narratorSearch.results.every((cluster) => cluster.identity === null));
+    const clusterResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-cluster?id=${encodeURIComponent(narratorSearch.results[0].id)}`);
+    const cluster = await clusterResponse.json();
+    check("narrator cluster detail retains source occurrences", clusterResponse.ok && cluster.examples.length > 0 && cluster.examples.every((mention) => mention.report && mention.sourceSpan));
+    const missingClusterResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-cluster`);
+    check("narrator detail API requires cluster id", missingClusterResponse.status === 400);
   }
 } finally {
   server.kill();

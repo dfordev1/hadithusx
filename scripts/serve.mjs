@@ -14,6 +14,7 @@ const securityHeaders = {
 };
 let wholeCorpus;
 let parallelIndex;
+let narratorIndex;
 async function getWholeCorpus() {
   if (!wholeCorpus) wholeCorpus = JSON.parse(gunzipSync(await readFile(join(root, "openiti-five-collections.json.gz"))).toString("utf8"));
   return wholeCorpus;
@@ -21,6 +22,10 @@ async function getWholeCorpus() {
 async function getParallelIndex() {
   if (!parallelIndex) parallelIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-parallel-candidates.json.gz"))).toString("utf8"));
   return parallelIndex;
+}
+async function getNarratorIndex() {
+  if (!narratorIndex) narratorIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-narrator-mentions.json.gz"))).toString("utf8"));
+  return narratorIndex;
 }
 const normalizeSearch = (value) => value.normalize("NFC").replace(/[ًٌٍَُِّْـ]/gu, "").replace(/[إأآٱ]/gu, "ا").toLocaleLowerCase("ar");
 const exactSearch = (value) => value.normalize("NFC").toLocaleLowerCase("ar");
@@ -74,6 +79,31 @@ createServer(async (request, response) => {
       response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders });
       response.end(request.method === "HEAD" ? undefined : body);
       return;
+    }
+    if (urlPath === "/api/narrators/meta") {
+      const narrators = await getNarratorIndex();
+      const body = JSON.stringify({ format: narrators.format, sourceCorpusSha256: narrators.sourceCorpusSha256, mentionCount: narrators.mentionCount, clusterCount: narrators.clusterCount, method: narrators.method });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
+    }
+    if (urlPath === "/api/narrators") {
+      const narrators = await getNarratorIndex();
+      const q = normalizeSearch(requestUrl.searchParams.get("q")?.trim() || "");
+      const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
+      const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
+      const matches = narrators.clusters.filter((cluster) => !q || normalizeSearch(`${cluster.normalizedSurface} ${cluster.surfaceForms.join(" ")}`).includes(q));
+      const start = (page - 1) * limit;
+      const body = JSON.stringify({ format: "unified-hadith-narrator-cluster-search-0.1", query: requestUrl.searchParams.get("q") || "", page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit) });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
+    }
+    if (urlPath === "/api/narrator-cluster") {
+      const id = requestUrl.searchParams.get("id")?.trim() || "";
+      if (!id) { response.writeHead(400, { "Content-Type": "application/json; charset=utf-8", ...securityHeaders }); response.end(JSON.stringify({ error: "id is required" })); return; }
+      const narrators = await getNarratorIndex();
+      const cluster = narrators.clusters.find((item) => item.id === id);
+      if (!cluster) { response.writeHead(404, { "Content-Type": "application/json; charset=utf-8", ...securityHeaders }); response.end(JSON.stringify({ error: "cluster not found" })); return; }
+      const examples = cluster.exampleMentions.map((mentionId) => narrators.mentions.find((mention) => mention.id === mentionId)).filter(Boolean);
+      const body = JSON.stringify({ format: "unified-hadith-narrator-cluster-detail-0.1", cluster, examples });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
     }
     const relative = urlPath === "/" ? "index.html" : urlPath.replace(/^\/+/, "");
     let file = normalize(join(root, relative));

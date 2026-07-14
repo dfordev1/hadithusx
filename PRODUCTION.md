@@ -1,6 +1,6 @@
 # Production release checklist
 
-## Included in 1.6
+## Included in 1.7
 
 - Fresh deterministic build with `npm ci && npm run check`
 - Five collections from three pinned OpenITI repositories, with checksums for every upstream source file
@@ -10,6 +10,8 @@
 - Measured corpus-wide structural candidates with exact offsets and honest unsegmented records
 - Checksum-bound cross-collection parallel discovery with shared-phrase evidence and similarity measures
 - Bounded parallel API plus persistent, exportable review decisions that never auto-create alignments
+- Corpus-wide branch-aware narrator mention extraction with exact evidence offsets
+- Checksum-bound name-form clustering, bounded narrator APIs, and an explicit zero-auto-identity invariant
 - Explicit OpenITI attribution and CC BY-NC-SA 4.0 notices
 - No dependency on the local upstream checkout at runtime
 - No automatic narrator merge or authenticity grading

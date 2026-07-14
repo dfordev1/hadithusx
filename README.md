@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.6
+# Unified Hadith Workbench 1.7
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -13,6 +13,9 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 - Corpus-wide machine-proposed isnad/matn boundaries with exact evidence spans and measured coverage
 - 39,634 explainable cross-collection parallel-narration candidates
 - Non-destructive parallel-candidate review, persistence, and export
+- 156,330 occurrence-specific narrator mention candidates with exact evidence spans
+- 6,992 repeated name-form clusters explicitly separated from historical person identity
+- Searchable white-theme narrator evidence browser and bounded APIs
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison
@@ -43,6 +46,8 @@ npm start
 Then open `http://localhost:8090`. `npm start` always rebuilds the release first.
 
 Whole-corpus browser: `http://localhost:8090/corpus.html`.
+
+Narrator mention browser: `http://localhost:8090/narrators.html`.
 
 Health check: `http://localhost:8090/healthz`.
 

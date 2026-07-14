@@ -1,0 +1,14 @@
+{
+  "format": "unified-hadith-narrator-mention-index-0.1",
+  "sourceCorpusSha256": "c877b85a1b3510c66cde30b782e1e38fe5c3c96eb9292287210622ad54436a4f",
+  "mentionCount": 156330,
+  "clusterCount": 6992,
+  "uncompressedSha256": "f25671384d17237830e9e823e25ee2b53f0e4d7845e420475462c41e2f8504e0",
+  "compressedSha256": "46d181738a285dc4fddc9aef377467982a0131a524ab8fa4a046567eb0c75a22",
+  "compressedBytes": 6354854,
+  "method": {
+    "grouping": "exact normalized surface",
+    "automaticPersonCreation": false,
+    "minimumClusterOccurrences": 2
+  }
+}
