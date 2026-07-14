@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unifiedhadith.org/schema/0.1/narrator-authority.json",
+  "title": "Unified Hadith Narrator Authority",
+  "type": "object",
+  "required": ["authorityVersion", "status", "sources", "persons", "assertions"],
+  "properties": {
+    "authorityVersion": { "const": "0.1" },
+    "status": { "enum": ["draft", "reviewed", "published"] },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "persons": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+    "assertions": { "type": "array", "items": { "$ref": "#/$defs/assertion" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "id": { "type": "string", "pattern": "^uh:[a-z]+:[a-z0-9][a-z0-9:.-]*$" },
+    "reviewState": { "enum": ["imported", "machine-suggested", "editor-reviewed", "scholar-verified", "disputed", "rejected"] },
+    "confidence": { "enum": ["certain", "probable", "possible", "uncertain", "unknown"] },
+    "citation": {
+      "type": "object",
+      "required": ["source", "locator", "quotation"],
+      "properties": {
+        "source": { "$ref": "#/$defs/id" },
+        "locator": { "type": "string", "minLength": 1 },
+        "quotation": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "citation", "license", "provenance"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "citation": { "type": "string", "minLength": 1 },
+        "license": { "type": "string", "minLength": 1 },
+        "provenance": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "nameForm": {
+      "type": "object",
+      "required": ["text", "type", "language", "citation"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["preferred", "ism", "kunya", "nasab", "nisba", "laqab", "variant", "transliteration"] },
+        "language": { "type": "string", "minLength": 2 },
+        "citation": { "$ref": "#/$defs/citation" }
+      },
+      "additionalProperties": false
+    },
+    "person": {
+      "type": "object",
+      "required": ["id", "preferredName", "nameForms", "reviewState"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "preferredName": { "type": "string", "minLength": 1 },
+        "nameForms": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nameForm" } },
+        "reviewState": { "$ref": "#/$defs/reviewState" }
+      },
+      "additionalProperties": false
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["id", "subject", "predicate", "value", "assertedBy", "citation", "confidence", "reviewState"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "subject": { "$ref": "#/$defs/id" },
+        "predicate": { "enum": ["birth", "death", "location", "generation", "teacher", "student", "evaluation", "identity"] },
+        "value": { "type": "string", "minLength": 1 },
+        "assertedBy": { "type": "string", "minLength": 1 },
+        "citation": { "$ref": "#/$defs/citation" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "reviewState": { "$ref": "#/$defs/reviewState" },
+        "supports": { "$ref": "#/$defs/id" },
+        "contradicts": { "$ref": "#/$defs/id" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

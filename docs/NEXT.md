@@ -4,7 +4,6 @@ Work from the top downward unless a dependency or verified defect changes the or
 
 ## Phase 1 — narrator authority layer
 
-- Define a versioned narrator authority format.
 - Import licensed biographical references with exact citations.
 - Record names, kunyas, nisbas, generations, locations, teachers, students, dates, and source-specific evaluations.
 - Build candidate matching from narrator mentions to authority records.

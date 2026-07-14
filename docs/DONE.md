@@ -11,6 +11,7 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Source witnesses, editions, matn tokens, isnad routes, narrator mentions, people, claims, and alignments are modeled separately.
 - Ordered isnads and branching representation are supported by the core model.
 - Review state, attribution, citations, and confidence can be recorded.
+- A separate narrator authority schema now models typed name forms and competing biographical assertions with mandatory source, locator, quotation, licensing, and provenance evidence.
 
 ### Real source pilot
 

@@ -1,0 +1,32 @@
+{
+  "authorityVersion": "0.1",
+  "status": "draft",
+  "sources": [{
+    "id": "uh:source:authority-fixture",
+    "title": "Narrator authority structural fixture",
+    "citation": "Purpose-built test data; no historical claim.",
+    "license": "CC0-1.0",
+    "provenance": "Created for schema conformance testing."
+  }],
+  "persons": [{
+    "id": "uh:person:authority-fixture-one",
+    "preferredName": "الراوي التجريبي",
+    "nameForms": [{
+      "text": "الراوي التجريبي",
+      "type": "preferred",
+      "language": "ar",
+      "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 1", "quotation": "الراوي التجريبي" }
+    }],
+    "reviewState": "editor-reviewed"
+  }],
+  "assertions": [{
+    "id": "uh:assertion:authority-fixture-location",
+    "subject": "uh:person:authority-fixture-one",
+    "predicate": "location",
+    "value": "مكان تجريبي غير تاريخي",
+    "assertedBy": "Unified Hadith fixture editor",
+    "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 2", "quotation": "مكان تجريبي غير تاريخي" },
+    "confidence": "certain",
+    "reviewState": "editor-reviewed"
+  }]
+}

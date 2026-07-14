@@ -14,6 +14,7 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 - Explicit combined-chain branches with exact transmission-term source spans
 - In-app segmentation review and reversible correction-patch export
 - Reversible narrator identity suggestions with no automatic merging
+- Versioned narrator authority schema with mandatory source, locator, quotation, licensing, and provenance fields
 - Persistent local review decisions and JSON export
 - Responsive, keyboard-accessible white interface
 - Visible loading failures and a health endpoint
