@@ -59,11 +59,21 @@ npm run import:openiti
 - `spec/` — normative design and identifier rules
 - `schema/` — JSON and XML schemas
 - `data/` — standard fixtures and real imported staging records
+- `docs/` — product goal, completed work, roadmap, and permanent white-theme contract
 - `scripts/` — validation, generation, and local server
 - `tests/` — positive and negative conformance tests
 - `web/` — dependency-free scholarly workbench
 
 The source records in `data/` are authoritative for this release. Generated files in `dist/` must be reproducible from them.
+
+## Project continuity
+
+- [Product goal](docs/GOAL.md)
+- [Verified work completed](docs/DONE.md)
+- [Ordered next steps](docs/NEXT.md)
+- [White interface theme contract](docs/THEME.md)
+
+Read the theme contract before every interface change. `AGENTS.md` preserves these instructions for future development sessions.
 
 ## Design principle
 
