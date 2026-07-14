@@ -92,7 +92,7 @@ svg rect { fill:#edf6f0; stroke:var(--green); stroke-width:1.5; }
 svg .term-label { fill:var(--gold); font-size:10px; }
 svg .route-label { fill:var(--muted); text-anchor:start; font-weight:700; }
 footer { border-top:1px solid var(--line); padding:28px max(24px,6vw); color:var(--muted); text-align:center; }
-.corpus-search { display:grid; grid-template-columns:minmax(260px,1fr) minmax(200px,.35fr) auto; gap:12px; align-items:end; margin-bottom:24px; }
+.corpus-search { display:grid; grid-template-columns:minmax(260px,1fr) minmax(190px,.3fr) minmax(170px,.25fr) auto; gap:12px; align-items:end; margin-bottom:24px; }
 .corpus-search label { display:grid; gap:5px; color:var(--muted); font-size:12px; font-weight:700; }
 .corpus-search input,.corpus-search select { width:100%; min-height:44px; padding:10px 12px; border:1px solid #bcc8c1; border-radius:8px; background:#fff; color:var(--ink); font:15px inherit; }
 .corpus-result { margin-bottom:12px; }

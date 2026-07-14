@@ -2,7 +2,7 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
-## Release 1.4
+## Release 1.5
 
 ### Standard and data model
 
@@ -32,6 +32,10 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Per-source counts, commits, file checksums, corpus checksums, attribution, and license terms are manifest-recorded.
 - A bounded server-side API provides Arabic-aware filtering, collection filtering, and pagination without loading the corpus into the browser.
 - A responsive white-theme corpus browser exposes the index with imported-data and licensing boundaries visible.
+- Search offers explicit normalized and exact Arabic modes; normalized mode folds combining marks, tatweel, and hamzated alif while exact mode preserves spelling.
+- Conservative corpus-wide structure processing proposes matn boundaries for 24,991 reports and finds transmission expressions in 26,633 reports.
+- The remaining 1,736 reports are explicitly marked `unsegmented` instead of receiving invented boundaries.
+- Chain, matn, and transmission-term candidates retain character offsets into normalized evidence text.
 
 ### Scholarly workbench
 

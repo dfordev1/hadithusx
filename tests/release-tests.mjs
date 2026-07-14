@@ -40,6 +40,12 @@ try {
     const boundedResponse = await fetch(`http://127.0.0.1:${port}/api/corpus?limit=500`);
     const bounded = await boundedResponse.json();
     check("corpus API enforces page-size ceiling", bounded.limit === 50 && bounded.results.length === 50);
+    const normalizedResponse = await fetch(`http://127.0.0.1:${port}/api/corpus?q=${encodeURIComponent("الاعمال")}&mode=normalized&limit=1`);
+    const exactResponse = await fetch(`http://127.0.0.1:${port}/api/corpus?q=${encodeURIComponent("الاعمال")}&mode=exact&limit=1`);
+    const normalizedSearch = await normalizedResponse.json(), exactSearch = await exactResponse.json();
+    check("normalized Arabic search folds hamza", normalizedSearch.mode === "normalized" && normalizedSearch.total > exactSearch.total);
+    check("exact Arabic search preserves spelling", exactSearch.mode === "exact");
+    check("corpus metadata reports search modes and structure coverage", corpusMeta.searchModes.includes("exact") && corpusMeta.structureCoverage.withMatnBoundary === 24991);
   }
 } finally {
   server.kill();

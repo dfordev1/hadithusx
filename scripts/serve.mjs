@@ -18,6 +18,7 @@ async function getWholeCorpus() {
   return wholeCorpus;
 }
 const normalizeSearch = (value) => value.normalize("NFC").replace(/[ًٌٍَُِّْـ]/gu, "").replace(/[إأآٱ]/gu, "ا").toLocaleLowerCase("ar");
+const exactSearch = (value) => value.normalize("NFC").toLocaleLowerCase("ar");
 
 createServer(async (request, response) => {
   try {
@@ -31,13 +32,15 @@ createServer(async (request, response) => {
     if (urlPath === "/api/corpus") {
       if (!new Set(["GET", "HEAD"]).has(request.method)) { response.writeHead(405, { Allow: "GET, HEAD", ...securityHeaders }); response.end(); return; }
       const corpus = await getWholeCorpus();
-      const query = normalizeSearch(requestUrl.searchParams.get("q")?.trim() || "");
+      const mode = requestUrl.searchParams.get("mode") === "exact" ? "exact" : "normalized";
+      const searchTransform = mode === "exact" ? exactSearch : normalizeSearch;
+      const query = searchTransform(requestUrl.searchParams.get("q")?.trim() || "");
       const collection = requestUrl.searchParams.get("collection")?.trim() || "";
       const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
       const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
-      const matches = corpus.records.filter((record) => (!collection || record.sourceKey === collection) && (!query || normalizeSearch(`${record.reportNumber} ${record.book} ${record.chapter} ${record.normalizedText}`).includes(query)));
+      const matches = corpus.records.filter((record) => (!collection || record.sourceKey === collection) && (!query || searchTransform(`${record.reportNumber} ${record.book} ${record.chapter} ${record.normalizedText}`).includes(query)));
       const start = (page - 1) * limit;
-      const payload = { format: "unified-hadith-corpus-search-0.1", query: requestUrl.searchParams.get("q") || "", collection, page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit).map(({ rawOpenITI, ...record }) => record) };
+      const payload = { format: "unified-hadith-corpus-search-0.2", query: requestUrl.searchParams.get("q") || "", mode, collection, page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit).map(({ rawOpenITI, ...record }) => record) };
       const body = JSON.stringify(payload);
       response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders });
       response.end(request.method === "HEAD" ? undefined : body);
@@ -45,7 +48,7 @@ createServer(async (request, response) => {
     }
     if (urlPath === "/api/corpus/meta") {
       const corpus = await getWholeCorpus();
-      const body = JSON.stringify({ format: corpus.format, reportCount: corpus.reportCount, license: corpus.license, licenseUrl: corpus.licenseUrl, attribution: corpus.attribution, sources: corpus.sources });
+      const body = JSON.stringify({ format: corpus.format, reportCount: corpus.reportCount, structureCoverage: corpus.structureCoverage, searchModes: ["normalized", "exact"], license: corpus.license, licenseUrl: corpus.licenseUrl, attribution: corpus.attribution, sources: corpus.sources });
       response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders });
       response.end(request.method === "HEAD" ? undefined : body);
       return;

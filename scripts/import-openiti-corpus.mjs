@@ -13,6 +13,25 @@ const clean = (value) => value.split(/\r?\n/)
   .map((line) => line.replace(/^~~/, "").replace(/^# /, "").replace(/\bms\d+\b/g, "").replace(/PageV\d+P\d+/g, "").trim())
   .filter(Boolean).join(" ").replace(/\s+/g, " ").normalize("NFC").trim();
 
+function proposeStructure(text) {
+  const explicitMarker = text.indexOf("@MATN@");
+  const quotationIndexes = [text.indexOf("«"), text.indexOf('"')].filter((index) => index >= 0);
+  const quotationStart = quotationIndexes.length ? Math.min(...quotationIndexes) : -1;
+  let boundary = -1, matnStart = -1, method = "unsegmented";
+  if (explicitMarker >= 0) { boundary = explicitMarker; matnStart = explicitMarker + "@MATN@".length; method = "openiti-matn-marker"; }
+  else if (quotationStart >= 0) { boundary = quotationStart; matnStart = quotationStart + 1; method = "arabic-quotation-boundary"; }
+  while (matnStart >= 0 && /\s/u.test(text[matnStart])) matnStart++;
+  const chainEnd = boundary >= 0 ? boundary : text.length;
+  const transmissionTerms = [...text.slice(0, chainEnd).matchAll(/(?<![\p{L}\p{M}])(حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني|سمعت|عن|قال)(?![\p{L}\p{M}])/gu)].map((match) => ({ term: match[0], start: match.index, end: match.index + match[0].length }));
+  return {
+    boundaryMethod: method,
+    chainSpan: { start: 0, end: chainEnd, text: text.slice(0, chainEnd) },
+    matnSpan: matnStart >= 0 ? { start: matnStart, end: text.length, text: text.slice(matnStart).trim() } : null,
+    transmissionTerms,
+    reviewState: "machine-suggested"
+  };
+}
+
 const records = [];
 const sourceSummary = [];
 for (const source of sources) {
@@ -47,6 +66,7 @@ for (const source of sources) {
     const reportNumber = parseNumber(reportMatch[1]);
     const occurrence = (reportOccurrences.get(reportNumber) ?? 0) + 1;
     reportOccurrences.set(reportNumber, occurrence);
+    const structure = proposeStructure(normalizedText);
     records.push({
       id: `openiti:${source.version}:${reportNumber}${occurrence > 1 ? `:occurrence-${occurrence}` : ""}`,
       sourceKey: source.sourceKey,
@@ -59,6 +79,7 @@ for (const source of sources) {
       chapter,
       rawOpenITI,
       normalizedText,
+      structure,
       reviewState: "imported"
     });
     count++;
@@ -76,9 +97,16 @@ const corpus = {
   reportCount: records.length,
   records
 };
+const structureCoverage = {
+  reports: records.length,
+  withMatnBoundary: records.filter((record) => record.structure.matnSpan).length,
+  withTransmissionTerms: records.filter((record) => record.structure.transmissionTerms.length).length,
+  byBoundaryMethod: Object.fromEntries([...new Set(records.map((record) => record.structure.boundaryMethod))].sort().map((method) => [method, records.filter((record) => record.structure.boundaryMethod === method).length]))
+};
+corpus.structureCoverage = structureCoverage;
 const json = `${JSON.stringify(corpus)}\n`;
 const compressed = gzipSync(Buffer.from(json), { level: 9, mtime: 0 });
 await mkdir(new URL("data/staging/", root), { recursive: true });
 await writeFile(new URL("data/staging/openiti-five-collections.json.gz", root), compressed);
-await writeFile(new URL("data/staging/openiti-five-collections.manifest.json", root), `${JSON.stringify({ format: corpus.format, reportCount: records.length, uncompressedSha256: createHash("sha256").update(json).digest("hex"), compressedSha256: createHash("sha256").update(compressed).digest("hex"), compressedBytes: compressed.length, sources: sourceSummary }, null, 2)}\n`);
+await writeFile(new URL("data/staging/openiti-five-collections.manifest.json", root), `${JSON.stringify({ format: corpus.format, reportCount: records.length, structureCoverage, uncompressedSha256: createHash("sha256").update(json).digest("hex"), compressedSha256: createHash("sha256").update(compressed).digest("hex"), compressedBytes: compressed.length, sources: sourceSummary }, null, 2)}\n`);
 console.log(`Indexed ${records.length} reports across ${sources.length} collections (${compressed.length} compressed bytes).`);

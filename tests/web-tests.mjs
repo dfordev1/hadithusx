@@ -24,6 +24,8 @@ check("white theme is mandatory", /color-scheme:\s*light/i.test(css) && /backgro
 check("dark theme declaration is absent", !/color-scheme:\s*dark/i.test(css));
 check("whole-corpus browser follows white theme", /href="styles\.css"/.test(corpusHtml) && /theme-color" content="#ffffff"/.test(corpusHtml));
 check("whole-corpus browser uses paginated API", /\/api\/corpus/.test(corpusApp) && /data-page/.test(corpusApp));
+check("whole-corpus browser exposes exact and normalized modes", /value="normalized"/.test(corpusHtml) && /value="exact"/.test(corpusHtml) && /form\.get\("mode"\)/.test(corpusApp));
+check("whole-corpus browser labels machine boundaries", /boundaryMethod/.test(corpusApp));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));

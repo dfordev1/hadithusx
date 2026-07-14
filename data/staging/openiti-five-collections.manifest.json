@@ -1,9 +1,19 @@
 {
   "format": "unified-hadith-corpus-index-0.1",
   "reportCount": 26727,
-  "uncompressedSha256": "95f9ac6fe62ca0574a08eab7e142eb3ab3549522fade9fa62c27883b299359c3",
-  "compressedSha256": "88dd547effa74f1d628db4cd20d81b1dd4aae37e575eafd7a9055e691b7df12d",
-  "compressedBytes": 4638260,
+  "structureCoverage": {
+    "reports": 26727,
+    "withMatnBoundary": 24991,
+    "withTransmissionTerms": 26633,
+    "byBoundaryMethod": {
+      "arabic-quotation-boundary": 21087,
+      "openiti-matn-marker": 3904,
+      "unsegmented": 1736
+    }
+  },
+  "uncompressedSha256": "9530bfea525da7e70b0e9c6184994a76dc222bfd9aec26388c99c9a81dc33a83",
+  "compressedSha256": "f861f7b7babad30564fe856ba7dca93df4436ee4388b48cfea3d76ed27afb8ad",
+  "compressedBytes": 6521052,
   "sources": [
     {
       "sourceKey": "openitiBukhari",
