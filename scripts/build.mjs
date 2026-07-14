@@ -37,6 +37,7 @@ for (const report of imported.reports) {
       position: mention.position,
       witness: report.stagingId,
       sourceReportNumber: report.sourceReportNumber,
+      collectionLabel: report.collectionLabel,
       identity: null,
       reviewState: mention.reviewState
     });
@@ -48,6 +49,7 @@ for (const report of imported.reports) {
       to: `${report.stagingId}:mention:${String(index + 2).padStart(2, "0")}`,
       witness: report.stagingId,
       sourceReportNumber: report.sourceReportNumber,
+      collectionLabel: report.collectionLabel,
       evidence: report.rawOpenITI,
       reviewState: "machine-suggested"
     });

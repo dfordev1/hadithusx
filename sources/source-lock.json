@@ -1,11 +1,34 @@
 {
-  "openiti0275AH": {
+  "openitiBukhari": {
     "repository": "https://github.com/OpenITI/0275AH.git",
     "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+    "collectionLabel": "Sahih al-Bukhari",
     "work": "0256Bukhari.Sahih",
     "version": "0256Bukhari.Sahih.Shamela0001681-ara1",
     "path": "data/0256Bukhari/0256Bukhari.Sahih/0256Bukhari.Sahih.Shamela0001681-ara1",
     "sourceSha256": "e3eaa89596dea4128a6afd4817f1ee3ba9c7a492ca87fb03a736ec9783110f73",
+    "acquisition": "Shallow Git clone pinned to the recorded commit",
+    "reviewState": "imported"
+  },
+  "openitiAbuDawud": {
+    "repository": "https://github.com/OpenITI/0275AH.git",
+    "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+    "collectionLabel": "Sunan Abi Dawud",
+    "work": "0275AbuDawudSijistani.Sunan",
+    "version": "0275AbuDawudSijistani.Sunan.Shamela0001726-ara1",
+    "path": "data/0275AbuDawudSijistani/0275AbuDawudSijistani.Sunan/0275AbuDawudSijistani.Sunan.Shamela0001726-ara1",
+    "sourceSha256": "e405642e35a7a6f52ed70e5b65f103c945f48ba68bd51fff7a68b96d2f255615",
+    "acquisition": "Shallow Git clone pinned to the recorded commit",
+    "reviewState": "imported"
+  },
+  "openitiIbnMaja": {
+    "repository": "https://github.com/OpenITI/0275AH.git",
+    "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+    "collectionLabel": "Sunan Ibn Majah",
+    "work": "0273IbnMaja.Sunan",
+    "version": "0273IbnMaja.Sunan.Shamela0001198-ara1",
+    "path": "data/0273IbnMaja/0273IbnMaja.Sunan/0273IbnMaja.Sunan.Shamela0001198-ara1",
+    "sourceSha256": "88f7cd1cc8ea9c20dc54929dfb550891b30ea257190a5badae53c2440ac35dc2",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   }

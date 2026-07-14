@@ -1,6 +1,6 @@
 # Production release checklist
 
-## Included in 1.0
+## Included in 1.1
 
 - Fresh deterministic build with `npm ci && npm run check`
 - Pinned and checksummed upstream source

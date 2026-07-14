@@ -35,7 +35,7 @@ const witnesses = new Set(corpus.witnesses.map((witness) => witness.id));
 check("all graph nodes reference persons", graph.nodes.every((node) => persons.has(node.id)));
 check("all graph edges reference nodes", graph.edges.every((edge) => persons.has(edge.from) && persons.has(edge.to)));
 check("all graph edges retain witness evidence", graph.edges.every((edge) => witnesses.has(edge.witness) && edge.isnad && edge.term));
-check("six real OpenITI witnesses are staged", imported.reports.length === 6);
+check("cross-collection OpenITI witnesses are staged", imported.reports.length === 8 && new Set(imported.reports.map((report) => report.collectionLabel)).size === 3);
 check("all real witnesses have isnad candidates", imported.reports.every((report) => report.segmentation.chainCandidate && report.segmentation.narratorMentionCandidates.length >= 5));
 check("all real witnesses have matn candidates", imported.reports.every((report) => report.segmentation.matnCandidate));
 check("candidate identities remain unresolved", imported.reports.every((report) => report.segmentation.narratorMentionCandidates.every((mention) => mention.identity === null && mention.reviewState === "machine-suggested")));
