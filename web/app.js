@@ -2,6 +2,7 @@ const $ = (selector) => document.querySelector(selector);
 const escapeHtml = (value = "") => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
 const badge = (state) => `<span class="badge ${escapeHtml(state)}">${escapeHtml(state)}</span>`;
 const REVIEW_KEY = "unified-hadith-review-v1";
+const SEGMENTATION_KEY = "unified-hadith-segmentation-review-v1";
 
 async function loadJson(path) {
   const response = await fetch(path, { cache: "no-store" });
@@ -17,20 +18,23 @@ async function start() {
   let query = "";
   let currentView = location.hash.slice(1) || "dashboard";
   let review = JSON.parse(localStorage.getItem(REVIEW_KEY) || "{}");
+  let segmentationReview = JSON.parse(localStorage.getItem(SEGMENTATION_KEY) || "{}");
   const reports = imported.reports;
   const collectionCount = new Set(reports.map((report) => report.collectionLabel)).size;
   const mentionCount = reports.reduce((sum, report) => sum + report.segmentation.narratorMentionCandidates.length, 0);
-  const decisionCount = () => Object.keys(review).length;
+  const routeCount = reports.reduce((sum, report) => sum + (report.segmentation.isnadStructure?.branches.length ?? 1), 0);
+  const decisionCount = () => Object.keys(review).length + Object.keys(segmentationReview).length;
   const reportMatches = (report) => !query || [report.sourceReportNumber, report.normalizedReading, ...report.segmentation.narratorMentionCandidates.map((item) => item.surface)].join(" ").toLowerCase().includes(query);
   const suggestionMatches = (item) => !query || [item.leftSurface, item.rightSurface, item.reason, item.confidence].join(" ").toLowerCase().includes(query);
 
   function saveReview() {
     localStorage.setItem(REVIEW_KEY, JSON.stringify(review));
+    localStorage.setItem(SEGMENTATION_KEY, JSON.stringify(segmentationReview));
   }
 
   function renderMetrics() {
     $("#metrics").innerHTML = [
-      [reports.length, "source witnesses"], [reports.length, "isnad routes"], [mentionCount, "mention candidates"],
+      [reports.length, "source witnesses"], [routeCount, "isnad branches"], [mentionCount, "mention candidates"],
       [graph.edges.length, "evidence edges"], [identities.suggestions.length, "identity suggestions"], [decisionCount(), "review decisions"]
     ].map(([value, label]) => `<div class="metric"><strong>${value}</strong><span>${label}</span></div>`).join("");
   }
@@ -42,7 +46,13 @@ async function start() {
   }
 
   function renderCandidateRoute(report) {
-    return `<div class="candidate-chain" aria-label="Narrator mention candidates">${report.segmentation.narratorMentionCandidates.map((mention, index) => `${index ? '<span class="candidate-arrow" aria-hidden="true">←</span>' : ""}<div class="candidate-node"><span class="term">${escapeHtml(mention.transmissionTerm)}</span><strong lang="ar" dir="rtl">${escapeHtml(mention.surface)}</strong>${badge(mention.reviewState)}</div>`).join("")}</div>`;
+    const structure = report.segmentation.isnadStructure;
+    const branches = structure?.branches ?? [{ id: "branch-1", narratorMentionCandidates: report.segmentation.narratorMentionCandidates }];
+    return `<div class="isnad-branches">${branches.map((branch, branchIndex) => {
+      const key = `${report.stagingId}::${branch.id}`;
+      const saved = segmentationReview[key];
+      return `<section class="isnad-branch"><div class="branch-label">${structure?.kind === "explicit-branches" ? `Branch ${branchIndex + 1}${branch.introducedBy ? ` · switch ${escapeHtml(branch.introducedBy)}` : ""}` : "Single route"} ${badge(saved?.decision || branch.reviewState || report.segmentation.reviewState)}</div><div class="candidate-chain" aria-label="Narrator mention candidates for branch ${branchIndex + 1}">${branch.narratorMentionCandidates.map((mention, index) => `${index ? '<span class="candidate-arrow" aria-hidden="true">←</span>' : ""}<div class="candidate-node"><span class="term">${escapeHtml(mention.transmissionTerm)}</span><strong lang="ar" dir="rtl">${escapeHtml(mention.surface)}</strong><span class="id">source ${mention.sourceSpan?.start ?? "?"}–${mention.sourceSpan?.end ?? "?"}</span></div>`).join("")}</div><details class="correction-panel"><summary>Review this segmentation</summary><label>Proposed corrected branch text<textarea lang="ar" dir="rtl" data-correction-text>${escapeHtml(saved?.proposedText ?? branch.sourceSpan?.text ?? "")}</textarea></label><label>Reviewer note<textarea data-correction-note>${escapeHtml(saved?.note ?? "")}</textarea></label><div class="review-actions" data-segmentation-key="${escapeHtml(key)}"><button data-segmentation-decision="confirmed">Confirm</button><button data-segmentation-decision="proposed-correction">Save correction</button><button data-segmentation-decision="needs-evidence">Needs evidence</button></div><p class="id">Raw source remains unchanged. This saves a reversible review patch.</p></details></section>`;
+    }).join("")}</div>`;
   }
 
   function witnesses() {
@@ -56,14 +66,15 @@ async function start() {
   }
 
   function graphView() {
-    const width = 1320, rowHeight = 112, height = 90 + reports.length * rowHeight;
-    const grouped = reports.map((report) => ({ report, nodes: graph.nodes.filter((node) => node.witness === report.stagingId).sort((a,b) => a.position - b.position) }));
+    const width = 1320, rowHeight = 112;
+    const grouped = reports.flatMap((report) => [...new Set(graph.nodes.filter((node) => node.witness === report.stagingId).map((node) => node.branchId))].map((branchId) => ({ report, branchId, nodes: graph.nodes.filter((node) => node.witness === report.stagingId && node.branchId === branchId).sort((a,b) => a.position - b.position) })));
+    const height = 90 + grouped.length * rowHeight;
     const positions = new Map();
     grouped.forEach(({ nodes }, row) => nodes.forEach((node, column) => positions.set(node.id, { x: 190 + column * 165, y: 70 + row * rowHeight })));
     const lines = graph.edges.map((edge) => { const a = positions.get(edge.from), b = positions.get(edge.to); return `<line x1="${a.x + 62}" y1="${a.y}" x2="${b.x - 62}" y2="${b.y}"><title>${escapeHtml(edge.witness)} — evidence retained</title></line>`; }).join("");
-    const labels = grouped.map(({ report }, row) => `<text class="route-label" x="15" y="${75 + row * rowHeight}">${escapeHtml(report.collectionLabel)} ${report.sourceReportNumber}</text>`).join("");
+    const labels = grouped.map(({ report, branchId }, row) => `<text class="route-label" x="15" y="${75 + row * rowHeight}">${escapeHtml(report.collectionLabel)} ${report.sourceReportNumber} · ${escapeHtml(branchId)}</text>`).join("");
     const nodes = graph.nodes.map((node) => { const point = positions.get(node.id); const short = node.label.length > 20 ? `${node.label.slice(0,20)}…` : node.label; return `<g><rect x="${point.x - 62}" y="${point.y - 29}" width="124" height="58" rx="9"><title>${escapeHtml(node.label)} — ${escapeHtml(node.term)} — identity unresolved</title></rect><text x="${point.x}" y="${point.y - 3}" direction="rtl">${escapeHtml(short)}</text><text class="term-label" x="${point.x}" y="${point.y + 16}">${escapeHtml(node.term)}</text></g>`; }).join("");
-    return `<article class="card"><div class="section-heading"><div><p class="eyebrow">TRANSMISSION</p><h2>Evidence-linked routes</h2></div>${badge("identity-unresolved")}</div><p>Each box is an occurrence-specific mention. Similar names are not merged.</p><div class="graph-scroll"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Cross-collection transmission routes">${lines}${labels}${nodes}</svg></div><p class="warning">The graph represents encoded source statements, not an independent authenticity judgment.</p></article>`;
+    return `<article class="card"><div class="section-heading"><div><p class="eyebrow">TRANSMISSION</p><h2>Evidence-linked routes</h2></div>${badge("identity-unresolved")}</div><p>Each box is an occurrence-specific mention. Explicit chain switches are shown as separate branches, and similar names are not merged.</p><div class="graph-scroll"><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Cross-collection transmission routes">${lines}${labels}${nodes}</svg></div><p class="warning">The graph represents encoded source statements, not an independent authenticity judgment.</p></article>`;
   }
 
   function narrators() {
@@ -107,6 +118,19 @@ async function start() {
       review[id] = { decision: decisionButton.dataset.decision, decidedAt: new Date().toISOString(), sourceCommit: imported.source.commit };
       saveReview(); render(); return;
     }
+    const segmentationButton = event.target.closest("[data-segmentation-decision]");
+    if (segmentationButton) {
+      const panel = segmentationButton.closest(".correction-panel");
+      const key = segmentationButton.closest("[data-segmentation-key]").dataset.segmentationKey;
+      segmentationReview[key] = {
+        decision: segmentationButton.dataset.segmentationDecision,
+        proposedText: panel.querySelector("[data-correction-text]").value.trim(),
+        note: panel.querySelector("[data-correction-note]").value.trim(),
+        decidedAt: new Date().toISOString(),
+        sourceCommits: imported.sources.map(({ sourceKey, commit }) => ({ sourceKey, commit }))
+      };
+      saveReview(); render(); return;
+    }
     const filter = event.target.closest("[data-confidence]");
     if (filter) {
       const value = filter.dataset.confidence;
@@ -115,7 +139,7 @@ async function start() {
   });
   $("#global-search").addEventListener("input", (event) => { query = event.target.value.trim().toLowerCase(); render(); });
   $("#export-review").addEventListener("click", () => {
-    const payload = { format: "unified-hadith-review-0.1", exportedAt: new Date().toISOString(), sourceCommit: imported.source.commit, decisions: review };
+    const payload = { format: "unified-hadith-review-0.2", exportedAt: new Date().toISOString(), sources: imported.sources.map(({ sourceKey, commit, sourceSha256 }) => ({ sourceKey, commit, sourceSha256 })), identityDecisions: review, segmentationCorrections: segmentationReview };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }));
     const link = Object.assign(document.createElement("a"), { href: url, download: "unified-hadith-review.json" });
     link.click(); URL.revokeObjectURL(url);

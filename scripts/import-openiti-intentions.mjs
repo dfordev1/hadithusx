@@ -34,7 +34,7 @@ function cleanOpenITI(block) {
     .filter(Boolean).join(" ").replace(/\s+/g, " ").normalize("NFC").trim();
 }
 
-function extractMentionCandidates(chain) {
+function extractMentionCandidates(chain, baseOffset = 0) {
   const termPattern = /(?<![\p{L}\p{M}])(حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنه سمع|أنها سمعت|سمعت|عن|أن|يقول|قال)(?![\p{L}\p{M}])/gu;
   const terms = [...chain.matchAll(termPattern)];
   const candidates = [];
@@ -44,9 +44,45 @@ function extractMentionCandidates(chain) {
     const end = terms[index + 1]?.index ?? chain.length;
     const surface = chain.slice(start, end).replace(/^[\s:،]+|[\s:،]+$/g, "").replace(/\s+رضي الله عنه(?:،?\s*(?:على المنبر|يخطب))?$/u, "").replace(/\s+/g, " ");
     if (!surface || /^(إنما|الأعمال|لكل)/u.test(surface)) continue;
-    candidates.push({ position: candidates.length + 1, transmissionTerm: term, surface, identity: null, reviewState: "machine-suggested" });
+    candidates.push({
+      position: candidates.length + 1,
+      transmissionTerm: term,
+      transmissionTermSpan: { start: baseOffset + terms[index].index, end: baseOffset + terms[index].index + term.length, text: term },
+      sourceSpan: { start: baseOffset + terms[index].index, end: baseOffset + end, text: chain.slice(terms[index].index, end) },
+      surface,
+      identity: null,
+      reviewState: "machine-suggested"
+    });
   }
   return candidates;
+}
+
+function extractIsnadStructure(chain) {
+  const markerPattern = /(?<![\p{L}\p{M}])ح(?=\s+و?(?:حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا))/gu;
+  const markers = [...chain.matchAll(markerPattern)];
+  const boundaries = [0, ...markers.map((marker) => marker.index + marker[0].length), chain.length];
+  const branches = [];
+  for (let index = 0; index < boundaries.length - 1; index++) {
+    let start = boundaries[index], end = boundaries[index + 1] - (markers[index]?.[0].length ?? 0);
+    while (start < end && /[\s،]/u.test(chain[start])) start++;
+    while (end > start && /\s/u.test(chain[end - 1])) end--;
+    const text = chain.slice(start, end);
+    if (!text) continue;
+    branches.push({
+      id: `branch-${branches.length + 1}`,
+      position: branches.length + 1,
+      sourceSpan: { start, end, text },
+      introducedBy: branches.length ? "ح" : null,
+      narratorMentionCandidates: extractMentionCandidates(text, start),
+      reviewState: "machine-suggested"
+    });
+  }
+  return {
+    kind: branches.length > 1 ? "explicit-branches" : "single-route",
+    branchMarkers: markers.map((marker, index) => ({ marker: marker[0], start: marker.index, end: marker.index + marker[0].length, beforeBranch: index + 1, afterBranch: index + 2 })),
+    branches,
+    reviewState: "machine-suggested"
+  };
 }
 
 function parseReportNumber(value) {
@@ -78,6 +114,9 @@ async function extractSource(source) {
     const chainCandidate = quoteStart === -1 ? normalizedReading : normalizedReading.slice(0, quoteStart).trim();
     const matnCandidate = quoteStart === -1 ? normalizedReading.slice(normalizedReading.indexOf("إنما الأعمال")) : normalizedReading.slice(quoteStart + 1, quoteEnd > quoteStart ? quoteEnd : undefined).trim();
     const sourceReportNumber = parseReportNumber(matches[index][1]);
+    const isnadStructure = extractIsnadStructure(chainCandidate);
+    const narratorMentionCandidates = isnadStructure.branches.flatMap((branch) => branch.narratorMentionCandidates)
+      .map((mention, index) => ({ ...mention, position: index + 1 }));
     reports.push({
       stagingId: `openiti:${source.version}:${sourceReportNumber}`,
       sourceKey: source.sourceKey,
@@ -86,7 +125,7 @@ async function extractSource(source) {
       sourceReportNumber,
       rawOpenITI,
       normalizedReading,
-      segmentation: { chainCandidate, matnCandidate, narratorMentionCandidates: extractMentionCandidates(chainCandidate), method: "Arabic quotation-boundary heuristic", reviewState: "machine-suggested" },
+      segmentation: { chainCandidate, matnCandidate, isnadStructure, narratorMentionCandidates, method: "Arabic quotation-boundary and explicit chain-switch heuristic", reviewState: "machine-suggested" },
       reviewState: "imported"
     });
   }

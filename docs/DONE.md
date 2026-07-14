@@ -2,7 +2,7 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
-## Release 1.2
+## Release 1.3
 
 ### Standard and data model
 
@@ -20,6 +20,9 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Every imported source file has a locked SHA-256 checksum.
 - The importer supports ASCII and Arabic-Indic report numbers and multiple OpenITI heading forms.
 - Raw OpenITI evidence is retained beside normalized and machine-segmented candidates.
+- Explicit chain switches are represented as separate branches rather than false continuous routes.
+- Transmission expressions and machine-proposed narrator segments retain exact normalized-source character spans.
+- Real Ibn Majah and Nasaʾi combined-chain cases are covered by regression checks.
 
 ### Scholarly workbench
 
@@ -28,6 +31,8 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Occurrence-specific isnad routes can be viewed as a graph.
 - Narrator identity suggestions remain unresolved until reviewed.
 - Review decisions persist locally and can be exported as JSON.
+- Scholars can confirm, correct, or flag each proposed isnad branch inside the witness reader.
+- Segmentation corrections export as reversible review patches and never overwrite raw evidence.
 - Search, hash navigation, provenance, responsive layout, keyboard focus, and error recovery are implemented.
 
 ### Operations and verification
@@ -51,4 +56,3 @@ The implemented interface uses the required light appearance. Any future visual 
 - [GOAL.md](GOAL.md) defines the destination.
 - [NEXT.md](NEXT.md) lists what remains.
 - [THEME.md](THEME.md) defines the visual contract.
-

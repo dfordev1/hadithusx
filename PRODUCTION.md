@@ -1,6 +1,6 @@
 # Production release checklist
 
-## Included in 1.2
+## Included in 1.3
 
 - Fresh deterministic build with `npm ci && npm run check`
 - Five collections from three pinned OpenITI repositories, with checksums for every upstream source file
@@ -8,6 +8,7 @@
 - No automatic narrator merge or authenticity grading
 - Search, navigation, responsive layout, and keyboard focus states
 - Persistent review decisions and portable export
+- Explicit chain-switch preservation, source spans, and non-destructive segmentation corrections
 - Visible provenance and methodological limitations
 - HTTP health check and defensive response headers
 - CI across supported Node.js LTS versions

@@ -2,15 +2,7 @@
 
 Work from the top downward unless a dependency or verified defect changes the order. Move an item to [DONE.md](DONE.md) only after implementation and testing.
 
-## Phase 1 — trustworthy isnad structure
-
-- Represent OpenITI chain switches such as `ح` as explicit branches instead of flattening them.
-- Preserve every transmission expression and its exact source span.
-- Add chain-boundary and branch fixtures from real Nasaʾi examples.
-- Add editor views for correcting machine segmentation.
-- Make corrections exportable as review patches without rewriting raw evidence.
-
-## Phase 2 — narrator authority layer
+## Phase 1 — narrator authority layer
 
 - Define a versioned narrator authority format.
 - Import licensed biographical references with exact citations.
@@ -19,7 +11,7 @@ Work from the top downward unless a dependency or verified defect changes the or
 - Require human approval for identity resolution and retain rejected alternatives.
 - Detect impossible chronology and broken-link candidates as warnings, never automatic rulings.
 
-## Phase 3 — full hadith interchange
+## Phase 2 — full hadith interchange
 
 - Finalize the normative JSON and XML specifications.
 - Model collection, book, chapter, report numbering, commentary, grading, and cross-reference systems without overloading fields.
@@ -27,7 +19,7 @@ Work from the top downward unless a dependency or verified defect changes the or
 - Publish conformance fixtures and a compatibility policy.
 - Create a command-line validator and documented integration API.
 
-## Phase 4 — corpus expansion
+## Phase 3 — corpus expansion
 
 - Expand beyond the intentions family while preserving reproducible source locks.
 - Add canonical collections incrementally, with licensing and provenance reviewed before import.
@@ -35,7 +27,7 @@ Work from the top downward unless a dependency or verified defect changes the or
 - Add Arabic-aware search, spelling normalization options, and exact-mode searching.
 - Add parallel-narration discovery with explainable similarity evidence.
 
-## Phase 5 — scholarly collaboration
+## Phase 4 — scholarly collaboration
 
 - Add accounts, roles, projects, assignments, and review queues.
 - Add immutable revision history and side-by-side change review.
@@ -43,7 +35,7 @@ Work from the top downward unless a dependency or verified defect changes the or
 - Add citations, annotations, publication snapshots, and signed review exports.
 - Add backups, migrations, observability, privacy controls, and deployment documentation.
 
-## Phase 6 — ecosystem
+## Phase 5 — ecosystem
 
 - Publish the format, validator, sample corpus, and SDKs independently.
 - Provide import/export bridges for common research tools and graph formats.
@@ -63,4 +55,3 @@ Before adding or changing UI, read [THEME.md](THEME.md). All phases retain the w
 - [GOAL.md](GOAL.md) defines why the work exists.
 - [DONE.md](DONE.md) records verified outcomes.
 - [THEME.md](THEME.md) defines the visual contract.
-

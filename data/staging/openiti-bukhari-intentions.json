@@ -96,10 +96,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا الحميدي عبد الله بن الزبير، قال: حدثنا سفيان، قال: حدثنا يحيى بن سعيد الأنصاري، قال: أخبرني محمد بن إبراهيم التيمي، أنه سمع علقمة بن وقاص الليثي، يقول: سمعت عمر بن الخطاب رضي الله عنه على المنبر قال: سمعت رسول الله صلى الله عليه وسلم يقول:",
         "matnCandidate": "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى، فمن كانت هجرته إلى دنيا يصيبها، أو إلى امرأة ينكحها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 245,
+                "text": "حدثنا الحميدي عبد الله بن الزبير، قال: حدثنا سفيان، قال: حدثنا يحيى بن سعيد الأنصاري، قال: أخبرني محمد بن إبراهيم التيمي، أنه سمع علقمة بن وقاص الليثي، يقول: سمعت عمر بن الخطاب رضي الله عنه على المنبر قال: سمعت رسول الله صلى الله عليه وسلم يقول:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 34,
+                    "text": "حدثنا الحميدي عبد الله بن الزبير، "
+                  },
+                  "surface": "الحميدي عبد الله بن الزبير",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 39,
+                    "end": 44,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 39,
+                    "end": 52,
+                    "text": "حدثنا سفيان، "
+                  },
+                  "surface": "سفيان",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 57,
+                    "end": 62,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 57,
+                    "end": 86,
+                    "text": "حدثنا يحيى بن سعيد الأنصاري، "
+                  },
+                  "surface": "يحيى بن سعيد الأنصاري",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "أخبرني",
+                  "transmissionTermSpan": {
+                    "start": 91,
+                    "end": 97,
+                    "text": "أخبرني"
+                  },
+                  "sourceSpan": {
+                    "start": 91,
+                    "end": 122,
+                    "text": "أخبرني محمد بن إبراهيم التيمي، "
+                  },
+                  "surface": "محمد بن إبراهيم التيمي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "أنه سمع",
+                  "transmissionTermSpan": {
+                    "start": 122,
+                    "end": 129,
+                    "text": "أنه سمع"
+                  },
+                  "sourceSpan": {
+                    "start": 122,
+                    "end": 152,
+                    "text": "أنه سمع علقمة بن وقاص الليثي، "
+                  },
+                  "surface": "علقمة بن وقاص الليثي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 158,
+                    "end": 162,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 158,
+                    "end": 201,
+                    "text": "سمعت عمر بن الخطاب رضي الله عنه على المنبر "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 206,
+                    "end": 210,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 206,
+                    "end": 240,
+                    "text": "سمعت رسول الله صلى الله عليه وسلم "
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 34,
+              "text": "حدثنا الحميدي عبد الله بن الزبير، "
+            },
             "surface": "الحميدي عبد الله بن الزبير",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -107,6 +256,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 39,
+              "end": 44,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 39,
+              "end": 52,
+              "text": "حدثنا سفيان، "
+            },
             "surface": "سفيان",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -114,6 +273,16 @@
           {
             "position": 3,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 57,
+              "end": 62,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 57,
+              "end": 86,
+              "text": "حدثنا يحيى بن سعيد الأنصاري، "
+            },
             "surface": "يحيى بن سعيد الأنصاري",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -121,6 +290,16 @@
           {
             "position": 4,
             "transmissionTerm": "أخبرني",
+            "transmissionTermSpan": {
+              "start": 91,
+              "end": 97,
+              "text": "أخبرني"
+            },
+            "sourceSpan": {
+              "start": 91,
+              "end": 122,
+              "text": "أخبرني محمد بن إبراهيم التيمي، "
+            },
             "surface": "محمد بن إبراهيم التيمي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -128,6 +307,16 @@
           {
             "position": 5,
             "transmissionTerm": "أنه سمع",
+            "transmissionTermSpan": {
+              "start": 122,
+              "end": 129,
+              "text": "أنه سمع"
+            },
+            "sourceSpan": {
+              "start": 122,
+              "end": 152,
+              "text": "أنه سمع علقمة بن وقاص الليثي، "
+            },
             "surface": "علقمة بن وقاص الليثي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -135,6 +324,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 158,
+              "end": 162,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 158,
+              "end": 201,
+              "text": "سمعت عمر بن الخطاب رضي الله عنه على المنبر "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -142,12 +341,22 @@
           {
             "position": 7,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 206,
+              "end": 210,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 206,
+              "end": 240,
+              "text": "سمعت رسول الله صلى الله عليه وسلم "
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -163,10 +372,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا عبد الله بن مسلمة، قال: أخبرنا مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر أن رسول الله صلى الله عليه وسلم قال:",
         "matnCandidate": "الأعمال بالنية، ولكل امرئ ما نوى، فمن كانت هجرته إلى الله ورسوله فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 141,
+                "text": "حدثنا عبد الله بن مسلمة، قال: أخبرنا مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر أن رسول الله صلى الله عليه وسلم قال:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 25,
+                    "text": "حدثنا عبد الله بن مسلمة، "
+                  },
+                  "surface": "عبد الله بن مسلمة",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "أخبرنا",
+                  "transmissionTermSpan": {
+                    "start": 30,
+                    "end": 36,
+                    "text": "أخبرنا"
+                  },
+                  "sourceSpan": {
+                    "start": 30,
+                    "end": 43,
+                    "text": "أخبرنا مالك، "
+                  },
+                  "surface": "مالك",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 43,
+                    "end": 45,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 43,
+                    "end": 60,
+                    "text": "عن يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 60,
+                    "end": 62,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 60,
+                    "end": 80,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 80,
+                    "end": 82,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 80,
+                    "end": 98,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 98,
+                    "end": 100,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 98,
+                    "end": 105,
+                    "text": "عن عمر "
+                  },
+                  "surface": "عمر",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "أن",
+                  "transmissionTermSpan": {
+                    "start": 105,
+                    "end": 107,
+                    "text": "أن"
+                  },
+                  "sourceSpan": {
+                    "start": 105,
+                    "end": 137,
+                    "text": "أن رسول الله صلى الله عليه وسلم "
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 25,
+              "text": "حدثنا عبد الله بن مسلمة، "
+            },
             "surface": "عبد الله بن مسلمة",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -174,6 +532,16 @@
           {
             "position": 2,
             "transmissionTerm": "أخبرنا",
+            "transmissionTermSpan": {
+              "start": 30,
+              "end": 36,
+              "text": "أخبرنا"
+            },
+            "sourceSpan": {
+              "start": 30,
+              "end": 43,
+              "text": "أخبرنا مالك، "
+            },
             "surface": "مالك",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -181,6 +549,16 @@
           {
             "position": 3,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 43,
+              "end": 45,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 43,
+              "end": 60,
+              "text": "عن يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -188,6 +566,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 60,
+              "end": 62,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 60,
+              "end": 80,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -195,6 +583,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 80,
+              "end": 82,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 80,
+              "end": 98,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -202,6 +600,16 @@
           {
             "position": 6,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 98,
+              "end": 100,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 98,
+              "end": 105,
+              "text": "عن عمر "
+            },
             "surface": "عمر",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -209,12 +617,22 @@
           {
             "position": 7,
             "transmissionTerm": "أن",
+            "transmissionTermSpan": {
+              "start": 105,
+              "end": 107,
+              "text": "أن"
+            },
+            "sourceSpan": {
+              "start": 105,
+              "end": 137,
+              "text": "أن رسول الله صلى الله عليه وسلم "
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -230,10 +648,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا محمد بن كثير، عن سفيان، حدثنا يحيى بن سعيد، عن محمد بن إبراهيم التيمي، عن علقمة بن وقاص الليثي، قال: سمعت عمر بن الخطاب رضي الله عنه، عن النبي صلى الله عليه وسلم قال:",
         "matnCandidate": "الأعمال بالنية، ولامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 172,
+                "text": "حدثنا محمد بن كثير، عن سفيان، حدثنا يحيى بن سعيد، عن محمد بن إبراهيم التيمي، عن علقمة بن وقاص الليثي، قال: سمعت عمر بن الخطاب رضي الله عنه، عن النبي صلى الله عليه وسلم قال:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 20,
+                    "text": "حدثنا محمد بن كثير، "
+                  },
+                  "surface": "محمد بن كثير",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 20,
+                    "end": 22,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 20,
+                    "end": 30,
+                    "text": "عن سفيان، "
+                  },
+                  "surface": "سفيان",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 30,
+                    "end": 35,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 30,
+                    "end": 50,
+                    "text": "حدثنا يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 50,
+                    "end": 52,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 50,
+                    "end": 77,
+                    "text": "عن محمد بن إبراهيم التيمي، "
+                  },
+                  "surface": "محمد بن إبراهيم التيمي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 77,
+                    "end": 79,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 77,
+                    "end": 102,
+                    "text": "عن علقمة بن وقاص الليثي، "
+                  },
+                  "surface": "علقمة بن وقاص الليثي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 107,
+                    "end": 111,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 107,
+                    "end": 140,
+                    "text": "سمعت عمر بن الخطاب رضي الله عنه، "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 140,
+                    "end": 142,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 140,
+                    "end": 168,
+                    "text": "عن النبي صلى الله عليه وسلم "
+                  },
+                  "surface": "النبي صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 20,
+              "text": "حدثنا محمد بن كثير، "
+            },
             "surface": "محمد بن كثير",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -241,6 +808,16 @@
           {
             "position": 2,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 20,
+              "end": 22,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 20,
+              "end": 30,
+              "text": "عن سفيان، "
+            },
             "surface": "سفيان",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -248,6 +825,16 @@
           {
             "position": 3,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 30,
+              "end": 35,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 30,
+              "end": 50,
+              "text": "حدثنا يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -255,6 +842,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 50,
+              "end": 52,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 50,
+              "end": 77,
+              "text": "عن محمد بن إبراهيم التيمي، "
+            },
             "surface": "محمد بن إبراهيم التيمي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -262,6 +859,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 77,
+              "end": 79,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 77,
+              "end": 102,
+              "text": "عن علقمة بن وقاص الليثي، "
+            },
             "surface": "علقمة بن وقاص الليثي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -269,6 +876,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 107,
+              "end": 111,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 107,
+              "end": 140,
+              "text": "سمعت عمر بن الخطاب رضي الله عنه، "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -276,12 +893,22 @@
           {
             "position": 7,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 140,
+              "end": 142,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 140,
+              "end": 168,
+              "text": "عن النبي صلى الله عليه وسلم "
+            },
             "surface": "النبي صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -297,10 +924,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا مسدد، حدثنا حماد هو ابن زيد، عن يحيى، عن محمد بن إبراهيم، عن علقمة بن وقاص، قال: سمعت عمر رضي الله عنه، قال: سمعت النبي صلى الله عليه وسلم ، يقول:",
         "matnCandidate": "الأعمال بالنية، فمن كانت هجرته إلى دنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه، ومن كانت هجرته إلى الله ورسوله فهجرته إلى الله ورسوله",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 152,
+                "text": "حدثنا مسدد، حدثنا حماد هو ابن زيد، عن يحيى، عن محمد بن إبراهيم، عن علقمة بن وقاص، قال: سمعت عمر رضي الله عنه، قال: سمعت النبي صلى الله عليه وسلم ، يقول:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 12,
+                    "text": "حدثنا مسدد، "
+                  },
+                  "surface": "مسدد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 12,
+                    "end": 17,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 12,
+                    "end": 35,
+                    "text": "حدثنا حماد هو ابن زيد، "
+                  },
+                  "surface": "حماد هو ابن زيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 35,
+                    "end": 37,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 35,
+                    "end": 44,
+                    "text": "عن يحيى، "
+                  },
+                  "surface": "يحيى",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 44,
+                    "end": 46,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 44,
+                    "end": 64,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 64,
+                    "end": 66,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 64,
+                    "end": 82,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 87,
+                    "end": 91,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 87,
+                    "end": 110,
+                    "text": "سمعت عمر رضي الله عنه، "
+                  },
+                  "surface": "عمر",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 115,
+                    "end": 119,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 115,
+                    "end": 147,
+                    "text": "سمعت النبي صلى الله عليه وسلم ، "
+                  },
+                  "surface": "النبي صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 12,
+              "text": "حدثنا مسدد، "
+            },
             "surface": "مسدد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -308,6 +1084,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 12,
+              "end": 17,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 12,
+              "end": 35,
+              "text": "حدثنا حماد هو ابن زيد، "
+            },
             "surface": "حماد هو ابن زيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -315,6 +1101,16 @@
           {
             "position": 3,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 35,
+              "end": 37,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 35,
+              "end": 44,
+              "text": "عن يحيى، "
+            },
             "surface": "يحيى",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -322,6 +1118,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 44,
+              "end": 46,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 44,
+              "end": 64,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -329,6 +1135,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 64,
+              "end": 66,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 64,
+              "end": 82,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -336,6 +1152,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 87,
+              "end": 91,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 87,
+              "end": 110,
+              "text": "سمعت عمر رضي الله عنه، "
+            },
             "surface": "عمر",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -343,12 +1169,22 @@
           {
             "position": 7,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 115,
+              "end": 119,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 115,
+              "end": 147,
+              "text": "سمعت النبي صلى الله عليه وسلم ، "
+            },
             "surface": "النبي صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -364,10 +1200,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا قتيبة بن سعيد، حدثنا عبد الوهاب، قال: سمعت يحيى بن سعيد، يقول: أخبرني محمد بن إبراهيم، أنه سمع علقمة بن وقاص الليثي، يقول: سمعت عمر بن الخطاب رضي الله عنه، يقول: سمعت رسول الله صلى الله عليه وسلم يقول:",
         "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته إلى دنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 207,
+                "text": "حدثنا قتيبة بن سعيد، حدثنا عبد الوهاب، قال: سمعت يحيى بن سعيد، يقول: أخبرني محمد بن إبراهيم، أنه سمع علقمة بن وقاص الليثي، يقول: سمعت عمر بن الخطاب رضي الله عنه، يقول: سمعت رسول الله صلى الله عليه وسلم يقول:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 21,
+                    "text": "حدثنا قتيبة بن سعيد، "
+                  },
+                  "surface": "قتيبة بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 21,
+                    "end": 26,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 21,
+                    "end": 39,
+                    "text": "حدثنا عبد الوهاب، "
+                  },
+                  "surface": "عبد الوهاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 44,
+                    "end": 48,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 44,
+                    "end": 63,
+                    "text": "سمعت يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "أخبرني",
+                  "transmissionTermSpan": {
+                    "start": 69,
+                    "end": 75,
+                    "text": "أخبرني"
+                  },
+                  "sourceSpan": {
+                    "start": 69,
+                    "end": 93,
+                    "text": "أخبرني محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "أنه سمع",
+                  "transmissionTermSpan": {
+                    "start": 93,
+                    "end": 100,
+                    "text": "أنه سمع"
+                  },
+                  "sourceSpan": {
+                    "start": 93,
+                    "end": 123,
+                    "text": "أنه سمع علقمة بن وقاص الليثي، "
+                  },
+                  "surface": "علقمة بن وقاص الليثي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 129,
+                    "end": 133,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 129,
+                    "end": 162,
+                    "text": "سمعت عمر بن الخطاب رضي الله عنه، "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 168,
+                    "end": 172,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 168,
+                    "end": 202,
+                    "text": "سمعت رسول الله صلى الله عليه وسلم "
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 21,
+              "text": "حدثنا قتيبة بن سعيد، "
+            },
             "surface": "قتيبة بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -375,6 +1360,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 21,
+              "end": 26,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 21,
+              "end": 39,
+              "text": "حدثنا عبد الوهاب، "
+            },
             "surface": "عبد الوهاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -382,6 +1377,16 @@
           {
             "position": 3,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 44,
+              "end": 48,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 44,
+              "end": 63,
+              "text": "سمعت يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -389,6 +1394,16 @@
           {
             "position": 4,
             "transmissionTerm": "أخبرني",
+            "transmissionTermSpan": {
+              "start": 69,
+              "end": 75,
+              "text": "أخبرني"
+            },
+            "sourceSpan": {
+              "start": 69,
+              "end": 93,
+              "text": "أخبرني محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -396,6 +1411,16 @@
           {
             "position": 5,
             "transmissionTerm": "أنه سمع",
+            "transmissionTermSpan": {
+              "start": 93,
+              "end": 100,
+              "text": "أنه سمع"
+            },
+            "sourceSpan": {
+              "start": 93,
+              "end": 123,
+              "text": "أنه سمع علقمة بن وقاص الليثي، "
+            },
             "surface": "علقمة بن وقاص الليثي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -403,6 +1428,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 129,
+              "end": 133,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 129,
+              "end": 162,
+              "text": "سمعت عمر بن الخطاب رضي الله عنه، "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -410,12 +1445,22 @@
           {
             "position": 7,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 168,
+              "end": 172,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 168,
+              "end": 202,
+              "text": "سمعت رسول الله صلى الله عليه وسلم "
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -431,10 +1476,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا أبو النعمان، حدثنا حماد بن زيد، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، قال: سمعت عمر بن الخطاب رضي الله عنه، يخطب قال: سمعت النبي صلى الله عليه وسلم يقول:",
         "matnCandidate": "يا أيها الناس، إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن هاجر إلى دنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 176,
+                "text": "حدثنا أبو النعمان، حدثنا حماد بن زيد، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، قال: سمعت عمر بن الخطاب رضي الله عنه، يخطب قال: سمعت النبي صلى الله عليه وسلم يقول:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 19,
+                    "text": "حدثنا أبو النعمان، "
+                  },
+                  "surface": "أبو النعمان",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 19,
+                    "end": 24,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 19,
+                    "end": 38,
+                    "text": "حدثنا حماد بن زيد، "
+                  },
+                  "surface": "حماد بن زيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 38,
+                    "end": 40,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 38,
+                    "end": 55,
+                    "text": "عن يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 55,
+                    "end": 57,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 55,
+                    "end": 75,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 75,
+                    "end": 77,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 75,
+                    "end": 93,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 98,
+                    "end": 102,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 98,
+                    "end": 136,
+                    "text": "سمعت عمر بن الخطاب رضي الله عنه، يخطب "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 141,
+                    "end": 145,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 141,
+                    "end": 171,
+                    "text": "سمعت النبي صلى الله عليه وسلم "
+                  },
+                  "surface": "النبي صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 19,
+              "text": "حدثنا أبو النعمان، "
+            },
             "surface": "أبو النعمان",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -442,6 +1636,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 19,
+              "end": 24,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 19,
+              "end": 38,
+              "text": "حدثنا حماد بن زيد، "
+            },
             "surface": "حماد بن زيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -449,6 +1653,16 @@
           {
             "position": 3,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 38,
+              "end": 40,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 38,
+              "end": 55,
+              "text": "عن يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -456,6 +1670,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 55,
+              "end": 57,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 55,
+              "end": 75,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -463,6 +1687,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 75,
+              "end": 77,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 75,
+              "end": 93,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -470,6 +1704,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 98,
+              "end": 102,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 98,
+              "end": 136,
+              "text": "سمعت عمر بن الخطاب رضي الله عنه، يخطب "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -477,12 +1721,22 @@
           {
             "position": 7,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 141,
+              "end": 145,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 141,
+              "end": 171,
+              "text": "سمعت النبي صلى الله عليه وسلم "
+            },
             "surface": "النبي صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -498,10 +1752,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا محمد بن كثير، أخبرنا سفيان، حدثني يحيى بن سعيد، عن محمد بن إبراهيم التيمي، عن علقمة بن وقاص الليثي قال: سمعت عمر بن الخطاب يقول: قال رسول الله صلى الله عليه وسلم:",
         "matnCandidate": "إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى، فمن كانت هجرته إلى الله ورسوله فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 168,
+                "text": "حدثنا محمد بن كثير، أخبرنا سفيان، حدثني يحيى بن سعيد، عن محمد بن إبراهيم التيمي، عن علقمة بن وقاص الليثي قال: سمعت عمر بن الخطاب يقول: قال رسول الله صلى الله عليه وسلم:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 20,
+                    "text": "حدثنا محمد بن كثير، "
+                  },
+                  "surface": "محمد بن كثير",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "أخبرنا",
+                  "transmissionTermSpan": {
+                    "start": 20,
+                    "end": 26,
+                    "text": "أخبرنا"
+                  },
+                  "sourceSpan": {
+                    "start": 20,
+                    "end": 34,
+                    "text": "أخبرنا سفيان، "
+                  },
+                  "surface": "سفيان",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "حدثني",
+                  "transmissionTermSpan": {
+                    "start": 34,
+                    "end": 39,
+                    "text": "حدثني"
+                  },
+                  "sourceSpan": {
+                    "start": 34,
+                    "end": 54,
+                    "text": "حدثني يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 54,
+                    "end": 56,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 54,
+                    "end": 81,
+                    "text": "عن محمد بن إبراهيم التيمي، "
+                  },
+                  "surface": "محمد بن إبراهيم التيمي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 81,
+                    "end": 83,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 81,
+                    "end": 105,
+                    "text": "عن علقمة بن وقاص الليثي "
+                  },
+                  "surface": "علقمة بن وقاص الليثي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 110,
+                    "end": 114,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 110,
+                    "end": 129,
+                    "text": "سمعت عمر بن الخطاب "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "قال",
+                  "transmissionTermSpan": {
+                    "start": 135,
+                    "end": 138,
+                    "text": "قال"
+                  },
+                  "sourceSpan": {
+                    "start": 135,
+                    "end": 168,
+                    "text": "قال رسول الله صلى الله عليه وسلم:"
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 20,
+              "text": "حدثنا محمد بن كثير، "
+            },
             "surface": "محمد بن كثير",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -509,6 +1912,16 @@
           {
             "position": 2,
             "transmissionTerm": "أخبرنا",
+            "transmissionTermSpan": {
+              "start": 20,
+              "end": 26,
+              "text": "أخبرنا"
+            },
+            "sourceSpan": {
+              "start": 20,
+              "end": 34,
+              "text": "أخبرنا سفيان، "
+            },
             "surface": "سفيان",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -516,6 +1929,16 @@
           {
             "position": 3,
             "transmissionTerm": "حدثني",
+            "transmissionTermSpan": {
+              "start": 34,
+              "end": 39,
+              "text": "حدثني"
+            },
+            "sourceSpan": {
+              "start": 34,
+              "end": 54,
+              "text": "حدثني يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -523,6 +1946,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 54,
+              "end": 56,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 54,
+              "end": 81,
+              "text": "عن محمد بن إبراهيم التيمي، "
+            },
             "surface": "محمد بن إبراهيم التيمي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -530,6 +1963,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 81,
+              "end": 83,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 81,
+              "end": 105,
+              "text": "عن علقمة بن وقاص الليثي "
+            },
             "surface": "علقمة بن وقاص الليثي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -537,6 +1980,16 @@
           {
             "position": 6,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 110,
+              "end": 114,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 110,
+              "end": 129,
+              "text": "سمعت عمر بن الخطاب "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -544,12 +1997,22 @@
           {
             "position": 7,
             "transmissionTerm": "قال",
+            "transmissionTermSpan": {
+              "start": 135,
+              "end": 138,
+              "text": "قال"
+            },
+            "sourceSpan": {
+              "start": 135,
+              "end": 168,
+              "text": "قال رسول الله صلى الله عليه وسلم:"
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -565,10 +2028,197 @@
       "segmentation": {
         "chainCandidate": "حدثنا أبو بكر بن أبي شيبة قال: حدثنا يزيد بن هارون، ح وحدثنا محمد بن رمح قال: أنبأنا الليث بن سعد، قالا: أنبأنا يحيى بن سعيد، أن محمد بن إبراهيم التيمي، أخبره أنه سمع علقمة بن وقاص يقول: إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال: سمعت رسول الله صلى الله عليه وسلم، يقول:",
         "matnCandidate": "إنما الأعمال بالنيات، ولكل امرئ ما نوى، فمن كانت هجرته إلى الله، وإلى رسوله، فهجرته إلى الله، وإلى رسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "explicit-branches",
+          "branchMarkers": [
+            {
+              "marker": "ح",
+              "start": 52,
+              "end": 53,
+              "beforeBranch": 1,
+              "afterBranch": 2
+            }
+          ],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 51,
+                "text": "حدثنا أبو بكر بن أبي شيبة قال: حدثنا يزيد بن هارون،"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 26,
+                    "text": "حدثنا أبو بكر بن أبي شيبة "
+                  },
+                  "surface": "أبو بكر بن أبي شيبة",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 31,
+                    "end": 36,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 31,
+                    "end": 51,
+                    "text": "حدثنا يزيد بن هارون،"
+                  },
+                  "surface": "يزيد بن هارون",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            },
+            {
+              "id": "branch-2",
+              "position": 2,
+              "sourceSpan": {
+                "start": 54,
+                "end": 272,
+                "text": "وحدثنا محمد بن رمح قال: أنبأنا الليث بن سعد، قالا: أنبأنا يحيى بن سعيد، أن محمد بن إبراهيم التيمي، أخبره أنه سمع علقمة بن وقاص يقول: إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال: سمعت رسول الله صلى الله عليه وسلم، يقول:"
+              },
+              "introducedBy": "ح",
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "أنبأنا",
+                  "transmissionTermSpan": {
+                    "start": 78,
+                    "end": 84,
+                    "text": "أنبأنا"
+                  },
+                  "sourceSpan": {
+                    "start": 78,
+                    "end": 105,
+                    "text": "أنبأنا الليث بن سعد، قالا: "
+                  },
+                  "surface": "الليث بن سعد، قالا",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "أنبأنا",
+                  "transmissionTermSpan": {
+                    "start": 105,
+                    "end": 111,
+                    "text": "أنبأنا"
+                  },
+                  "sourceSpan": {
+                    "start": 105,
+                    "end": 126,
+                    "text": "أنبأنا يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "أن",
+                  "transmissionTermSpan": {
+                    "start": 126,
+                    "end": 128,
+                    "text": "أن"
+                  },
+                  "sourceSpan": {
+                    "start": 126,
+                    "end": 159,
+                    "text": "أن محمد بن إبراهيم التيمي، أخبره "
+                  },
+                  "surface": "محمد بن إبراهيم التيمي، أخبره",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "أنه سمع",
+                  "transmissionTermSpan": {
+                    "start": 159,
+                    "end": 166,
+                    "text": "أنه سمع"
+                  },
+                  "sourceSpan": {
+                    "start": 159,
+                    "end": 181,
+                    "text": "أنه سمع علقمة بن وقاص "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "يقول",
+                  "transmissionTermSpan": {
+                    "start": 181,
+                    "end": 185,
+                    "text": "يقول"
+                  },
+                  "sourceSpan": {
+                    "start": 181,
+                    "end": 232,
+                    "text": "يقول: إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال: "
+                  },
+                  "surface": "إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "سمعت",
+                  "transmissionTermSpan": {
+                    "start": 232,
+                    "end": 236,
+                    "text": "سمعت"
+                  },
+                  "sourceSpan": {
+                    "start": 232,
+                    "end": 267,
+                    "text": "سمعت رسول الله صلى الله عليه وسلم، "
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 26,
+              "text": "حدثنا أبو بكر بن أبي شيبة "
+            },
             "surface": "أبو بكر بن أبي شيبة",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -576,13 +2226,33 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
-            "surface": "يزيد بن هارون، ح وحدثنا محمد بن رمح",
+            "transmissionTermSpan": {
+              "start": 31,
+              "end": 36,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 31,
+              "end": 51,
+              "text": "حدثنا يزيد بن هارون،"
+            },
+            "surface": "يزيد بن هارون",
             "identity": null,
             "reviewState": "machine-suggested"
           },
           {
             "position": 3,
             "transmissionTerm": "أنبأنا",
+            "transmissionTermSpan": {
+              "start": 78,
+              "end": 84,
+              "text": "أنبأنا"
+            },
+            "sourceSpan": {
+              "start": 78,
+              "end": 105,
+              "text": "أنبأنا الليث بن سعد، قالا: "
+            },
             "surface": "الليث بن سعد، قالا",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -590,6 +2260,16 @@
           {
             "position": 4,
             "transmissionTerm": "أنبأنا",
+            "transmissionTermSpan": {
+              "start": 105,
+              "end": 111,
+              "text": "أنبأنا"
+            },
+            "sourceSpan": {
+              "start": 105,
+              "end": 126,
+              "text": "أنبأنا يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -597,6 +2277,16 @@
           {
             "position": 5,
             "transmissionTerm": "أن",
+            "transmissionTermSpan": {
+              "start": 126,
+              "end": 128,
+              "text": "أن"
+            },
+            "sourceSpan": {
+              "start": 126,
+              "end": 159,
+              "text": "أن محمد بن إبراهيم التيمي، أخبره "
+            },
             "surface": "محمد بن إبراهيم التيمي، أخبره",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -604,6 +2294,16 @@
           {
             "position": 6,
             "transmissionTerm": "أنه سمع",
+            "transmissionTermSpan": {
+              "start": 159,
+              "end": 166,
+              "text": "أنه سمع"
+            },
+            "sourceSpan": {
+              "start": 159,
+              "end": 181,
+              "text": "أنه سمع علقمة بن وقاص "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -611,6 +2311,16 @@
           {
             "position": 7,
             "transmissionTerm": "يقول",
+            "transmissionTermSpan": {
+              "start": 181,
+              "end": 185,
+              "text": "يقول"
+            },
+            "sourceSpan": {
+              "start": 181,
+              "end": 232,
+              "text": "يقول: إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال: "
+            },
             "surface": "إنه سمع عمر بن الخطاب، وهو يخطب الناس، فقال",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -618,12 +2328,22 @@
           {
             "position": 8,
             "transmissionTerm": "سمعت",
+            "transmissionTermSpan": {
+              "start": 232,
+              "end": 236,
+              "text": "سمعت"
+            },
+            "sourceSpan": {
+              "start": 232,
+              "end": 267,
+              "text": "سمعت رسول الله صلى الله عليه وسلم، "
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -639,10 +2359,159 @@
       "segmentation": {
         "chainCandidate": "حدثنا محمد بن المثنى قال: حدثنا عبد الوهاب الثقفي، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص الليثي، عن عمر بن الخطاب قال: قال رسول الله صلى الله عليه وسلم: @MATN@",
         "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته إلى دنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه» : هذا حديث حسن صحيح وقد روى مالك بن أنس، وسفيان الثوري وغير واحد من الأئمة هذا عن يحيى بن سعيد. ولا نعرفه إلا من حديث يحيى بن سعيد الأنصاري قال: عبد الرحمن بن مهدي: @MATN@ «ينبغي أن نضع هذا الحديث في كل باب",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 175,
+                "text": "حدثنا محمد بن المثنى قال: حدثنا عبد الوهاب الثقفي، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص الليثي، عن عمر بن الخطاب قال: قال رسول الله صلى الله عليه وسلم: @MATN@"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 5,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 21,
+                    "text": "حدثنا محمد بن المثنى "
+                  },
+                  "surface": "محمد بن المثنى",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 26,
+                    "end": 31,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 26,
+                    "end": 51,
+                    "text": "حدثنا عبد الوهاب الثقفي، "
+                  },
+                  "surface": "عبد الوهاب الثقفي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 51,
+                    "end": 53,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 51,
+                    "end": 68,
+                    "text": "عن يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 68,
+                    "end": 70,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 68,
+                    "end": 88,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 88,
+                    "end": 90,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 88,
+                    "end": 113,
+                    "text": "عن علقمة بن وقاص الليثي، "
+                  },
+                  "surface": "علقمة بن وقاص الليثي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 113,
+                    "end": 115,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 113,
+                    "end": 130,
+                    "text": "عن عمر بن الخطاب "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "قال",
+                  "transmissionTermSpan": {
+                    "start": 135,
+                    "end": 138,
+                    "text": "قال"
+                  },
+                  "sourceSpan": {
+                    "start": 135,
+                    "end": 175,
+                    "text": "قال رسول الله صلى الله عليه وسلم: @MATN@"
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم: @MATN@",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 5,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 21,
+              "text": "حدثنا محمد بن المثنى "
+            },
             "surface": "محمد بن المثنى",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -650,6 +2519,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 26,
+              "end": 31,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 26,
+              "end": 51,
+              "text": "حدثنا عبد الوهاب الثقفي، "
+            },
             "surface": "عبد الوهاب الثقفي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -657,6 +2536,16 @@
           {
             "position": 3,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 51,
+              "end": 53,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 51,
+              "end": 68,
+              "text": "عن يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -664,6 +2553,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 68,
+              "end": 70,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 68,
+              "end": 88,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -671,6 +2570,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 88,
+              "end": 90,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 88,
+              "end": 113,
+              "text": "عن علقمة بن وقاص الليثي، "
+            },
             "surface": "علقمة بن وقاص الليثي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -678,6 +2587,16 @@
           {
             "position": 6,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 113,
+              "end": 115,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 113,
+              "end": 130,
+              "text": "عن عمر بن الخطاب "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -685,12 +2604,22 @@
           {
             "position": 7,
             "transmissionTerm": "قال",
+            "transmissionTermSpan": {
+              "start": 135,
+              "end": 138,
+              "text": "قال"
+            },
+            "sourceSpan": {
+              "start": 135,
+              "end": 175,
+              "text": "قال رسول الله صلى الله عليه وسلم: @MATN@"
+            },
             "surface": "رسول الله صلى الله عليه وسلم: @MATN@",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -706,10 +2635,231 @@
       "segmentation": {
         "chainCandidate": "أخبرنا يحيى بن حبيب بن عربي، عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، عن ابن القاسم، حدثني مالك، ح وأخبرنا سليمان بن منصور قال: أنبأنا عبد الله بن المبارك واللفظ له، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب رضي الله عنهم قال: قال رسول الله صلى الله عليه وسلم",
         "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله فهجرته إلى الله وإلى رسوله، ومن كانت هجرته إلى دنيا يصيبها أو امرأة ينكحها فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "explicit-branches",
+          "branchMarkers": [
+            {
+              "marker": "ح",
+              "start": 104,
+              "end": 105,
+              "beforeBranch": 1,
+              "afterBranch": 2
+            }
+          ],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 103,
+                "text": "أخبرنا يحيى بن حبيب بن عربي، عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، عن ابن القاسم، حدثني مالك،"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "أخبرنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 6,
+                    "text": "أخبرنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 29,
+                    "text": "أخبرنا يحيى بن حبيب بن عربي، "
+                  },
+                  "surface": "يحيى بن حبيب بن عربي",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 29,
+                    "end": 31,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 29,
+                    "end": 77,
+                    "text": "عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، "
+                  },
+                  "surface": "حماد، والحارث بن مسكين قراءة عليه وأنا أسمع",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 77,
+                    "end": 79,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 77,
+                    "end": 92,
+                    "text": "عن ابن القاسم، "
+                  },
+                  "surface": "ابن القاسم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "حدثني",
+                  "transmissionTermSpan": {
+                    "start": 92,
+                    "end": 97,
+                    "text": "حدثني"
+                  },
+                  "sourceSpan": {
+                    "start": 92,
+                    "end": 103,
+                    "text": "حدثني مالك،"
+                  },
+                  "surface": "مالك",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            },
+            {
+              "id": "branch-2",
+              "position": 2,
+              "sourceSpan": {
+                "start": 106,
+                "end": 296,
+                "text": "وأخبرنا سليمان بن منصور قال: أنبأنا عبد الله بن المبارك واللفظ له، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب رضي الله عنهم قال: قال رسول الله صلى الله عليه وسلم"
+              },
+              "introducedBy": "ح",
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "أنبأنا",
+                  "transmissionTermSpan": {
+                    "start": 135,
+                    "end": 141,
+                    "text": "أنبأنا"
+                  },
+                  "sourceSpan": {
+                    "start": 135,
+                    "end": 173,
+                    "text": "أنبأنا عبد الله بن المبارك واللفظ له، "
+                  },
+                  "surface": "عبد الله بن المبارك واللفظ له",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 173,
+                    "end": 175,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 173,
+                    "end": 190,
+                    "text": "عن يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 190,
+                    "end": 192,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 190,
+                    "end": 210,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 210,
+                    "end": 212,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 210,
+                    "end": 228,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 228,
+                    "end": 230,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 228,
+                    "end": 259,
+                    "text": "عن عمر بن الخطاب رضي الله عنهم "
+                  },
+                  "surface": "عمر بن الخطاب رضي الله عنهم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "قال",
+                  "transmissionTermSpan": {
+                    "start": 264,
+                    "end": 267,
+                    "text": "قال"
+                  },
+                  "sourceSpan": {
+                    "start": 264,
+                    "end": 296,
+                    "text": "قال رسول الله صلى الله عليه وسلم"
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "أخبرنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 6,
+              "text": "أخبرنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 29,
+              "text": "أخبرنا يحيى بن حبيب بن عربي، "
+            },
             "surface": "يحيى بن حبيب بن عربي",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -717,6 +2867,16 @@
           {
             "position": 2,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 29,
+              "end": 31,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 29,
+              "end": 77,
+              "text": "عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، "
+            },
             "surface": "حماد، والحارث بن مسكين قراءة عليه وأنا أسمع",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -724,6 +2884,16 @@
           {
             "position": 3,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 77,
+              "end": 79,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 77,
+              "end": 92,
+              "text": "عن ابن القاسم، "
+            },
             "surface": "ابن القاسم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -731,13 +2901,33 @@
           {
             "position": 4,
             "transmissionTerm": "حدثني",
-            "surface": "مالك، ح وأخبرنا سليمان بن منصور",
+            "transmissionTermSpan": {
+              "start": 92,
+              "end": 97,
+              "text": "حدثني"
+            },
+            "sourceSpan": {
+              "start": 92,
+              "end": 103,
+              "text": "حدثني مالك،"
+            },
+            "surface": "مالك",
             "identity": null,
             "reviewState": "machine-suggested"
           },
           {
             "position": 5,
             "transmissionTerm": "أنبأنا",
+            "transmissionTermSpan": {
+              "start": 135,
+              "end": 141,
+              "text": "أنبأنا"
+            },
+            "sourceSpan": {
+              "start": 135,
+              "end": 173,
+              "text": "أنبأنا عبد الله بن المبارك واللفظ له، "
+            },
             "surface": "عبد الله بن المبارك واللفظ له",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -745,6 +2935,16 @@
           {
             "position": 6,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 173,
+              "end": 175,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 173,
+              "end": 190,
+              "text": "عن يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -752,6 +2952,16 @@
           {
             "position": 7,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 190,
+              "end": 192,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 190,
+              "end": 210,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -759,6 +2969,16 @@
           {
             "position": 8,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 210,
+              "end": 212,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 210,
+              "end": 228,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -766,6 +2986,16 @@
           {
             "position": 9,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 228,
+              "end": 230,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 228,
+              "end": 259,
+              "text": "عن عمر بن الخطاب رضي الله عنهم "
+            },
             "surface": "عمر بن الخطاب رضي الله عنهم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -773,12 +3003,22 @@
           {
             "position": 10,
             "transmissionTerm": "قال",
+            "transmissionTermSpan": {
+              "start": 264,
+              "end": 267,
+              "text": "قال"
+            },
+            "sourceSpan": {
+              "start": 264,
+              "end": 296,
+              "text": "قال رسول الله صلى الله عليه وسلم"
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -794,10 +3034,227 @@
       "segmentation": {
         "chainCandidate": "أخبرنا عمرو بن منصور، قال: حدثنا عبد الله بن مسلمة، قال: حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، عن ابن القاسم، قال: أخبرني مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، أنه سمع عمر - يقول: قال رسول الله صلى الله عليه وسلم:",
         "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 300,
+                "text": "أخبرنا عمرو بن منصور، قال: حدثنا عبد الله بن مسلمة، قال: حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، عن ابن القاسم، قال: أخبرني مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، أنه سمع عمر - يقول: قال رسول الله صلى الله عليه وسلم:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "أخبرنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 6,
+                    "text": "أخبرنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 22,
+                    "text": "أخبرنا عمرو بن منصور، "
+                  },
+                  "surface": "عمرو بن منصور",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 27,
+                    "end": 32,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 27,
+                    "end": 52,
+                    "text": "حدثنا عبد الله بن مسلمة، "
+                  },
+                  "surface": "عبد الله بن مسلمة",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 57,
+                    "end": 62,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 57,
+                    "end": 109,
+                    "text": "حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، "
+                  },
+                  "surface": "مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 109,
+                    "end": 111,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 109,
+                    "end": 124,
+                    "text": "عن ابن القاسم، "
+                  },
+                  "surface": "ابن القاسم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "أخبرني",
+                  "transmissionTermSpan": {
+                    "start": 129,
+                    "end": 135,
+                    "text": "أخبرني"
+                  },
+                  "sourceSpan": {
+                    "start": 129,
+                    "end": 142,
+                    "text": "أخبرني مالك، "
+                  },
+                  "surface": "مالك",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 142,
+                    "end": 144,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 142,
+                    "end": 159,
+                    "text": "عن يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 159,
+                    "end": 161,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 159,
+                    "end": 179,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 8,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 179,
+                    "end": 181,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 179,
+                    "end": 197,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 9,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 197,
+                    "end": 199,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 197,
+                    "end": 247,
+                    "text": "عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، "
+                  },
+                  "surface": "عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 10,
+                  "transmissionTerm": "أنه سمع",
+                  "transmissionTermSpan": {
+                    "start": 247,
+                    "end": 254,
+                    "text": "أنه سمع"
+                  },
+                  "sourceSpan": {
+                    "start": 247,
+                    "end": 261,
+                    "text": "أنه سمع عمر - "
+                  },
+                  "surface": "عمر -",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 11,
+                  "transmissionTerm": "قال",
+                  "transmissionTermSpan": {
+                    "start": 267,
+                    "end": 270,
+                    "text": "قال"
+                  },
+                  "sourceSpan": {
+                    "start": 267,
+                    "end": 300,
+                    "text": "قال رسول الله صلى الله عليه وسلم:"
+                  },
+                  "surface": "رسول الله صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "أخبرنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 6,
+              "text": "أخبرنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 22,
+              "text": "أخبرنا عمرو بن منصور، "
+            },
             "surface": "عمرو بن منصور",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -805,6 +3262,16 @@
           {
             "position": 2,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 27,
+              "end": 32,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 27,
+              "end": 52,
+              "text": "حدثنا عبد الله بن مسلمة، "
+            },
             "surface": "عبد الله بن مسلمة",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -812,6 +3279,16 @@
           {
             "position": 3,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 57,
+              "end": 62,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 57,
+              "end": 109,
+              "text": "حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، "
+            },
             "surface": "مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -819,6 +3296,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 109,
+              "end": 111,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 109,
+              "end": 124,
+              "text": "عن ابن القاسم، "
+            },
             "surface": "ابن القاسم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -826,6 +3313,16 @@
           {
             "position": 5,
             "transmissionTerm": "أخبرني",
+            "transmissionTermSpan": {
+              "start": 129,
+              "end": 135,
+              "text": "أخبرني"
+            },
+            "sourceSpan": {
+              "start": 129,
+              "end": 142,
+              "text": "أخبرني مالك، "
+            },
             "surface": "مالك",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -833,6 +3330,16 @@
           {
             "position": 6,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 142,
+              "end": 144,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 142,
+              "end": 159,
+              "text": "عن يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -840,6 +3347,16 @@
           {
             "position": 7,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 159,
+              "end": 161,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 159,
+              "end": 179,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -847,6 +3364,16 @@
           {
             "position": 8,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 179,
+              "end": 181,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 179,
+              "end": 197,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -854,6 +3381,16 @@
           {
             "position": 9,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 197,
+              "end": 199,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 197,
+              "end": 247,
+              "text": "عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، "
+            },
             "surface": "عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -861,6 +3398,16 @@
           {
             "position": 10,
             "transmissionTerm": "أنه سمع",
+            "transmissionTermSpan": {
+              "start": 247,
+              "end": 254,
+              "text": "أنه سمع"
+            },
+            "sourceSpan": {
+              "start": 247,
+              "end": 261,
+              "text": "أنه سمع عمر - "
+            },
             "surface": "عمر -",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -868,12 +3415,22 @@
           {
             "position": 11,
             "transmissionTerm": "قال",
+            "transmissionTermSpan": {
+              "start": 267,
+              "end": 270,
+              "text": "قال"
+            },
+            "sourceSpan": {
+              "start": 267,
+              "end": 300,
+              "text": "قال رسول الله صلى الله عليه وسلم:"
+            },
             "surface": "رسول الله صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"
@@ -889,10 +3446,159 @@
       "segmentation": {
         "chainCandidate": "أخبرنا إسحاق بن إبراهيم، قال: أنبأنا سليمان بن حيان، قال: حدثنا يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، عن النبي صلى الله عليه وسلم قال:",
         "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "isnadStructure": {
+          "kind": "single-route",
+          "branchMarkers": [],
+          "branches": [
+            {
+              "id": "branch-1",
+              "position": 1,
+              "sourceSpan": {
+                "start": 0,
+                "end": 166,
+                "text": "أخبرنا إسحاق بن إبراهيم، قال: أنبأنا سليمان بن حيان، قال: حدثنا يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، عن النبي صلى الله عليه وسلم قال:"
+              },
+              "introducedBy": null,
+              "narratorMentionCandidates": [
+                {
+                  "position": 1,
+                  "transmissionTerm": "أخبرنا",
+                  "transmissionTermSpan": {
+                    "start": 0,
+                    "end": 6,
+                    "text": "أخبرنا"
+                  },
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 25,
+                    "text": "أخبرنا إسحاق بن إبراهيم، "
+                  },
+                  "surface": "إسحاق بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 2,
+                  "transmissionTerm": "أنبأنا",
+                  "transmissionTermSpan": {
+                    "start": 30,
+                    "end": 36,
+                    "text": "أنبأنا"
+                  },
+                  "sourceSpan": {
+                    "start": 30,
+                    "end": 53,
+                    "text": "أنبأنا سليمان بن حيان، "
+                  },
+                  "surface": "سليمان بن حيان",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 3,
+                  "transmissionTerm": "حدثنا",
+                  "transmissionTermSpan": {
+                    "start": 58,
+                    "end": 63,
+                    "text": "حدثنا"
+                  },
+                  "sourceSpan": {
+                    "start": 58,
+                    "end": 78,
+                    "text": "حدثنا يحيى بن سعيد، "
+                  },
+                  "surface": "يحيى بن سعيد",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 4,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 78,
+                    "end": 80,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 78,
+                    "end": 98,
+                    "text": "عن محمد بن إبراهيم، "
+                  },
+                  "surface": "محمد بن إبراهيم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 5,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 98,
+                    "end": 100,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 98,
+                    "end": 116,
+                    "text": "عن علقمة بن وقاص، "
+                  },
+                  "surface": "علقمة بن وقاص",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 6,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 116,
+                    "end": 118,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 116,
+                    "end": 134,
+                    "text": "عن عمر بن الخطاب، "
+                  },
+                  "surface": "عمر بن الخطاب",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                },
+                {
+                  "position": 7,
+                  "transmissionTerm": "عن",
+                  "transmissionTermSpan": {
+                    "start": 134,
+                    "end": 136,
+                    "text": "عن"
+                  },
+                  "sourceSpan": {
+                    "start": 134,
+                    "end": 162,
+                    "text": "عن النبي صلى الله عليه وسلم "
+                  },
+                  "surface": "النبي صلى الله عليه وسلم",
+                  "identity": null,
+                  "reviewState": "machine-suggested"
+                }
+              ],
+              "reviewState": "machine-suggested"
+            }
+          ],
+          "reviewState": "machine-suggested"
+        },
         "narratorMentionCandidates": [
           {
             "position": 1,
             "transmissionTerm": "أخبرنا",
+            "transmissionTermSpan": {
+              "start": 0,
+              "end": 6,
+              "text": "أخبرنا"
+            },
+            "sourceSpan": {
+              "start": 0,
+              "end": 25,
+              "text": "أخبرنا إسحاق بن إبراهيم، "
+            },
             "surface": "إسحاق بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -900,6 +3606,16 @@
           {
             "position": 2,
             "transmissionTerm": "أنبأنا",
+            "transmissionTermSpan": {
+              "start": 30,
+              "end": 36,
+              "text": "أنبأنا"
+            },
+            "sourceSpan": {
+              "start": 30,
+              "end": 53,
+              "text": "أنبأنا سليمان بن حيان، "
+            },
             "surface": "سليمان بن حيان",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -907,6 +3623,16 @@
           {
             "position": 3,
             "transmissionTerm": "حدثنا",
+            "transmissionTermSpan": {
+              "start": 58,
+              "end": 63,
+              "text": "حدثنا"
+            },
+            "sourceSpan": {
+              "start": 58,
+              "end": 78,
+              "text": "حدثنا يحيى بن سعيد، "
+            },
             "surface": "يحيى بن سعيد",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -914,6 +3640,16 @@
           {
             "position": 4,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 78,
+              "end": 80,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 78,
+              "end": 98,
+              "text": "عن محمد بن إبراهيم، "
+            },
             "surface": "محمد بن إبراهيم",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -921,6 +3657,16 @@
           {
             "position": 5,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 98,
+              "end": 100,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 98,
+              "end": 116,
+              "text": "عن علقمة بن وقاص، "
+            },
             "surface": "علقمة بن وقاص",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -928,6 +3674,16 @@
           {
             "position": 6,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 116,
+              "end": 118,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 116,
+              "end": 134,
+              "text": "عن عمر بن الخطاب، "
+            },
             "surface": "عمر بن الخطاب",
             "identity": null,
             "reviewState": "machine-suggested"
@@ -935,12 +3691,22 @@
           {
             "position": 7,
             "transmissionTerm": "عن",
+            "transmissionTermSpan": {
+              "start": 134,
+              "end": 136,
+              "text": "عن"
+            },
+            "sourceSpan": {
+              "start": 134,
+              "end": 162,
+              "text": "عن النبي صلى الله عليه وسلم "
+            },
             "surface": "النبي صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
         ],
-        "method": "Arabic quotation-boundary heuristic",
+        "method": "Arabic quotation-boundary and explicit chain-switch heuristic",
         "reviewState": "machine-suggested"
       },
       "reviewState": "imported"

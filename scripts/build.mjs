@@ -28,13 +28,19 @@ const imported = JSON.parse(importedText);
 const importedNodes = [];
 const importedEdges = [];
 for (const report of imported.reports) {
-  const route = report.segmentation.narratorMentionCandidates;
+  const routes = report.segmentation.isnadStructure?.branches ?? [{ id: "branch-1", position: 1, narratorMentionCandidates: report.segmentation.narratorMentionCandidates }];
+  for (const branch of routes) {
+  const route = branch.narratorMentionCandidates;
   route.forEach((mention) => {
+    const nodeId = `${report.stagingId}:${branch.id}:mention:${String(mention.position).padStart(2, "0")}`;
     importedNodes.push({
-      id: `${report.stagingId}:mention:${String(mention.position).padStart(2, "0")}`,
+      id: nodeId,
       label: mention.surface,
       term: mention.transmissionTerm,
       position: mention.position,
+      branchId: branch.id,
+      branchPosition: branch.position,
+      sourceSpan: mention.sourceSpan,
       witness: report.stagingId,
       sourceReportNumber: report.sourceReportNumber,
       collectionLabel: report.collectionLabel,
@@ -44,15 +50,17 @@ for (const report of imported.reports) {
   });
   for (let index = 0; index < route.length - 1; index++) {
     importedEdges.push({
-      id: `${report.stagingId}:edge:${String(index + 1).padStart(2, "0")}`,
-      from: `${report.stagingId}:mention:${String(index + 1).padStart(2, "0")}`,
-      to: `${report.stagingId}:mention:${String(index + 2).padStart(2, "0")}`,
+      id: `${report.stagingId}:${branch.id}:edge:${String(index + 1).padStart(2, "0")}`,
+      from: `${report.stagingId}:${branch.id}:mention:${String(index + 1).padStart(2, "0")}`,
+      to: `${report.stagingId}:${branch.id}:mention:${String(index + 2).padStart(2, "0")}`,
       witness: report.stagingId,
       sourceReportNumber: report.sourceReportNumber,
       collectionLabel: report.collectionLabel,
+      branchId: branch.id,
       evidence: report.rawOpenITI,
       reviewState: "machine-suggested"
     });
+  }
   }
 }
 await writeFile(new URL("imported-graph.json", dist), `${JSON.stringify({ source: imported.source, nodes: importedNodes, edges: importedEdges }, null, 2)}\n`);

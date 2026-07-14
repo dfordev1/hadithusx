@@ -39,6 +39,9 @@ const importedCollections = new Set(imported.reports.map((report) => report.coll
 check("cross-collection OpenITI witnesses are staged", imported.reports.length >= 12 && importedCollections.size === 5);
 check("all five intended collections are present", ["Sahih al-Bukhari", "Sunan Abi Dawud", "Sunan Ibn Majah", "Jamiʿ al-Tirmidhi", "Sunan al-Nasaʾi"].every((label) => importedCollections.has(label)));
 check("all real witnesses have isnad candidates", imported.reports.every((report) => report.segmentation.chainCandidate && report.segmentation.narratorMentionCandidates.length >= 5));
+check("every report has explicit isnad structure", imported.reports.every((report) => report.segmentation.isnadStructure?.branches.length >= 1));
+check("Nasa'i combined chain is preserved as branches", imported.reports.some((report) => report.collectionLabel === "Sunan al-Nasaʾi" && report.sourceReportNumber === 75 && report.segmentation.isnadStructure.kind === "explicit-branches" && report.segmentation.isnadStructure.branches.length >= 2));
+check("transmission terms retain exact source spans", imported.reports.every((report) => report.segmentation.isnadStructure.branches.every((branch) => branch.narratorMentionCandidates.every((mention) => report.segmentation.chainCandidate.slice(mention.transmissionTermSpan.start, mention.transmissionTermSpan.end) === mention.transmissionTerm && report.segmentation.chainCandidate.slice(mention.sourceSpan.start, mention.sourceSpan.end) === mention.sourceSpan.text))));
 check("all real witnesses have matn candidates", imported.reports.every((report) => report.segmentation.matnCandidate));
 check("candidate identities remain unresolved", imported.reports.every((report) => report.segmentation.narratorMentionCandidates.every((mention) => mention.identity === null && mention.reviewState === "machine-suggested")));
 check("honorifics do not create false عن terms", imported.reports.every((report) => report.segmentation.narratorMentionCandidates.every((mention) => mention.surface !== "ه" && !mention.surface.startsWith("ه،"))));
@@ -48,11 +51,14 @@ check("real graph has one route per imported witness", new Set(realGraph.nodes.m
 check("real graph identities remain unresolved", realGraph.nodes.every((node) => node.identity === null && node.reviewState === "machine-suggested"));
 check("real graph edges reference mention nodes", realGraph.edges.every((edge) => realNodeIds.has(edge.from) && realNodeIds.has(edge.to)));
 check("real graph edges retain source evidence", realGraph.edges.every((edge) => edge.evidence && edge.witness && edge.reviewState === "machine-suggested"));
+check("real graph never joins separate branches", realGraph.edges.every((edge) => realGraph.nodes.find((node) => node.id === edge.from)?.branchId === realGraph.nodes.find((node) => node.id === edge.to)?.branchId));
 check("identity candidates are generated", identities.suggestions.length > 0);
 check("identity candidates never auto-merge", identities.suggestions.every((item) => item.acceptedIdentity === null && item.reviewState === "machine-suggested"));
 check("identity candidates explain their score", identities.suggestions.every((item) => item.reason && item.method && item.confidence));
 check("review decisions persist locally", /localStorage\.setItem\(REVIEW_KEY/.test(app));
+check("segmentation corrections persist separately", /localStorage\.setItem\(SEGMENTATION_KEY/.test(app) && /proposed-correction/.test(app));
 check("review export is available", /unified-hadith-review\.json/.test(app));
+check("review export includes reversible segmentation patches", /segmentationCorrections/.test(app) && /identityDecisions/.test(app));
 check("hash navigation is supported", /hashchange/.test(app) && /location\.hash/.test(app));
 check("load failures have a visible recovery state", /workbench could not load/.test(app) && /Retry/.test(app));
 check("skip navigation is provided", /class="skip-link"/.test(html));
