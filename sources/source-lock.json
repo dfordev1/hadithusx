@@ -1,5 +1,6 @@
 {
   "openitiBukhari": {
+    "checkout": "openiti-0275AH",
     "repository": "https://github.com/OpenITI/0275AH.git",
     "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
     "collectionLabel": "Sahih al-Bukhari",
@@ -11,6 +12,7 @@
     "reviewState": "imported"
   },
   "openitiAbuDawud": {
+    "checkout": "openiti-0275AH",
     "repository": "https://github.com/OpenITI/0275AH.git",
     "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
     "collectionLabel": "Sunan Abi Dawud",
@@ -22,6 +24,7 @@
     "reviewState": "imported"
   },
   "openitiIbnMaja": {
+    "checkout": "openiti-0275AH",
     "repository": "https://github.com/OpenITI/0275AH.git",
     "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
     "collectionLabel": "Sunan Ibn Majah",
@@ -29,6 +32,30 @@
     "version": "0273IbnMaja.Sunan.Shamela0001198-ara1",
     "path": "data/0273IbnMaja/0273IbnMaja.Sunan/0273IbnMaja.Sunan.Shamela0001198-ara1",
     "sourceSha256": "88f7cd1cc8ea9c20dc54929dfb550891b30ea257190a5badae53c2440ac35dc2",
+    "acquisition": "Shallow Git clone pinned to the recorded commit",
+    "reviewState": "imported"
+  },
+  "openitiTirmidhi": {
+    "checkout": "openiti-0300AH",
+    "repository": "https://github.com/OpenITI/0300AH.git",
+    "commit": "01a1544130e0236850ef2698923ad01575c5bd7c",
+    "collectionLabel": "Jamiʿ al-Tirmidhi",
+    "work": "0279Tirmidhi.Sunan",
+    "version": "0279Tirmidhi.Sunan.Shamela0001435-ara1",
+    "path": "data/0279Tirmidhi/0279Tirmidhi.Sunan/0279Tirmidhi.Sunan.Shamela0001435-ara1",
+    "sourceSha256": "786e9e8aafb56fa985111e9c73998aba5041ea3fceb5e7942c759d885b29d9b3",
+    "acquisition": "Shallow Git clone pinned to the recorded commit",
+    "reviewState": "imported"
+  },
+  "openitiNasai": {
+    "checkout": "openiti-0325AH",
+    "repository": "https://github.com/OpenITI/0325AH.git",
+    "commit": "089e665b4958e0f145a46941987fb81cf3dda1b8",
+    "collectionLabel": "Sunan al-Nasaʾi",
+    "work": "0303Nasai.SunanSughra",
+    "version": "0303Nasai.SunanSughra.Shamela0000829-ara1",
+    "path": "data/0303Nasai/0303Nasai.SunanSughra/0303Nasai.SunanSughra.Shamela0000829-ara1",
+    "sourceSha256": "83775d1f6026892069d1907a4cce4f6adf70ab4d67003061b5df1a38dff20318",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   }

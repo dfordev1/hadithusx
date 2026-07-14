@@ -1,5 +1,7 @@
 dist/
 node_modules/
 sources/openiti-0275AH/
+sources/openiti-0300AH/
+sources/openiti-0325AH/
 *.log
 .DS_Store

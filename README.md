@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.1
+# Unified Hadith Workbench 1.2
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -6,7 +6,7 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 
 ## Production capabilities
 
-- Eight real source occurrences across Sahih al-Bukhari, Sunan Abi Dawud, and Sunan Ibn Majah, imported from a pinned OpenITI commit
+- Twelve real source occurrences across Sahih al-Bukhari, Sunan Abi Dawud, Sunan Ibn Majah, Jamiʿ al-Tirmidhi, and Sunan al-Nasaʾi, imported from pinned OpenITI commits
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison
@@ -46,9 +46,9 @@ Decisions stay in the browser until exported. Accepting a candidate records a re
 
 ## Source reproducibility
 
-The pilot importer is locked to OpenITI repository `0275AH`, commit `44e1c36738a2bf5c14dafa232a6ae1891e6171cd`, and a SHA-256 checksum recorded in `sources/source-lock.json`. The committed staging file allows clean builds without downloading the upstream repository.
+The pilot importer locks every source file to an OpenITI repository commit and SHA-256 checksum in `sources/source-lock.json`. The committed staging file allows clean builds without downloading upstream repositories.
 
-To regenerate staging from upstream, clone the locked repository into `sources/openiti-0275AH`, check out the locked commit, and run:
+To regenerate staging from upstream, clone repositories `0275AH`, `0300AH`, and `0325AH` into the checkout directories recorded by the lock file, check out their recorded commits, and run:
 
 ```bash
 npm run import:openiti

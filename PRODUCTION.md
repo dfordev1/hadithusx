@@ -1,9 +1,9 @@
 # Production release checklist
 
-## Included in 1.1
+## Included in 1.2
 
 - Fresh deterministic build with `npm ci && npm run check`
-- Pinned and checksummed upstream source
+- Five collections from three pinned OpenITI repositories, with checksums for every upstream source file
 - No dependency on the local upstream checkout at runtime
 - No automatic narrator merge or authenticity grading
 - Search, navigation, responsive layout, and keyboard focus states

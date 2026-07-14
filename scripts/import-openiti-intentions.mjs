@@ -5,19 +5,26 @@ import { execFileSync } from "node:child_process";
 const root = new URL("../", import.meta.url);
 const lock = JSON.parse(await readFile(new URL("sources/source-lock.json", root), "utf8"));
 const sources = Object.entries(lock).map(([sourceKey, source]) => ({ sourceKey, ...source }));
-const checkout = new URL("sources/openiti-0275AH/", root);
-const expectedCommit = sources[0].commit;
 
-let actualCommit;
-try {
-  actualCommit = execFileSync("git", ["-C", checkout.pathname.replace(/^\/(.:)/, "$1"), "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-} catch {
-  console.error("OpenITI checkout is missing. Clone the locked repository into sources/openiti-0275AH first.");
-  process.exit(1);
-}
-if (actualCommit !== expectedCommit || sources.some((source) => source.commit !== expectedCommit)) {
-  console.error(`OpenITI commit mismatch: expected ${expectedCommit}, found ${actualCommit}`);
-  process.exit(1);
+const checkouts = new Map();
+for (const source of sources) {
+  if (!source.checkout) throw new Error(`${source.sourceKey} has no checkout in source-lock.json`);
+  const checkout = new URL(`sources/${source.checkout}/`, root);
+  if (!checkouts.has(source.checkout)) {
+    let actualCommit;
+    try {
+      actualCommit = execFileSync("git", ["-C", checkout.pathname.replace(/^\/(.:)/, "$1"), "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    } catch {
+      console.error(`OpenITI checkout is missing: sources/${source.checkout}`);
+      process.exit(1);
+    }
+    checkouts.set(source.checkout, { checkout, actualCommit });
+  }
+  const { actualCommit } = checkouts.get(source.checkout);
+  if (actualCommit !== source.commit) {
+    console.error(`${source.sourceKey} commit mismatch: expected ${source.commit}, found ${actualCommit}`);
+    process.exit(1);
+  }
 }
 
 function cleanOpenITI(block) {
@@ -42,12 +49,18 @@ function extractMentionCandidates(chain) {
   return candidates;
 }
 
+function parseReportNumber(value) {
+  const western = value.replace(/[٠-٩]/g, (digit) => String("٠١٢٣٤٥٦٧٨٩".indexOf(digit)));
+  return Number(western);
+}
+
 async function extractSource(source) {
+  const { checkout } = checkouts.get(source.checkout);
   const fileUrl = new URL(source.path, checkout);
   const text = await readFile(fileUrl, "utf8");
   const sha256 = createHash("sha256").update(text).digest("hex");
   if (sha256 !== source.sourceSha256) throw new Error(`${source.sourceKey} checksum mismatch: expected ${source.sourceSha256}, found ${sha256}`);
-  const matches = [...text.matchAll(/^### \| (\d+) -\s*$/gm)];
+  const matches = [...text.matchAll(/^### \|+ ([0-9٠-٩]+)(?:\s+ms\d+)? -\s*$/gm)];
   const reports = [];
   for (let index = 0; index < matches.length; index++) {
     const start = matches[index].index + matches[index][0].length;
@@ -64,7 +77,7 @@ async function extractSource(source) {
     const quoteEnd = Math.max(normalizedReading.lastIndexOf("»"), normalizedReading.lastIndexOf('"'));
     const chainCandidate = quoteStart === -1 ? normalizedReading : normalizedReading.slice(0, quoteStart).trim();
     const matnCandidate = quoteStart === -1 ? normalizedReading.slice(normalizedReading.indexOf("إنما الأعمال")) : normalizedReading.slice(quoteStart + 1, quoteEnd > quoteStart ? quoteEnd : undefined).trim();
-    const sourceReportNumber = Number(matches[index][1]);
+    const sourceReportNumber = parseReportNumber(matches[index][1]);
     reports.push({
       stagingId: `openiti:${source.version}:${sourceReportNumber}`,
       sourceKey: source.sourceKey,

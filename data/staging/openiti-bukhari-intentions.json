@@ -2,6 +2,7 @@
   "format": "unified-hadith-openiti-staging-0.2",
   "source": {
     "sourceKey": "openitiBukhari",
+    "checkout": "openiti-0275AH",
     "repository": "https://github.com/OpenITI/0275AH.git",
     "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
     "collectionLabel": "Sahih al-Bukhari",
@@ -15,6 +16,7 @@
   "sources": [
     {
       "sourceKey": "openitiBukhari",
+      "checkout": "openiti-0275AH",
       "repository": "https://github.com/OpenITI/0275AH.git",
       "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
       "collectionLabel": "Sahih al-Bukhari",
@@ -27,6 +29,7 @@
     },
     {
       "sourceKey": "openitiAbuDawud",
+      "checkout": "openiti-0275AH",
       "repository": "https://github.com/OpenITI/0275AH.git",
       "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
       "collectionLabel": "Sunan Abi Dawud",
@@ -39,6 +42,7 @@
     },
     {
       "sourceKey": "openitiIbnMaja",
+      "checkout": "openiti-0275AH",
       "repository": "https://github.com/OpenITI/0275AH.git",
       "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
       "collectionLabel": "Sunan Ibn Majah",
@@ -46,6 +50,32 @@
       "version": "0273IbnMaja.Sunan.Shamela0001198-ara1",
       "path": "data/0273IbnMaja/0273IbnMaja.Sunan/0273IbnMaja.Sunan.Shamela0001198-ara1",
       "sourceSha256": "88f7cd1cc8ea9c20dc54929dfb550891b30ea257190a5badae53c2440ac35dc2",
+      "acquisition": "Shallow Git clone pinned to the recorded commit",
+      "reviewState": "imported"
+    },
+    {
+      "sourceKey": "openitiTirmidhi",
+      "checkout": "openiti-0300AH",
+      "repository": "https://github.com/OpenITI/0300AH.git",
+      "commit": "01a1544130e0236850ef2698923ad01575c5bd7c",
+      "collectionLabel": "Jamiʿ al-Tirmidhi",
+      "work": "0279Tirmidhi.Sunan",
+      "version": "0279Tirmidhi.Sunan.Shamela0001435-ara1",
+      "path": "data/0279Tirmidhi/0279Tirmidhi.Sunan/0279Tirmidhi.Sunan.Shamela0001435-ara1",
+      "sourceSha256": "786e9e8aafb56fa985111e9c73998aba5041ea3fceb5e7942c759d885b29d9b3",
+      "acquisition": "Shallow Git clone pinned to the recorded commit",
+      "reviewState": "imported"
+    },
+    {
+      "sourceKey": "openitiNasai",
+      "checkout": "openiti-0325AH",
+      "repository": "https://github.com/OpenITI/0325AH.git",
+      "commit": "089e665b4958e0f145a46941987fb81cf3dda1b8",
+      "collectionLabel": "Sunan al-Nasaʾi",
+      "work": "0303Nasai.SunanSughra",
+      "version": "0303Nasai.SunanSughra.Shamela0000829-ara1",
+      "path": "data/0303Nasai/0303Nasai.SunanSughra/0303Nasai.SunanSughra.Shamela0000829-ara1",
+      "sourceSha256": "83775d1f6026892069d1907a4cce4f6adf70ab4d67003061b5df1a38dff20318",
       "acquisition": "Shallow Git clone pinned to the recorded commit",
       "reviewState": "imported"
     }
@@ -589,6 +619,323 @@
             "position": 8,
             "transmissionTerm": "سمعت",
             "surface": "رسول الله صلى الله عليه وسلم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          }
+        ],
+        "method": "Arabic quotation-boundary heuristic",
+        "reviewState": "machine-suggested"
+      },
+      "reviewState": "imported"
+    },
+    {
+      "stagingId": "openiti:0279Tirmidhi.Sunan.Shamela0001435-ara1:1647",
+      "sourceKey": "openitiTirmidhi",
+      "collectionLabel": "Jamiʿ al-Tirmidhi",
+      "work": "0279Tirmidhi.Sunan",
+      "sourceReportNumber": 1647,
+      "rawOpenITI": "# حدثنا محمد بن المثنى قال: حدثنا عبد الوهاب الثقفي، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص الليثي، \n~~عن عمر بن الخطاب قال: قال رسول الله صلى الله عليه وسلم: \n# @MATN@ «إنما الأعمال PageV04P179 بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته إلى دنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه» : \n# هذا حديث حسن صحيح وقد روى مالك بن أنس، وسفيان الثوري وغير واحد من الأئمة هذا عن يحيى بن سعيد. \n~~ولا نعرفه إلا من حديث يحيى بن سعيد الأنصاري قال: عبد الرحمن بن مهدي: \n# @MATN@ «ينبغي أن نضع هذا الحديث في كل باب»    \n#",
+      "normalizedReading": "حدثنا محمد بن المثنى قال: حدثنا عبد الوهاب الثقفي، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص الليثي، عن عمر بن الخطاب قال: قال رسول الله صلى الله عليه وسلم: @MATN@ «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته إلى دنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه» : هذا حديث حسن صحيح وقد روى مالك بن أنس، وسفيان الثوري وغير واحد من الأئمة هذا عن يحيى بن سعيد. ولا نعرفه إلا من حديث يحيى بن سعيد الأنصاري قال: عبد الرحمن بن مهدي: @MATN@ «ينبغي أن نضع هذا الحديث في كل باب» #",
+      "segmentation": {
+        "chainCandidate": "حدثنا محمد بن المثنى قال: حدثنا عبد الوهاب الثقفي، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص الليثي، عن عمر بن الخطاب قال: قال رسول الله صلى الله عليه وسلم: @MATN@",
+        "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته إلى دنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه» : هذا حديث حسن صحيح وقد روى مالك بن أنس، وسفيان الثوري وغير واحد من الأئمة هذا عن يحيى بن سعيد. ولا نعرفه إلا من حديث يحيى بن سعيد الأنصاري قال: عبد الرحمن بن مهدي: @MATN@ «ينبغي أن نضع هذا الحديث في كل باب",
+        "narratorMentionCandidates": [
+          {
+            "position": 1,
+            "transmissionTerm": "حدثنا",
+            "surface": "محمد بن المثنى",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 2,
+            "transmissionTerm": "حدثنا",
+            "surface": "عبد الوهاب الثقفي",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 3,
+            "transmissionTerm": "عن",
+            "surface": "يحيى بن سعيد",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 4,
+            "transmissionTerm": "عن",
+            "surface": "محمد بن إبراهيم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 5,
+            "transmissionTerm": "عن",
+            "surface": "علقمة بن وقاص الليثي",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 6,
+            "transmissionTerm": "عن",
+            "surface": "عمر بن الخطاب",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 7,
+            "transmissionTerm": "قال",
+            "surface": "رسول الله صلى الله عليه وسلم: @MATN@",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          }
+        ],
+        "method": "Arabic quotation-boundary heuristic",
+        "reviewState": "machine-suggested"
+      },
+      "reviewState": "imported"
+    },
+    {
+      "stagingId": "openiti:0303Nasai.SunanSughra.Shamela0000829-ara1:75",
+      "sourceKey": "openitiNasai",
+      "collectionLabel": "Sunan al-Nasaʾi",
+      "work": "0303Nasai.SunanSughra",
+      "sourceReportNumber": 75,
+      "rawOpenITI": "# أخبرنا يحيى بن حبيب بن عربي، عن حماد، والحارث بن مسكين قراءة عليه وأنا\n~~أسمع، عن ابن القاسم، حدثني مالك، ح وأخبرنا سليمان بن منصور قال: أنبأنا\n~~عبد الله بن المبارك واللفظ له، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن\n~~علقمة بن وقاص، عن عمر بن الخطاب رضي الله عنهم قال: قال رسول الله صلى\n~~الله عليه وسلم «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته\n~~إلى الله وإلى رسوله فهجرته إلى الله وإلى رسوله، ومن كانت هجرته إلى دنيا\n~~يصيبها أو امرأة ينكحها فهجرته إلى ما هاجر إليه»0",
+      "normalizedReading": "أخبرنا يحيى بن حبيب بن عربي، عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، عن ابن القاسم، حدثني مالك، ح وأخبرنا سليمان بن منصور قال: أنبأنا عبد الله بن المبارك واللفظ له، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب رضي الله عنهم قال: قال رسول الله صلى الله عليه وسلم «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله فهجرته إلى الله وإلى رسوله، ومن كانت هجرته إلى دنيا يصيبها أو امرأة ينكحها فهجرته إلى ما هاجر إليه»0",
+      "segmentation": {
+        "chainCandidate": "أخبرنا يحيى بن حبيب بن عربي، عن حماد، والحارث بن مسكين قراءة عليه وأنا أسمع، عن ابن القاسم، حدثني مالك، ح وأخبرنا سليمان بن منصور قال: أنبأنا عبد الله بن المبارك واللفظ له، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب رضي الله عنهم قال: قال رسول الله صلى الله عليه وسلم",
+        "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله وإلى رسوله فهجرته إلى الله وإلى رسوله، ومن كانت هجرته إلى دنيا يصيبها أو امرأة ينكحها فهجرته إلى ما هاجر إليه",
+        "narratorMentionCandidates": [
+          {
+            "position": 1,
+            "transmissionTerm": "أخبرنا",
+            "surface": "يحيى بن حبيب بن عربي",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 2,
+            "transmissionTerm": "عن",
+            "surface": "حماد، والحارث بن مسكين قراءة عليه وأنا أسمع",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 3,
+            "transmissionTerm": "عن",
+            "surface": "ابن القاسم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 4,
+            "transmissionTerm": "حدثني",
+            "surface": "مالك، ح وأخبرنا سليمان بن منصور",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 5,
+            "transmissionTerm": "أنبأنا",
+            "surface": "عبد الله بن المبارك واللفظ له",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 6,
+            "transmissionTerm": "عن",
+            "surface": "يحيى بن سعيد",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 7,
+            "transmissionTerm": "عن",
+            "surface": "محمد بن إبراهيم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 8,
+            "transmissionTerm": "عن",
+            "surface": "علقمة بن وقاص",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 9,
+            "transmissionTerm": "عن",
+            "surface": "عمر بن الخطاب رضي الله عنهم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 10,
+            "transmissionTerm": "قال",
+            "surface": "رسول الله صلى الله عليه وسلم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          }
+        ],
+        "method": "Arabic quotation-boundary heuristic",
+        "reviewState": "machine-suggested"
+      },
+      "reviewState": "imported"
+    },
+    {
+      "stagingId": "openiti:0303Nasai.SunanSughra.Shamela0000829-ara1:3437",
+      "sourceKey": "openitiNasai",
+      "collectionLabel": "Sunan al-Nasaʾi",
+      "work": "0303Nasai.SunanSughra",
+      "sourceReportNumber": 3437,
+      "rawOpenITI": "# أخبرنا عمرو بن منصور، قال: حدثنا عبد الله بن مسلمة، قال: حدثنا مالك،\n~~والحارث بن مسكين، قراءة عليه وأنا أسمع، عن ابن القاسم، قال: أخبرني مالك،\n~~عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب،\n~~رضي الله عنه - وفي حديث الحارث، أنه سمع عمر - يقول: قال رسول الله صلى\n~~الله عليه وسلم: «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته\n~~إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها أو\n~~امرأة يتزوجها، فهجرته إلى ما هاجر إليه»0",
+      "normalizedReading": "أخبرنا عمرو بن منصور، قال: حدثنا عبد الله بن مسلمة، قال: حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، عن ابن القاسم، قال: أخبرني مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، أنه سمع عمر - يقول: قال رسول الله صلى الله عليه وسلم: «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه»0",
+      "segmentation": {
+        "chainCandidate": "أخبرنا عمرو بن منصور، قال: حدثنا عبد الله بن مسلمة، قال: حدثنا مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع، عن ابن القاسم، قال: أخبرني مالك، عن يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث، أنه سمع عمر - يقول: قال رسول الله صلى الله عليه وسلم:",
+        "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "narratorMentionCandidates": [
+          {
+            "position": 1,
+            "transmissionTerm": "أخبرنا",
+            "surface": "عمرو بن منصور",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 2,
+            "transmissionTerm": "حدثنا",
+            "surface": "عبد الله بن مسلمة",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 3,
+            "transmissionTerm": "حدثنا",
+            "surface": "مالك، والحارث بن مسكين، قراءة عليه وأنا أسمع",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 4,
+            "transmissionTerm": "عن",
+            "surface": "ابن القاسم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 5,
+            "transmissionTerm": "أخبرني",
+            "surface": "مالك",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 6,
+            "transmissionTerm": "عن",
+            "surface": "يحيى بن سعيد",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 7,
+            "transmissionTerm": "عن",
+            "surface": "محمد بن إبراهيم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 8,
+            "transmissionTerm": "عن",
+            "surface": "علقمة بن وقاص",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 9,
+            "transmissionTerm": "عن",
+            "surface": "عمر بن الخطاب، رضي الله عنه - وفي حديث الحارث",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 10,
+            "transmissionTerm": "أنه سمع",
+            "surface": "عمر -",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 11,
+            "transmissionTerm": "قال",
+            "surface": "رسول الله صلى الله عليه وسلم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          }
+        ],
+        "method": "Arabic quotation-boundary heuristic",
+        "reviewState": "machine-suggested"
+      },
+      "reviewState": "imported"
+    },
+    {
+      "stagingId": "openiti:0303Nasai.SunanSughra.Shamela0000829-ara1:3794",
+      "sourceKey": "openitiNasai",
+      "collectionLabel": "Sunan al-Nasaʾi",
+      "work": "0303Nasai.SunanSughra",
+      "sourceReportNumber": 3794,
+      "rawOpenITI": "# أخبرنا إسحاق بن إبراهيم، قال: أنبأنا ms0816 سليمان بن حيان، قال: حدثنا يحيى\n~~بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، عن\n~~النبي صلى الله عليه وسلم قال: «إنما الأعمال بالنية، وإنما لامرئ ما نوى،\n~~فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته\n~~لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه»0",
+      "normalizedReading": "أخبرنا إسحاق بن إبراهيم، قال: أنبأنا سليمان بن حيان، قال: حدثنا يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، عن النبي صلى الله عليه وسلم قال: «إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه»0",
+      "segmentation": {
+        "chainCandidate": "أخبرنا إسحاق بن إبراهيم، قال: أنبأنا سليمان بن حيان، قال: حدثنا يحيى بن سعيد، عن محمد بن إبراهيم، عن علقمة بن وقاص، عن عمر بن الخطاب، عن النبي صلى الله عليه وسلم قال:",
+        "matnCandidate": "إنما الأعمال بالنية، وإنما لامرئ ما نوى، فمن كانت هجرته إلى الله ورسوله، فهجرته إلى الله ورسوله، ومن كانت هجرته لدنيا يصيبها، أو امرأة يتزوجها، فهجرته إلى ما هاجر إليه",
+        "narratorMentionCandidates": [
+          {
+            "position": 1,
+            "transmissionTerm": "أخبرنا",
+            "surface": "إسحاق بن إبراهيم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 2,
+            "transmissionTerm": "أنبأنا",
+            "surface": "سليمان بن حيان",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 3,
+            "transmissionTerm": "حدثنا",
+            "surface": "يحيى بن سعيد",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 4,
+            "transmissionTerm": "عن",
+            "surface": "محمد بن إبراهيم",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 5,
+            "transmissionTerm": "عن",
+            "surface": "علقمة بن وقاص",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 6,
+            "transmissionTerm": "عن",
+            "surface": "عمر بن الخطاب",
+            "identity": null,
+            "reviewState": "machine-suggested"
+          },
+          {
+            "position": 7,
+            "transmissionTerm": "عن",
+            "surface": "النبي صلى الله عليه وسلم",
             "identity": null,
             "reviewState": "machine-suggested"
           }
