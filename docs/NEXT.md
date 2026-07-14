@@ -22,7 +22,6 @@ Work from the top downward unless a dependency or verified defect changes the or
 
 - Expand beyond the intentions family while preserving reproducible source locks.
 - Add canonical collections incrementally, with licensing and provenance reviewed before import.
-- Build scalable indexing rather than loading the entire corpus into the browser.
 - Add Arabic-aware search, spelling normalization options, and exact-mode searching.
 - Add parallel-narration discovery with explainable similarity evidence.
 

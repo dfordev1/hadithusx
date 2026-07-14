@@ -1,9 +1,12 @@
 # Production release checklist
 
-## Included in 1.3
+## Included in 1.4
 
 - Fresh deterministic build with `npm ci && npm run check`
 - Five collections from three pinned OpenITI repositories, with checksums for every upstream source file
+- Deterministic 26,727-report compressed index with per-collection totals and duplicate-number occurrence identifiers
+- Bounded, paginated Arabic corpus-search API and responsive white-theme corpus browser
+- Explicit OpenITI attribution and CC BY-NC-SA 4.0 notices
 - No dependency on the local upstream checkout at runtime
 - No automatic narrator merge or authenticity grading
 - Search, navigation, responsive layout, and keyboard focus states

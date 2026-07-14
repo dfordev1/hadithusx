@@ -2,7 +2,7 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
-## Release 1.3
+## Release 1.4
 
 ### Standard and data model
 
@@ -25,6 +25,14 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Transmission expressions and machine-proposed narrator segments retain exact normalized-source character spans.
 - Real Ibn Majah and Nasaʾi combined-chain cases are covered by regression checks.
 
+### Whole-corpus working model
+
+- All 26,727 non-empty numbered reports from the five locked source editions are represented in a deterministic compressed index.
+- Repeated printed report numbers receive stable occurrence suffixes instead of being collapsed.
+- Per-source counts, commits, file checksums, corpus checksums, attribution, and license terms are manifest-recorded.
+- A bounded server-side API provides Arabic-aware filtering, collection filtering, and pagination without loading the corpus into the browser.
+- A responsive white-theme corpus browser exposes the index with imported-data and licensing boundaries visible.
+
 ### Scholarly workbench
 
 - Real-data-first dashboard and witness reader are implemented.
@@ -42,6 +50,7 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Schema, semantic, negative, UI, and release tests pass.
 - The local server provides a health endpoint and defensive HTTP headers.
 - CI supports maintained Node.js versions.
+- Whole-corpus integrity, uniqueness, checksum, API, pagination, and licensing tests are included.
 - The live local build is served at `http://localhost:8090` when the server is running.
 
 ## Current honest status

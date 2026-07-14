@@ -10,6 +10,8 @@ const [html, css, app, corpusText, graphText, importedGraphText, identityText] =
   readFile(new URL("dist/imported-graph.json", root), "utf8"),
   readFile(new URL("dist/identity-suggestions.json", root), "utf8")
 ]);
+const corpusHtml = await readFile(new URL("web/corpus.html", root), "utf8");
+const corpusApp = await readFile(new URL("web/corpus.js", root), "utf8");
 
 const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);
@@ -20,6 +22,8 @@ check("stylesheet is linked", /href="styles\.css"/i.test(html));
 check("application module is linked", /src="app\.js"/i.test(html));
 check("white theme is mandatory", /color-scheme:\s*light/i.test(css) && /background:#f7f9f8/i.test(css));
 check("dark theme declaration is absent", !/color-scheme:\s*dark/i.test(css));
+check("whole-corpus browser follows white theme", /href="styles\.css"/.test(corpusHtml) && /theme-color" content="#ffffff"/.test(corpusHtml));
+check("whole-corpus browser uses paginated API", /\/api\/corpus/.test(corpusApp) && /data-page/.test(corpusApp));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));

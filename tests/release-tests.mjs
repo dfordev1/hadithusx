@@ -28,6 +28,18 @@ try {
     check("HEAD requests are supported", head.ok && (await head.text()) === "");
     const missing = await fetch(`http://127.0.0.1:${port}/missing-file`);
     check("missing assets return 404", missing.status === 404);
+    const corpusPage = await fetch(`http://127.0.0.1:${port}/corpus.html`);
+    check("whole-corpus browser is served", corpusPage.ok && (await corpusPage.text()).includes("Whole corpus"));
+    const corpusMetaResponse = await fetch(`http://127.0.0.1:${port}/api/corpus/meta`);
+    const corpusMeta = await corpusMetaResponse.json();
+    check("whole-corpus metadata API reports all records", corpusMetaResponse.ok && corpusMeta.reportCount === 26727 && corpusMeta.sources.length === 5);
+    const corpusSearchResponse = await fetch(`http://127.0.0.1:${port}/api/corpus?q=${encodeURIComponent("إنما الأعمال")}&limit=5`);
+    const corpusSearch = await corpusSearchResponse.json();
+    check("Arabic corpus search is paginated", corpusSearchResponse.ok && corpusSearch.results.length <= 5 && corpusSearch.total >= 5 && corpusSearch.page === 1);
+    check("corpus API omits bulky raw source blocks", corpusSearch.results.every((result) => !("rawOpenITI" in result)));
+    const boundedResponse = await fetch(`http://127.0.0.1:${port}/api/corpus?limit=500`);
+    const bounded = await boundedResponse.json();
+    check("corpus API enforces page-size ceiling", bounded.limit === 50 && bounded.results.length === 50);
   }
 } finally {
   server.kill();

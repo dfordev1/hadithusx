@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.3
+# Unified Hadith Workbench 1.4
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -7,6 +7,8 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 ## Production capabilities
 
 - Twelve real source occurrences across Sahih al-Bukhari, Sunan Abi Dawud, Sunan Ibn Majah, Jamiʿ al-Tirmidhi, and Sunan al-Nasaʾi, imported from pinned OpenITI commits
+- Searchable working index of 26,727 numbered reports across those five editions
+- Paginated server API and white-theme whole-corpus browser
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison
@@ -36,6 +38,8 @@ npm start
 
 Then open `http://localhost:8090`. `npm start` always rebuilds the release first.
 
+Whole-corpus browser: `http://localhost:8090/corpus.html`.
+
 Health check: `http://localhost:8090/healthz`.
 
 ## Review workflow
@@ -50,6 +54,8 @@ Decisions stay in the browser until exported. Accepting a candidate records a re
 ## Source reproducibility
 
 The pilot importer locks every source file to an OpenITI repository commit and SHA-256 checksum in `sources/source-lock.json`. The committed staging file allows clean builds without downloading upstream repositories.
+
+The whole-corpus index is distributed under OpenITI's CC BY-NC-SA 4.0 terms. See `THIRD_PARTY_NOTICES.md`; the software code remains MIT-licensed.
 
 To regenerate staging from upstream, clone repositories `0275AH`, `0300AH`, and `0325AH` into the checkout directories recorded by the lock file, check out their recorded commits, and run:
 

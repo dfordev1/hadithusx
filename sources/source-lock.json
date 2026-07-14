@@ -8,6 +8,8 @@
     "version": "0256Bukhari.Sahih.Shamela0001681-ara1",
     "path": "data/0256Bukhari/0256Bukhari.Sahih/0256Bukhari.Sahih.Shamela0001681-ara1",
     "sourceSha256": "e3eaa89596dea4128a6afd4817f1ee3ba9c7a492ca87fb03a736ec9783110f73",
+    "license": "CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   },
@@ -20,6 +22,8 @@
     "version": "0275AbuDawudSijistani.Sunan.Shamela0001726-ara1",
     "path": "data/0275AbuDawudSijistani/0275AbuDawudSijistani.Sunan/0275AbuDawudSijistani.Sunan.Shamela0001726-ara1",
     "sourceSha256": "e405642e35a7a6f52ed70e5b65f103c945f48ba68bd51fff7a68b96d2f255615",
+    "license": "CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   },
@@ -32,6 +36,8 @@
     "version": "0273IbnMaja.Sunan.Shamela0001198-ara1",
     "path": "data/0273IbnMaja/0273IbnMaja.Sunan/0273IbnMaja.Sunan.Shamela0001198-ara1",
     "sourceSha256": "88f7cd1cc8ea9c20dc54929dfb550891b30ea257190a5badae53c2440ac35dc2",
+    "license": "CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   },
@@ -44,6 +50,8 @@
     "version": "0279Tirmidhi.Sunan.Shamela0001435-ara1",
     "path": "data/0279Tirmidhi/0279Tirmidhi.Sunan/0279Tirmidhi.Sunan.Shamela0001435-ara1",
     "sourceSha256": "786e9e8aafb56fa985111e9c73998aba5041ea3fceb5e7942c759d885b29d9b3",
+    "license": "CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   },
@@ -56,6 +64,8 @@
     "version": "0303Nasai.SunanSughra.Shamela0000829-ara1",
     "path": "data/0303Nasai/0303Nasai.SunanSughra/0303Nasai.SunanSughra.Shamela0000829-ara1",
     "sourceSha256": "83775d1f6026892069d1907a4cce4f6adf70ab4d67003061b5df1a38dff20318",
+    "license": "CC BY-NC-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "acquisition": "Shallow Git clone pinned to the recorded commit",
     "reviewState": "imported"
   }

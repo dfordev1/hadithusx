@@ -1,0 +1,59 @@
+{
+  "format": "unified-hadith-corpus-index-0.1",
+  "reportCount": 26727,
+  "uncompressedSha256": "95f9ac6fe62ca0574a08eab7e142eb3ab3549522fade9fa62c27883b299359c3",
+  "compressedSha256": "88dd547effa74f1d628db4cd20d81b1dd4aae37e575eafd7a9055e691b7df12d",
+  "compressedBytes": 4638260,
+  "sources": [
+    {
+      "sourceKey": "openitiBukhari",
+      "collectionLabel": "Sahih al-Bukhari",
+      "repository": "https://github.com/OpenITI/0275AH.git",
+      "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+      "sourceSha256": "e3eaa89596dea4128a6afd4817f1ee3ba9c7a492ca87fb03a736ec9783110f73",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "reports": 7381
+    },
+    {
+      "sourceKey": "openitiAbuDawud",
+      "collectionLabel": "Sunan Abi Dawud",
+      "repository": "https://github.com/OpenITI/0275AH.git",
+      "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+      "sourceSha256": "e405642e35a7a6f52ed70e5b65f103c945f48ba68bd51fff7a68b96d2f255615",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "reports": 5284
+    },
+    {
+      "sourceKey": "openitiIbnMaja",
+      "collectionLabel": "Sunan Ibn Majah",
+      "repository": "https://github.com/OpenITI/0275AH.git",
+      "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+      "sourceSha256": "88f7cd1cc8ea9c20dc54929dfb550891b30ea257190a5badae53c2440ac35dc2",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "reports": 4343
+    },
+    {
+      "sourceKey": "openitiTirmidhi",
+      "collectionLabel": "Jamiʿ al-Tirmidhi",
+      "repository": "https://github.com/OpenITI/0300AH.git",
+      "commit": "01a1544130e0236850ef2698923ad01575c5bd7c",
+      "sourceSha256": "786e9e8aafb56fa985111e9c73998aba5041ea3fceb5e7942c759d885b29d9b3",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "reports": 3951
+    },
+    {
+      "sourceKey": "openitiNasai",
+      "collectionLabel": "Sunan al-Nasaʾi",
+      "repository": "https://github.com/OpenITI/0325AH.git",
+      "commit": "089e665b4958e0f145a46941987fb81cf3dda1b8",
+      "sourceSha256": "83775d1f6026892069d1907a4cce4f6adf70ab4d67003061b5df1a38dff20318",
+      "license": "CC BY-NC-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "reports": 5768
+    }
+  ]
+}
