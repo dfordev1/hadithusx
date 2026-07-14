@@ -1,0 +1,5 @@
+dist/
+node_modules/
+sources/openiti-0275AH/
+*.log
+.DS_Store

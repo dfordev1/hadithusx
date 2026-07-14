@@ -1,0 +1,23 @@
+{
+  "name": "unified-hadith",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An evidence-first interchange standard and scholarly workbench for hadith studies.",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node tests/run-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
+    "build": "node scripts/build.mjs",
+    "import:openiti": "node scripts/import-openiti-intentions.mjs",
+    "check": "npm run validate && npm test",
+    "prestart": "npm run build --silent",
+    "start": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

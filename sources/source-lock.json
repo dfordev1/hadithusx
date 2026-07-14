@@ -1,0 +1,12 @@
+{
+  "openiti0275AH": {
+    "repository": "https://github.com/OpenITI/0275AH.git",
+    "commit": "44e1c36738a2bf5c14dafa232a6ae1891e6171cd",
+    "work": "0256Bukhari.Sahih",
+    "version": "0256Bukhari.Sahih.Shamela0001681-ara1",
+    "path": "data/0256Bukhari/0256Bukhari.Sahih/0256Bukhari.Sahih.Shamela0001681-ara1",
+    "sourceSha256": "e3eaa89596dea4128a6afd4817f1ee3ba9c7a492ca87fb03a736ec9783110f73",
+    "acquisition": "Shallow Git clone pinned to the recorded commit",
+    "reviewState": "imported"
+  }
+}

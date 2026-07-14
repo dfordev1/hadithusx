@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:simpleType name="idType">
+    <xs:restriction base="xs:string"><xs:pattern value="uh:[a-z]+:[a-z0-9][a-z0-9:.-]*"/></xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="reviewType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="imported"/><xs:enumeration value="machine-suggested"/><xs:enumeration value="editor-reviewed"/><xs:enumeration value="scholar-verified"/><xs:enumeration value="disputed"/><xs:enumeration value="rejected"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="corpus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="witness" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="isnad" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType><xs:sequence>
+                  <xs:element name="mention" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType mixed="true"><xs:attribute name="id" type="idType" use="required"/><xs:attribute name="position" type="xs:positiveInteger" use="required"/><xs:attribute name="transmissionTerm" type="xs:string"/></xs:complexType>
+                  </xs:element>
+                </xs:sequence><xs:attribute name="id" type="idType" use="required"/><xs:attribute name="reviewState" type="reviewType" use="required"/></xs:complexType>
+              </xs:element>
+              <xs:element name="matn" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="idType" use="required"/><xs:attribute name="edition" type="idType" use="required"/><xs:attribute name="locator" type="xs:string" use="required"/><xs:attribute name="reviewState" type="reviewType" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="standardVersion" type="xs:string" use="required" fixed="0.1"/>
+      <xs:attribute name="status" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Evidence-first workbench for hadith witnesses, transmission routes, textual variants, and narrator identity review.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Unified Hadith Workbench</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">EVIDENCE-FIRST HADITH RESEARCH</p>
+      <h1>Unified Hadith</h1>
+      <p class="lede">Compare source witnesses, inspect transmission routes, and review narrator candidates without hiding uncertainty.</p>
+    </div>
+    <div class="status"><span></span> OpenITI source pinned and checksummed</div>
+  </header>
+  <div class="toolbar" role="search">
+    <label class="search-box"><span>Search</span><input id="global-search" type="search" placeholder="Arabic text, narrator, or report number" autocomplete="off"></label>
+    <button id="export-review" class="primary-action" type="button">Export review</button>
+  </div>
+  <nav aria-label="Workbench views">
+    <button data-view="dashboard">Overview</button>
+    <button data-view="witnesses">Witnesses</button>
+    <button data-view="graph">Isnad graph</button>
+    <button data-view="variants">Matn variants</button>
+    <button data-view="narrators">Identity review</button>
+    <button data-view="provenance">Provenance</button>
+  </nav>
+  <main>
+    <section class="metrics" id="metrics" aria-label="Corpus summary"></section>
+    <section id="content" tabindex="-1" aria-live="polite"><p>Loading verified assets…</p></section>
+  </main>
+  <footer>Every edge has a witness. Every automated decision is labelled. No identity is merged without review.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

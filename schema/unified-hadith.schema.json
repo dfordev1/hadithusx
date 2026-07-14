@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unifiedhadith.org/schema/0.1/corpus.json",
+  "title": "Unified Hadith Corpus",
+  "type": "object",
+  "required": ["standardVersion", "status", "agents", "works", "editions", "persons", "witnesses", "claims", "alignments"],
+  "properties": {
+    "standardVersion": { "const": "0.1" },
+    "status": { "enum": ["demonstration", "draft", "reviewed", "published"] },
+    "agents": { "type": "array", "items": { "$ref": "#/$defs/agent" } },
+    "works": { "type": "array", "items": { "$ref": "#/$defs/work" } },
+    "editions": { "type": "array", "items": { "$ref": "#/$defs/edition" } },
+    "persons": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+    "witnesses": { "type": "array", "items": { "$ref": "#/$defs/witness" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "alignments": { "type": "array", "items": { "$ref": "#/$defs/alignment" } }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "id": { "type": "string", "pattern": "^uh:[a-z]+:[a-z0-9][a-z0-9:.-]*$" },
+    "confidence": { "enum": ["certain", "probable", "possible", "uncertain", "unknown"] },
+    "reviewState": { "enum": ["imported", "machine-suggested", "editor-reviewed", "scholar-verified", "disputed", "rejected"] },
+    "agent": {
+      "type": "object", "required": ["id", "type", "name"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "type": { "enum": ["person", "organization", "software"] }, "name": { "type": "string", "minLength": 1 }, "version": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "work": {
+      "type": "object", "required": ["id", "title"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "title": { "type": "object", "required": ["ar", "en"], "properties": { "ar": { "type": "string" }, "en": { "type": "string" } }, "additionalProperties": false } },
+      "additionalProperties": false
+    },
+    "edition": {
+      "type": "object", "required": ["id", "work", "label", "sourceType", "citation"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "work": { "$ref": "#/$defs/id" }, "label": { "type": "string" }, "sourceType": { "enum": ["manuscript", "print", "digital", "demonstration"] }, "citation": { "type": "string" }, "license": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "person": {
+      "type": "object", "required": ["id", "preferredName", "nameForms", "reviewState"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "preferredName": { "type": "string" }, "nameForms": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "reviewState": { "$ref": "#/$defs/reviewState" }, "notes": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "identityAssertion": {
+      "type": "object", "required": ["id", "person", "assertedBy", "confidence", "reviewState"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "person": { "$ref": "#/$defs/id" }, "assertedBy": { "$ref": "#/$defs/id" }, "confidence": { "$ref": "#/$defs/confidence" }, "reviewState": { "$ref": "#/$defs/reviewState" }, "evidence": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "mention": {
+      "type": "object", "required": ["id", "position", "surface", "transmissionTerm", "identityAssertions"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "position": { "type": "integer", "minimum": 1 }, "surface": { "type": "string", "minLength": 1 }, "transmissionTerm": { "type": "string" }, "identityAssertions": { "type": "array", "items": { "$ref": "#/$defs/identityAssertion" } } },
+      "additionalProperties": false
+    },
+    "isnad": {
+      "type": "object", "required": ["id", "route", "reviewState"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "route": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/mention" } }, "reviewState": { "$ref": "#/$defs/reviewState" } },
+      "additionalProperties": false
+    },
+    "token": {
+      "type": "object", "required": ["id", "position", "text"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "position": { "type": "integer", "minimum": 1 }, "text": { "type": "string", "minLength": 1 } },
+      "additionalProperties": false
+    },
+    "witness": {
+      "type": "object", "required": ["id", "edition", "locator", "isnads", "matn", "language", "reviewState", "provenance"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "edition": { "$ref": "#/$defs/id" }, "locator": { "type": "string" }, "language": { "const": "ar" },
+        "isnads": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/isnad" } },
+        "matn": {
+          "type": "object",
+          "required": ["diplomatic", "tokens"],
+          "properties": {
+            "diplomatic": { "type": "string", "minLength": 1 },
+            "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/token" } }
+          },
+          "additionalProperties": false
+        },
+        "reviewState": { "$ref": "#/$defs/reviewState" },
+        "provenance": { "type": "object", "required": ["createdBy", "method", "createdAt"], "properties": { "createdBy": { "$ref": "#/$defs/id" }, "method": { "type": "string" }, "createdAt": { "type": "string", "format": "date" }, "derivedFrom": { "type": "string" } }, "additionalProperties": false }
+      },
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object", "required": ["id", "subject", "predicate", "object", "assertedBy", "citation", "confidence", "reviewState"],
+      "properties": { "id": { "$ref": "#/$defs/id" }, "subject": { "$ref": "#/$defs/id" }, "predicate": { "type": "string", "pattern": "^[a-z][a-zA-Z]+$" }, "object": { "type": "string", "minLength": 1 }, "assertedBy": { "$ref": "#/$defs/id" }, "citation": { "type": "string", "minLength": 1 }, "confidence": { "$ref": "#/$defs/confidence" }, "reviewState": { "$ref": "#/$defs/reviewState" }, "supports": { "$ref": "#/$defs/id" }, "contradicts": { "$ref": "#/$defs/id" } },
+      "additionalProperties": false
+    },
+    "alignment": {
+      "type": "object",
+      "required": ["id", "type", "members", "assertedBy", "confidence", "reviewState"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["exact", "orthographic", "abbreviated", "expanded", "paraphrase", "same-event", "possible-parallel"] },
+        "members": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["witness", "tokens"],
+            "properties": {
+              "witness": { "$ref": "#/$defs/id" },
+              "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/id" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "assertedBy": { "$ref": "#/$defs/id" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "reviewState": { "$ref": "#/$defs/reviewState" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
