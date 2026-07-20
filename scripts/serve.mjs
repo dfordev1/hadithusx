@@ -15,6 +15,8 @@ const securityHeaders = {
 let wholeCorpus;
 let parallelIndex;
 let narratorIndex;
+let narratorAuthorityIndex;
+let narratorAuthorityData;
 async function getWholeCorpus() {
   if (!wholeCorpus) wholeCorpus = JSON.parse(gunzipSync(await readFile(join(root, "openiti-five-collections.json.gz"))).toString("utf8"));
   return wholeCorpus;
@@ -26,6 +28,14 @@ async function getParallelIndex() {
 async function getNarratorIndex() {
   if (!narratorIndex) narratorIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-narrator-mentions.json.gz"))).toString("utf8"));
   return narratorIndex;
+}
+async function getNarratorAuthorityIndex() {
+  if (!narratorAuthorityIndex) narratorAuthorityIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-narrator-authority-candidates.json.gz"))).toString("utf8"));
+  return narratorAuthorityIndex;
+}
+async function getNarratorAuthorityData() {
+  if (!narratorAuthorityData) narratorAuthorityData = JSON.parse(await readFile(join(root, "narrator-authority.json"), "utf8"));
+  return narratorAuthorityData;
 }
 const normalizeSearch = (value) => value.normalize("NFC").replace(/[ًٌٍَُِّْـ]/gu, "").replace(/[إأآٱ]/gu, "ا").toLocaleLowerCase("ar");
 const exactSearch = (value) => value.normalize("NFC").toLocaleLowerCase("ar");
@@ -93,6 +103,20 @@ createServer(async (request, response) => {
       const matches = narrators.clusters.filter((cluster) => !q || normalizeSearch(`${cluster.normalizedSurface} ${cluster.surfaceForms.join(" ")}`).includes(q));
       const start = (page - 1) * limit;
       const body = JSON.stringify({ format: "unified-hadith-narrator-cluster-search-0.1", query: requestUrl.searchParams.get("q") || "", page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit) });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
+    }
+    if (urlPath === "/api/narrator-authority-candidates") {
+      const clusterId = requestUrl.searchParams.get("cluster")?.trim() || "";
+      if (!clusterId) { response.writeHead(400, { "Content-Type": "application/json; charset=utf-8", ...securityHeaders }); response.end(JSON.stringify({ error: "cluster is required" })); return; }
+      const [authorityCandidates, authorityData] = await Promise.all([getNarratorAuthorityIndex(), getNarratorAuthorityData()]);
+      const persons = new Map(authorityData.persons.map((person) => [person.id, person]));
+      const matches = authorityCandidates.candidates.filter((candidate) => candidate.cluster === clusterId).map((candidate) => ({ ...candidate, personPreferredName: persons.get(candidate.person)?.preferredName || candidate.person }));
+      const body = JSON.stringify({ format: "unified-hadith-narrator-authority-candidate-search-0.1", cluster: clusterId, sourceAuthoritySha256: authorityCandidates.sourceAuthoritySha256, sourceNarratorIndexSha256: authorityCandidates.sourceNarratorIndexSha256, total: matches.length, candidates: matches });
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
+    }
+    if (urlPath === "/api/narrator-authority/meta") {
+      const [authorityCandidates, authorityData] = await Promise.all([getNarratorAuthorityIndex(), getNarratorAuthorityData()]);
+      const body = JSON.stringify({ format: authorityCandidates.format, personCount: authorityData.persons.length, candidateCount: authorityCandidates.candidateCount, chronologyWarningCount: authorityCandidates.chronologyWarningCount, method: authorityCandidates.method });
       response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders }); response.end(request.method === "HEAD" ? undefined : body); return;
     }
     if (urlPath === "/api/narrator-cluster") {

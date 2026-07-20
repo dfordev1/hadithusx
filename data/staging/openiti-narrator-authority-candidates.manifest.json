@@ -1,0 +1,16 @@
+{
+  "format": "unified-hadith-narrator-authority-candidates-0.1",
+  "sourceAuthoritySha256": "e684ca27a35c1b4d05eaaab6dee3f016e09e7ae680ba825d7d4648b5058f3cc6",
+  "sourceNarratorIndexSha256": "46d181738a285dc4fddc9aef377467982a0131a524ab8fa4a046567eb0c75a22",
+  "candidateCount": 0,
+  "chronologyWarningCount": 1,
+  "uncompressedSha256": "73d880994262da5d2d96419923e957df377c6722d67c2740f4813cfeb5b455a4",
+  "compressedSha256": "fdad3886b16ce62ae9968608c4e65bada5b38822dfb9c15aaa0caff788dd834e",
+  "compressedBytes": 547,
+  "method": {
+    "matching": "deterministic normalized Arabic surface comparison 0.1",
+    "automaticIdentityResolution": false,
+    "chronologyChecks": "teacher/student assertions compared against birth/death years when both are recorded; broken links flagged when the related person id does not resolve",
+    "warningsAreNotRulings": true
+  }
+}

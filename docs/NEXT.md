@@ -4,11 +4,40 @@ Work from the top downward unless a dependency or verified defect changes the or
 
 ## Phase 1 — narrator authority layer
 
-- Import licensed biographical references with exact citations.
-- Record names, kunyas, nisbas, generations, locations, teachers, students, dates, and source-specific evaluations.
-- Build candidate matching from narrator mentions to authority records.
+- Import licensed biographical references with exact citations. **Not started.** The
+  narrator authority schema, matching, chronology checks, and review workflow below
+  are implemented and tested, but `data/narrator-authority.fixture.json` remains
+  explicitly non-historical test fixture data (see its `"no historical claim"`
+  citation). No licensed biographical source has been imported yet, and none should
+  be added without confirming licensing terms first.
+- Record names, kunyas, nisbas, generations, locations, teachers, students, dates, and
+  source-specific evaluations. Schema and structural support exist
+  (`schema/narrator-authority.schema.json`); real biographical records depend on the
+  import above.
+- Build candidate matching from narrator mentions to authority records. **Done.**
+  `scripts/match-narrator-authority.mjs` / `scripts/lib/narrator-authority.mjs` score
+  candidate links between the 6,992 real narrator-mention clusters and authority
+  persons using deterministic normalized-surface comparison, with every candidate
+  explaining its own score. Verified by `tests/narrator-authority-tests.mjs`
+  (18 checks) and exposed via `/api/narrator-authority-candidates`.
 - Require human approval for identity resolution and retain rejected alternatives.
-- Detect impossible chronology and broken-link candidates as warnings, never automatic rulings.
+  **Done.** The narrator-mentions page (`web/narrators.html`/`.js`) lets a reviewer
+  accept, reject, or flag "needs evidence" for each candidate; decisions persist in
+  `localStorage` keyed by candidate id (never deleted on rejection) and export as
+  `unified-hadith-narrator-authority-review.json`, mirroring the existing
+  parallel-candidate review pattern.
+- Detect impossible chronology and broken-link candidates as warnings, never
+  automatic rulings. **Done.** `detectChronologyWarnings()` compares recorded
+  birth/death years on `teacher`/`student` assertions and flags implausible chains or
+  unresolved person references as `warning`-typed entries; it never mutates or
+  rejects the underlying assertion. Exercised against a deliberately impossible
+  fixture case (student's fixture birth year postdates the claimed teacher's fixture
+  death year) plus synthetic unit cases for the plausible and broken-link paths.
+
+Next concrete step for this phase: source a properly licensed biographical
+reference (with clear reuse terms), import it as real `sources`/`persons`/
+`assertions` records, and confirm the matcher and chronology checks above produce
+sensible, reviewable output against genuine historical data instead of the fixture.
 
 ## Phase 2 — full hadith interchange
 

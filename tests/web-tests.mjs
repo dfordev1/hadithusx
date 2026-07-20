@@ -35,6 +35,9 @@ check("parallel acceptance does not create alignment", /accept-candidate/.test(c
 check("narrator corpus browser follows white theme", /href="styles\.css"/.test(narratorHtml) && /theme-color" content="#ffffff"/.test(narratorHtml));
 check("narrator browser warns clusters are not people", /not automatic identity/i.test(narratorHtml) && /not a person/.test(narratorApp));
 check("narrator browser exposes source evidence", /\/api\/narrator-cluster/.test(narratorApp) && /sourceSpan/.test(narratorApp));
+check("narrator browser exposes identity candidates", /data-show-authority/.test(narratorApp) && /\/api\/narrator-authority-candidates/.test(narratorApp));
+check("identity candidates show reasoning and never auto-merge", /candidate\.reason/.test(narratorApp) && !/acceptedIdentity\s*=\s*['"]/.test(narratorApp));
+check("identity decisions persist and export, retaining rejected alternatives", /localStorage\.setItem\(AUTHORITY_REVIEW_KEY/.test(narratorApp) && /unified-hadith-narrator-authority-review\.json/.test(narratorApp) && /never deleted on rejection/.test(narratorApp));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));

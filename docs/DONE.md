@@ -66,9 +66,45 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - Whole-corpus integrity, uniqueness, checksum, API, pagination, and licensing tests are included.
 - The live local build is served at `http://localhost:8090` when the server is running.
 
+## Release 1.8
+
+### Narrator authority layer — Phase 1 (partial)
+
+- `scripts/lib/narrator-authority.mjs` implements deterministic, explainable
+  candidate matching between the real 6,992-cluster narrator-mention index and
+  authority persons, scored by normalized Arabic surface comparison. No score
+  performs an automatic merge; every candidate carries `acceptedIdentity: null`
+  and `reviewState: "machine-suggested"`.
+- The same module implements chronology and broken-link detection: teacher/student
+  assertions are checked against recorded birth/death years and flagged as
+  warnings (never rulings) when a claimed relationship is chronologically
+  impossible or references an unresolved person id.
+- `scripts/match-narrator-authority.mjs` stages checksum-bound candidate output
+  (`data/staging/openiti-narrator-authority-candidates.json.gz`) tied to the exact
+  authority source and narrator index, following the project's existing
+  staged-artifact pattern.
+- `tests/narrator-authority-tests.mjs` (18 checks) covers both synthetic unit
+  cases (exact match, ambiguous single-token match, plausible chronology,
+  impossible chronology, broken link) and integration checks against the staged
+  real-corpus output.
+- The narrator-mentions page exposes a "Show identity candidates" review flow:
+  reviewers accept, reject, or flag "needs evidence" per candidate; decisions
+  persist locally keyed by candidate id (a rejected candidate's decision is
+  retained, not deleted) and export as
+  `unified-hadith-narrator-authority-review.json`.
+- `/api/narrator-authority-candidates` and `/api/narrator-authority/meta` expose
+  this data with the same security headers and bounded-response conventions as
+  the rest of the API surface.
+- **Not done in this release:** no licensed biographical source has been
+  imported. `data/narrator-authority.fixture.json` remains explicitly
+  non-historical test data (its citation says so directly), extended only with a
+  second fixture person and two fixture assertions used to exercise the
+  chronology-warning logic. Real narrator identity resolution against actual
+  biographical sources is still open — see `docs/NEXT.md`.
+
 ## Current honest status
 
-The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review.
+The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source.
 
 ## Interface confirmation
 

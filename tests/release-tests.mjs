@@ -62,6 +62,14 @@ try {
     check("narrator cluster detail retains source occurrences", clusterResponse.ok && cluster.examples.length > 0 && cluster.examples.every((mention) => mention.report && mention.sourceSpan));
     const missingClusterResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-cluster`);
     check("narrator detail API requires cluster id", missingClusterResponse.status === 400);
+    const authorityMetaResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-authority/meta`);
+    const authorityMeta = await authorityMetaResponse.json();
+    check("narrator-authority metadata API reports method and warning count", authorityMetaResponse.ok && authorityMeta.method.automaticIdentityResolution === false && Number.isInteger(authorityMeta.chronologyWarningCount));
+    const authorityCandidatesResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-authority-candidates?cluster=${encodeURIComponent(narratorSearch.results[0].id)}`);
+    const authorityCandidates = await authorityCandidatesResponse.json();
+    check("narrator-authority candidate API responds for a real cluster and never auto-resolves", authorityCandidatesResponse.ok && Array.isArray(authorityCandidates.candidates) && authorityCandidates.candidates.every((candidate) => candidate.acceptedIdentity === null));
+    const missingAuthorityClusterResponse = await fetch(`http://127.0.0.1:${port}/api/narrator-authority-candidates`);
+    check("narrator-authority candidate API requires a cluster id", missingAuthorityClusterResponse.status === 400);
   }
 } finally {
   server.kill();

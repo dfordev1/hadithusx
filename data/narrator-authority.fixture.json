@@ -18,6 +18,16 @@
       "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 1", "quotation": "الراوي التجريبي" }
     }],
     "reviewState": "editor-reviewed"
+  }, {
+    "id": "uh:person:authority-fixture-two",
+    "preferredName": "الراوي التجريبي الثاني",
+    "nameForms": [{
+      "text": "الراوي التجريبي الثاني",
+      "type": "preferred",
+      "language": "ar",
+      "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 3", "quotation": "الراوي التجريبي الثاني" }
+    }],
+    "reviewState": "editor-reviewed"
   }],
   "assertions": [{
     "id": "uh:assertion:authority-fixture-location",
@@ -28,5 +38,32 @@
     "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 2", "quotation": "مكان تجريبي غير تاريخي" },
     "confidence": "certain",
     "reviewState": "editor-reviewed"
+  }, {
+    "id": "uh:assertion:authority-fixture-one-death",
+    "subject": "uh:person:authority-fixture-one",
+    "predicate": "death",
+    "value": "100 (fixture year, not a historical date)",
+    "assertedBy": "Unified Hadith fixture editor",
+    "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 4", "quotation": "100" },
+    "confidence": "certain",
+    "reviewState": "editor-reviewed"
+  }, {
+    "id": "uh:assertion:authority-fixture-two-birth",
+    "subject": "uh:person:authority-fixture-two",
+    "predicate": "birth",
+    "value": "120 (fixture year, not a historical date)",
+    "assertedBy": "Unified Hadith fixture editor",
+    "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 5", "quotation": "120" },
+    "confidence": "certain",
+    "reviewState": "editor-reviewed"
+  }, {
+    "id": "uh:assertion:authority-fixture-two-teacher",
+    "subject": "uh:person:authority-fixture-two",
+    "predicate": "teacher",
+    "value": "uh:person:authority-fixture-one",
+    "assertedBy": "Unified Hadith fixture editor",
+    "citation": { "source": "uh:source:authority-fixture", "locator": "fixture 6", "quotation": "تجريبي: علاقة تلمذة غير تاريخية" },
+    "confidence": "possible",
+    "reviewState": "machine-suggested"
   }]
 }

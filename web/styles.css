@@ -107,6 +107,9 @@ footer { border-top:1px solid var(--line); padding:28px max(24px,6vw); color:var
 .parallel-candidate { border:1px solid var(--line); border-radius:8px; padding:12px; background:#fbfcfb; }
 .parallel-candidate p { margin:7px 0; }
 .parallel-candidate ul { margin:6px 0; padding-right:22px; }
+.authority-list { display:grid; gap:8px; margin-top:14px; }
+.authority-candidate { border:1px solid var(--line); border-radius:8px; padding:12px; background:#fbfcfb; }
+.authority-candidate p { margin:7px 0; }
 .compact-search { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:end; margin-bottom:24px; }
 .compact-search label { display:grid; gap:5px; color:var(--muted); font-size:12px; font-weight:700; }
 .compact-search input { min-height:44px; padding:10px 12px; border:1px solid #bcc8c1; border-radius:8px; background:#fff; color:var(--ink); font:15px inherit; }

@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.7
+# Unified Hadith Workbench 1.8
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -16,6 +16,7 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 - 156,330 occurrence-specific narrator mention candidates with exact evidence spans
 - 6,992 repeated name-form clusters explicitly separated from historical person identity
 - Searchable white-theme narrator evidence browser and bounded APIs
+- Deterministic narrator-authority candidate matching against the real cluster index, with chronology and broken-link warnings and a persistent human-review workflow that retains rejected alternatives (see `docs/NEXT.md` for what still requires a licensed biographical import)
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison
