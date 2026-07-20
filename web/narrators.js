@@ -3,6 +3,16 @@ const escapeHtml = (value = "") => String(value).replace(/[&<>"']/g, (character)
 async function getJson(url) { const response = await fetch(url, { cache: "no-store" }); if (!response.ok) throw new Error(`${url} returned ${response.status}`); return response.json(); }
 let page = 1, meta;
 
+// Deep-linkable search, same pattern as web/corpus.js: mirrors the current
+// query/page into the URL hash via replaceState (no self-triggered
+// hashchange), so a narrator search can be bookmarked or shared as a URL.
+function syncSearchHash(params) {
+  history.replaceState(null, "", `#${params.toString()}`);
+}
+function readSearchHash() {
+  return new URLSearchParams(location.hash.slice(1));
+}
+
 const AUTHORITY_REVIEW_KEY = "unified-hadith-narrator-authority-review-v1";
 // Decisions are keyed by candidate id and never deleted on rejection, so a
 // previously rejected alternative stays visible with its decision instead
@@ -41,6 +51,7 @@ function exportAuthorityReview() {
 async function search(targetPage = 1) {
   page = targetPage;
   const q = new FormData($("#narrator-search")).get("q");
+  syncSearchHash(new URLSearchParams({ q, page: String(page) }));
   $("#narrator-results").innerHTML = "<p>Searching occurrence evidence…</p>";
   const data = await getJson(`/api/narrators?q=${encodeURIComponent(q)}&page=${page}&limit=20`);
   const cards = data.results.map((cluster) => `<article class="card narrator-cluster" data-cluster-id="${escapeHtml(cluster.id)}"><div><span class="badge machine-suggested">machine-suggested</span> <span class="badge">not a person</span></div><h2 lang="ar" dir="rtl">${escapeHtml(cluster.surfaceForms[0] || cluster.normalizedSurface)}</h2><p>${cluster.occurrenceCount.toLocaleString()} occurrences in ${cluster.reportCount.toLocaleString()} reports</p><p>${Object.entries(cluster.collections).map(([name, count]) => `${escapeHtml(name)}: ${count}`).join(" · ")}</p><p class="id">${escapeHtml(cluster.id)}</p><button type="button" data-show-evidence>Show source evidence</button><button type="button" data-show-authority>Show identity candidates</button><div data-cluster-evidence></div><div data-authority-results></div></article>`).join("");
@@ -53,11 +64,19 @@ async function showEvidence(card) {
   target.innerHTML = `<div class="mention-evidence">${data.examples.map((mention) => `<article><strong>${escapeHtml(mention.collectionLabel)} ${mention.reportNumber}</strong> · branch ${mention.branch}, position ${mention.position}<p lang="ar" dir="rtl">${escapeHtml(mention.surface)}</p><p class="id">${escapeHtml(mention.transmissionTerm)} · source ${mention.sourceSpan.start}–${mention.sourceSpan.end}<br>${escapeHtml(mention.id)}</p></article>`).join("")}</div>`;
 }
 
+function applySearchHashToForm() {
+  const hash = readSearchHash();
+  if (hash.has("q")) $("#narrator-search").elements.q.value = hash.get("q");
+  return Number.parseInt(hash.get("page") || "1", 10) || 1;
+}
+
 try {
   meta = await getJson("/api/narrators/meta");
   $("#narrator-metrics").innerHTML = [[meta.mentionCount, "mention occurrences"], [meta.clusterCount, "repeated surface clusters"], [0, "automatic person identities"], ["exact", "source spans"]].map(([value, label]) => `<div class="metric"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`).join("");
-  await search();
+  const initialPage = applySearchHashToForm();
+  await search(initialPage);
   $("#narrator-search").addEventListener("submit", (event) => { event.preventDefault(); search(1).catch(showError); });
+  addEventListener("hashchange", () => { search(applySearchHashToForm()).catch(showError); });
   $("#narrator-results").addEventListener("click", (event) => {
     const pageButton = event.target.closest("[data-page]"); if (pageButton && !pageButton.disabled) { search(Number(pageButton.dataset.page)).catch(showError); return; }
     const evidence = event.target.closest("[data-show-evidence]"); if (evidence) { showEvidence(evidence.closest("[data-cluster-id]")).catch(showError); return; }

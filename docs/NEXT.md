@@ -74,13 +74,17 @@ sensible, reviewable output against genuine historical data instead of the fixtu
   "lossless" is and isn't a promise about, and points at `data/corpus.json` /
   `data/narrator-authority.fixture.json` as the fixtures an external
   implementation can validate against.
-- Create a command-line validator and documented integration API. **Partially
-  done.** `node scripts/validate.mjs` and `node scripts/convert-corpus.mjs`
-  are documented in `spec/COMPATIBILITY.md` as subprocess-invokable CLI tools
-  with no network dependency. Still open: `scripts/validate.mjs` currently
-  hardcodes its input paths rather than accepting a file argument like
-  `convert-corpus.mjs` does, and there is no published npm package / SDK for
-  out-of-repo consumers yet (that's Phase 5).
+- Create a command-line validator and documented integration API. **Done for
+  the CLI; SDK publishing remains Phase 5.** `node scripts/validate.mjs` now
+  accepts an optional `<corpus.json> [authority.json]` argument pair (falls
+  back to the default fixtures with no args, used by `npm run validate` and
+  CI), exits cleanly with a readable message on a missing/unparsable file
+  instead of an uncaught stack trace, and is covered by five new
+  process-spawn checks in `tests/release-tests.mjs` (default args, explicit
+  args, corpus-only, missing file, semantically invalid file). Both
+  `validate.mjs` and `convert-corpus.mjs` are documented in
+  `spec/COMPATIBILITY.md`. Still open: no published npm package / SDK for
+  out-of-repo consumers (Phase 5).
 
 ## Phase 3 — corpus expansion
 

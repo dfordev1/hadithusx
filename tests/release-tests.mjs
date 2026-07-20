@@ -1,6 +1,8 @@
-import { spawn } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { execFile, spawn } from "node:child_process";
+import { readFile, writeFile } from "node:fs/promises";
+import { promisify } from "node:util";
 
+const execFileAsync = promisify(execFile);
 const root = new URL("../", import.meta.url);
 const manifest = JSON.parse(await readFile(new URL("dist/build-manifest.json", root), "utf8"));
 const packageJson = JSON.parse(await readFile(new URL("package.json", root), "utf8"));
@@ -8,6 +10,29 @@ const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);
 check("manifest release matches package", manifest.releaseVersion === packageJson.version);
 check("all manifest assets exist", (await Promise.all(manifest.generatedFiles.map(async (file) => readFile(new URL(`dist/${file}`, root)).then(() => true, () => false)))).every(Boolean));
+
+// --- scripts/validate.mjs as a general-purpose CLI (spec/COMPATIBILITY.md) ---
+{
+  const defaultRun = await execFileAsync(process.execPath, ["scripts/validate.mjs"], { cwd: root }).catch((e) => e);
+  check("validator with no args validates the default fixtures", !(defaultRun instanceof Error) && /witnesses/.test(defaultRun.stdout) && /Narrator authority validation passed/.test(defaultRun.stdout));
+
+  const explicitBothRun = await execFileAsync(process.execPath, ["scripts/validate.mjs", "data/corpus.json", "data/narrator-authority.fixture.json"], { cwd: root }).catch((e) => e);
+  check("validator accepts explicit corpus and authority file arguments", !(explicitBothRun instanceof Error) && /Narrator authority validation passed/.test(explicitBothRun.stdout));
+
+  const corpusOnlyRun = await execFileAsync(process.execPath, ["scripts/validate.mjs", "data/corpus.json"], { cwd: root }).catch((e) => e);
+  check("validator accepts a corpus-only argument and skips authority validation", !(corpusOnlyRun instanceof Error) && /skipped narrator authority validation/.test(corpusOnlyRun.stdout));
+
+  const missingFileRun = await execFileAsync(process.execPath, ["scripts/validate.mjs", "/tmp/unified-hadith-does-not-exist.json"], { cwd: root }).catch((e) => e);
+  check("validator exits non-zero with a clean message for a missing file", missingFileRun instanceof Error && missingFileRun.code === 1 && /Could not read or parse corpus file/.test(missingFileRun.stderr));
+
+  const invalidCorpusPath = new URL("data/invalid-cli-test-corpus.json", root);
+  const invalidCorpus = { ...JSON.parse(await readFile(new URL("data/corpus.json", root), "utf8")) };
+  invalidCorpus.persons = invalidCorpus.persons.slice(1); // drop a person referenced by an identity assertion -> semantic validation failure
+  await writeFile(invalidCorpusPath, JSON.stringify(invalidCorpus), "utf8");
+  const invalidRun = await execFileAsync(process.execPath, ["scripts/validate.mjs", "data/invalid-cli-test-corpus.json"], { cwd: root }).catch((e) => e);
+  check("validator rejects a semantically invalid corpus file with a non-zero exit", invalidRun instanceof Error && invalidRun.code === 1 && /unresolved person/.test(invalidRun.stderr));
+  await import("node:fs/promises").then((fs) => fs.rm(invalidCorpusPath, { force: true }));
+}
 
 const port = 18090;
 const server = spawn(process.execPath, ["scripts/serve.mjs"], { cwd: root, env: { ...process.env, PORT: String(port) }, stdio: "ignore" });

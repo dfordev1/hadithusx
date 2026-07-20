@@ -7,6 +7,18 @@ let parallelSourceCorpusSha256 = null;
 
 async function getJson(url) { const response = await fetch(url, { cache: "no-store" }); if (!response.ok) throw new Error(`${url} returned ${response.status}`); return response.json(); }
 
+// Deep-linkable search: the current query/collection/mode/page is mirrored
+// into the URL hash (via replaceState, so it never fires hashchange itself
+// and can't self-trigger a loop) so a search result can be bookmarked or
+// shared as a plain URL. Genuine browser back/forward navigation still
+// fires hashchange and is handled separately below.
+function syncSearchHash(params) {
+  history.replaceState(null, "", `#${params.toString()}`);
+}
+function readSearchHash() {
+  return new URLSearchParams(location.hash.slice(1));
+}
+
 function renderMetrics() {
   const boundaryPercent = Math.round(meta.structureCoverage.withMatnBoundary / meta.reportCount * 100);
   $("#corpus-metrics").innerHTML = [[meta.reportCount, "numbered reports"], [meta.sources.length, "collections"], [`${boundaryPercent}%`, "matn boundary candidates"], ["CC", "non-commercial share-alike"]].map(([value, label]) => `<div class="metric"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`).join("");
@@ -17,6 +29,7 @@ async function search(targetPage = 1) {
   page = targetPage;
   const form = new FormData($("#corpus-search"));
   const params = new URLSearchParams({ q: form.get("q"), collection: form.get("collection"), mode: form.get("mode"), page: String(page), limit: "20" });
+  syncSearchHash(params);
   $("#results").innerHTML = "<p>Searching pinned corpus…</p>";
   const data = await getJson(`/api/corpus?${params}`);
   const cards = data.results.map((report) => `<article class="card corpus-result" data-report-id="${escapeHtml(report.id)}"><div>${report.reviewState === "imported" ? '<span class="badge machine-suggested">imported</span>' : ""} <span class="badge">${escapeHtml(report.structure.boundaryMethod)}</span></div><h2>${escapeHtml(report.collectionLabel)} ${report.reportNumber}${report.occurrence > 1 ? ` · occurrence ${report.occurrence}` : ""}</h2><p class="id">${escapeHtml(report.id)}</p>${report.book ? `<p><strong>${escapeHtml(report.book)}</strong>${report.chapter ? `<br>${escapeHtml(report.chapter)}` : ""}</p>` : ""}<p class="arabic corpus-arabic" lang="ar" dir="rtl">${escapeHtml(report.normalizedText)}</p><button type="button" data-find-parallels>Find parallel candidates</button><div data-parallel-results></div></article>`).join("");
@@ -24,9 +37,21 @@ async function search(targetPage = 1) {
   $("#results").focus({ preventScroll: true });
 }
 
+function applySearchHashToForm() {
+  const hash = readSearchHash();
+  const form = $("#corpus-search");
+  if (hash.has("q")) form.elements.q.value = hash.get("q");
+  if (hash.has("collection")) form.elements.collection.value = hash.get("collection");
+  if (hash.has("mode")) form.elements.mode.value = hash.get("mode");
+  return Number.parseInt(hash.get("page") || "1", 10) || 1;
+}
+
 try {
-  meta = await getJson("/api/corpus/meta"); renderMetrics(); await search();
+  meta = await getJson("/api/corpus/meta"); renderMetrics();
+  const initialPage = applySearchHashToForm();
+  await search(initialPage);
   $("#corpus-search").addEventListener("submit", (event) => { event.preventDefault(); search(1).catch(showError); });
+  addEventListener("hashchange", () => { search(applySearchHashToForm()).catch(showError); });
   $("#results").addEventListener("click", (event) => {
     const pageButton = event.target.closest("[data-page]"); if (pageButton && !pageButton.disabled) { search(Number(pageButton.dataset.page)).catch(showError); return; }
     const parallelButton = event.target.closest("[data-find-parallels]"); if (parallelButton) { loadParallels(parallelButton.closest("[data-report-id]")).catch(showError); return; }

@@ -171,9 +171,31 @@ interchange tests.
 
 Full suite verified clean from a fresh install: 159/159 checks pass.
 
+## Release 1.11
+
+### CLI validator upgrade and deep-linkable workbench search
+
+- `scripts/validate.mjs` is now a real general-purpose CLI: optional
+  `<corpus.json> [authority.json]` arguments (falls back to the project's
+  default fixtures with no args), a clean non-zero exit with a readable
+  message for a missing or unparsable file instead of an uncaught stack
+  trace, and skips authority validation gracefully when only a corpus path
+  is given. Five new process-spawn checks in `tests/release-tests.mjs` cover
+  default args, explicit args, corpus-only, a missing file, and a
+  semantically invalid corpus file.
+- The whole-corpus and narrator-mention browsers (`web/corpus.js`,
+  `web/narrators.js`) now mirror the active search query, filters, and page
+  into the URL hash via `history.replaceState` (so it never self-triggers a
+  `hashchange` loop), making every search result a bookmarkable, shareable
+  URL. Genuine browser back/forward navigation is handled via a
+  `hashchange` listener that re-applies the hash to the form and re-runs the
+  search. Two new static checks in `tests/web-tests.mjs` cover both pages.
+
+Full suite verified clean from a fresh install: 166/166 checks pass.
+
 ## Current honest status
 
-The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source. The 1.9-1.10 interchange and modeling work (XML schema, lossless converter, compatibility policy, structured locators) is real and tested against the existing fixture corpus, but the standard remains pre-1.0: commentary/grading/cross-reference systems are unmodeled, the whole-corpus importer's own structured output hasn't yet been folded into the core model using the new field, and no external implementation has yet round-tripped a document independently written against the spec.
+The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source. The 1.9-1.11 interchange, modeling, and workbench work (XML schema, lossless converter, compatibility policy, structured locators, CLI validator, deep-linkable search) is real and tested against the existing fixture corpus, but the standard remains pre-1.0: commentary/grading/cross-reference systems are unmodeled, the whole-corpus importer's own structured output hasn't yet been folded into the core model using the new field, there is no published SDK, and no external implementation has yet round-tripped a document independently written against the spec.
 
 ## Interface confirmation
 
