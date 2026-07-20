@@ -1,0 +1,11 @@
+{
+  "format": "unified-hadith-word-tagged-export-0.1",
+  "reportCount": 26727,
+  "wordCount": 773582,
+  "narratorMentionCount": 156830,
+  "uncompressedSha256": "61e5167b702ee9df7fedb7e562ca47e17df18ea64f4c7eea1d4fe48b722b37a6",
+  "compressedSha256": "57b0d6306c7537810969b679acb1b39b9bc3a14b602042f56bc890a08c0c8f91",
+  "compressedBytes": 13857956,
+  "uncompressedBytes": 93146455,
+  "selfCheck": "every narratorMention sourceSpan and matnSpan verified against normalizedText; every word token verified to slice back exactly with no loss/duplication/overlap"
+}

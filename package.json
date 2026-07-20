@@ -1,6 +1,6 @@
 {
   "name": "unified-hadith",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "description": "An evidence-first interchange standard and scholarly workbench for hadith studies.",
   "exports": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && node tests/structural-conformance-tests.mjs && node tests/collaborate-crypto-tests.mjs && node tests/common-link-candidate-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
+    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && node tests/structural-conformance-tests.mjs && node tests/collaborate-crypto-tests.mjs && node tests/common-link-candidate-tests.mjs && node tests/word-tagged-export-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
     "build": "node scripts/build.mjs",
     "convert:to-xml": "node scripts/convert-corpus.mjs to-xml",
     "convert:to-json": "node scripts/convert-corpus.mjs to-json",
@@ -20,7 +20,8 @@
     "build:narrators": "node scripts/build-narrator-mentions.mjs",
     "match:narrator-authority": "node scripts/match-narrator-authority.mjs",
     "analyze:isnad-clusters": "node scripts/analyze-isnad-clusters.mjs",
-    "refresh:data": "npm run import:corpus && npm run discover:parallels && npm run build:narrators && npm run match:narrator-authority && npm run import:attested-authority && npm run analyze:isnad-clusters",
+    "export:word-tagged-xml": "node scripts/export-word-tagged-xml.mjs",
+    "refresh:data": "npm run import:corpus && npm run discover:parallels && npm run build:narrators && npm run match:narrator-authority && npm run import:attested-authority && npm run analyze:isnad-clusters && npm run export:word-tagged-xml",
     "check": "npm run validate && npm test",
     "prestart": "npm run build --silent",
     "start": "node scripts/serve.mjs"
