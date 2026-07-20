@@ -139,9 +139,41 @@ Full suite verified clean from a fresh install: `npm run check` passes with
 zero failures across schema validation and all test files, including the new
 interchange tests.
 
+## Release 1.10
+
+### Structured bibliographic locators — Phase 2 (partial)
+
+- `witness.structuredLocator` (optional `collectionLabel`/`book`, required;
+  `chapter`/`reportNumber`, optional) is added to both
+  `schema/unified-hadith.schema.json` and `schema/unified-hadith.xsd`,
+  additive alongside the existing free-text `locator` so no existing
+  conformant document becomes invalid.
+- Field names (`collectionLabel`, `book`, `chapter`, `reportNumber`)
+  intentionally match what `scripts/import-openiti-corpus.mjs` already
+  parses out of OpenITI source headers for its own whole-corpus index, so
+  that data can be folded into the core model later without a rename.
+- `scripts/lib/xml-interchange.mjs` converts the field losslessly in both
+  directions, correctly omitting it when absent rather than inventing an
+  empty element.
+- `data/corpus.json` now exercises the field on one fixture witness
+  (`uh:witness:demo-intentions-1`), leaving the other two fixture witnesses
+  without it, so both the "present" and "absent" paths are exercised in
+  the same fixture.
+- `tests/interchange-tests.mjs` grew two new checks for this field, and the
+  round-trip equality check was hardened to compare canonical
+  (key-order-independent) JSON instead of raw string equality — the
+  previous string-equality check would have been fragile to legitimate,
+  non-lossy reordering.
+- `spec/SPECIFICATION.md` documents the two-representation model
+  (`locator` as the universal fallback, `structuredLocator` as an additive
+  refinement) and is explicit that commentary, grading, and cross-reference
+  systems are still unmodeled.
+
+Full suite verified clean from a fresh install: 159/159 checks pass.
+
 ## Current honest status
 
-The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source. The 1.9 interchange work (XML schema, lossless converter, compatibility policy) is real and tested against the existing fixture corpus, but the standard remains pre-1.0: report-numbering structure is still flat, and no external implementation has yet round-tripped a document independently written against the spec.
+The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source. The 1.9-1.10 interchange and modeling work (XML schema, lossless converter, compatibility policy, structured locators) is real and tested against the existing fixture corpus, but the standard remains pre-1.0: commentary/grading/cross-reference systems are unmodeled, the whole-corpus importer's own structured output hasn't yet been folded into the core model using the new field, and no external implementation has yet round-tripped a document independently written against the spec.
 
 ## Interface confirmation
 

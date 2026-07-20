@@ -9,18 +9,37 @@ const run = promisify(execFile);
 const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);
 
+// Canonical stringify: sorts object keys recursively so structural equality
+// doesn't depend on property insertion order. Round-tripping through XML
+// (attribute order, element construction order) has no reason to preserve
+// JSON key order, and it shouldn't have to for the data to be "lossless."
+function canonical(value) {
+  if (Array.isArray(value)) return value.map(canonical);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])]));
+  }
+  return value;
+}
+
 const root = new URL("../", import.meta.url);
 const original = JSON.parse(await readFile(new URL("data/corpus.json", root), "utf8"));
 
 // --- Round-trip: JSON -> XML -> JSON must reproduce the original exactly ---
 const xml = corpusToXml(original);
 const roundTripped = xmlToCorpus(xml);
-check("round-trip reproduces the corpus exactly (deep structural equality)", JSON.stringify(roundTripped) === JSON.stringify(original));
+check("round-trip reproduces the corpus exactly (deep structural equality)", JSON.stringify(canonical(roundTripped)) === JSON.stringify(canonical(original)));
 check("round-trip preserves witness count", roundTripped.witnesses.length === original.witnesses.length);
 check("round-trip preserves every isnad route length", original.witnesses.every((w, i) => w.isnads.every((isnad, j) => isnad.route.length === roundTripped.witnesses[i].isnads[j].route.length)));
 check("round-trip preserves Arabic diplomatic text exactly", original.witnesses.every((w, i) => w.matn.diplomatic === roundTripped.witnesses[i].matn.diplomatic));
 check("round-trip preserves optional fields (license, notes, evidence) when present", original.editions.some((e) => "license" in e) ? roundTripped.editions.some((e) => "license" in e) : true);
 check("round-trip omits optional fields when absent, rather than inventing empty strings", original.persons.filter((p) => !("notes" in p)).every((p) => !("notes" in roundTripped.persons.find((r) => r.id === p.id))));
+check("structuredLocator round-trips when present, including optional chapter/reportNumber", (() => {
+  const withLocator = original.witnesses.find((w) => w.structuredLocator);
+  if (!withLocator) return false;
+  const back = roundTripped.witnesses.find((w) => w.id === withLocator.id);
+  return JSON.stringify(canonical(back.structuredLocator)) === JSON.stringify(canonical(withLocator.structuredLocator)) && typeof back.structuredLocator.reportNumber === "number";
+})());
+check("structuredLocator stays absent on witnesses that never had one", original.witnesses.filter((w) => !w.structuredLocator).every((w) => !("structuredLocator" in roundTripped.witnesses.find((r) => r.id === w.id))));
 
 // --- Generated XML must validate against the XSD via xmllint ---
 const tmpDir = await mkdtemp(join(tmpdir(), "uh-xml-"));

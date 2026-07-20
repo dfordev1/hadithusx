@@ -25,6 +25,10 @@ A `work` represents an intellectual work. An `edition` represents a particular p
 
 A `witness` contains bibliographic location, one or more ordered isnads, and an addressable matn. Combined chains are represented as multiple routes with an optional shared segment; they are not flattened into an unordered narrator set.
 
+Bibliographic location has two representations, which may both be present. `locator` is a required free-text string (e.g. `"book 1, report 1"`) and is always the fallback: any edition can be located with it even before structured parsing exists for that source. `structuredLocator` is an optional object (`collectionLabel`, `book`, required; `chapter`, `reportNumber`, optional) for editions where collection/book/chapter/report-number structure has been parsed out — this mirrors the fields the whole-corpus importer (`scripts/import-openiti-corpus.mjs`) already extracts for its own search index. A witness with only `locator` is not less conformant than one with both; `structuredLocator` is additive, not a replacement.
+
+Note on scope: `structuredLocator` currently models bibliographic addressing only. Commentary, grading, and cross-reference systems referenced in `docs/NEXT.md` Phase 2 are not yet part of the model.
+
 ### Narrator mention and person
 
 An isnad node preserves the exact name as found in the witness. Its `identityAssertions` propose links to person records. Multiple competing assertions are permitted.

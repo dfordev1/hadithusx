@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.9
+# Unified Hadith Workbench 1.10
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 

@@ -50,12 +50,18 @@ sensible, reviewable output against genuine historical data instead of the fixtu
   `spec/COMPATIBILITY.md`; that requires broader real-world exercise first
   (see Phase 3).
 - Model collection, book, chapter, report numbering, commentary, grading, and
-  cross-reference systems without overloading fields. **Not started.** The
-  current model has a flat `witness.locator` string rather than structured
-  collection/book/chapter/report-number fields; the whole-corpus importer
-  (`scripts/import-openiti-corpus.mjs`) already parses these out for its own
-  index, but that structure has not been folded back into the core
-  `standardVersion: 0.1` model yet.
+  cross-reference systems without overloading fields. **Partially done.**
+  `witness.structuredLocator` (optional: `collectionLabel`, `book` required;
+  `chapter`, `reportNumber` optional) is now part of the core model in both
+  `schema/unified-hadith.schema.json` and `schema/unified-hadith.xsd`,
+  additive alongside the existing free-text `locator` — a witness with only
+  `locator` remains fully conformant. Field names match what
+  `scripts/import-openiti-corpus.mjs` already parses
+  (`collectionLabel`/`book`/`chapter`/`reportNumber`), so folding the
+  whole-corpus importer's output into this shape is now straightforward.
+  **Not done:** commentary, grading, and cross-reference systems are not
+  modeled at all yet — `structuredLocator` only addresses bibliographic
+  location.
 - Add lossless converters and round-trip tests. **Done.**
   `scripts/lib/xml-interchange.mjs` converts every field in both directions;
   `scripts/convert-corpus.mjs` is the CLI entry point

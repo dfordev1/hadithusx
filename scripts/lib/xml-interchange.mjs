@@ -39,10 +39,13 @@ function isnadToXml(isnad) {
 }
 
 function witnessToXml(witness) {
+  const structuredLocator = witness.structuredLocator
+    ? `<structuredLocator${attr("collectionLabel", witness.structuredLocator.collectionLabel)}${attr("book", witness.structuredLocator.book)}${attr("chapter", witness.structuredLocator.chapter)}${attr("reportNumber", witness.structuredLocator.reportNumber)}/>`
+    : "";
   const isnads = witness.isnads.map(isnadToXml).join("");
   const tokens = witness.matn.tokens.map((t) => `<token${attr("id", t.id)}${attr("position", t.position)}>${escapeXml(t.text)}</token>`).join("");
   const provenance = witness.provenance;
-  return `<witness${attr("id", witness.id)}${attr("edition", witness.edition)}${attr("locator", witness.locator)}${attr("language", witness.language)}${attr("reviewState", witness.reviewState)}><isnads>${isnads}</isnads><matn${attr("diplomatic", witness.matn.diplomatic)}>${tokens}</matn><provenance${attr("createdBy", provenance.createdBy)}${attr("method", provenance.method)}${attr("createdAt", provenance.createdAt)}${attr("derivedFrom", provenance.derivedFrom)}/></witness>`;
+  return `<witness${attr("id", witness.id)}${attr("edition", witness.edition)}${attr("locator", witness.locator)}${attr("language", witness.language)}${attr("reviewState", witness.reviewState)}>${structuredLocator}<isnads>${isnads}</isnads><matn${attr("diplomatic", witness.matn.diplomatic)}>${tokens}</matn><provenance${attr("createdBy", provenance.createdBy)}${attr("method", provenance.method)}${attr("createdAt", provenance.createdAt)}${attr("derivedFrom", provenance.derivedFrom)}/></witness>`;
 }
 
 export function corpusToXml(corpus) {
@@ -161,7 +164,17 @@ export function xmlToCorpus(xmlText) {
     const provenance = { createdBy: getRequiredAttr(provenanceEl, "createdBy"), method: getRequiredAttr(provenanceEl, "method"), createdAt: getRequiredAttr(provenanceEl, "createdAt") };
     const derivedFrom = getAttr(provenanceEl, "derivedFrom");
     if (derivedFrom !== undefined) provenance.derivedFrom = derivedFrom;
-    return { id: getRequiredAttr(el, "id"), edition: getRequiredAttr(el, "edition"), locator: getRequiredAttr(el, "locator"), language: getRequiredAttr(el, "language"), isnads, matn, reviewState: getRequiredAttr(el, "reviewState"), provenance };
+    const witness = { id: getRequiredAttr(el, "id"), edition: getRequiredAttr(el, "edition"), locator: getRequiredAttr(el, "locator"), language: getRequiredAttr(el, "language"), isnads, matn, reviewState: getRequiredAttr(el, "reviewState"), provenance };
+    const structuredLocatorEl = firstChildElement(el, "structuredLocator");
+    if (structuredLocatorEl) {
+      const structuredLocator = { collectionLabel: getRequiredAttr(structuredLocatorEl, "collectionLabel"), book: getRequiredAttr(structuredLocatorEl, "book") };
+      const chapter = getAttr(structuredLocatorEl, "chapter");
+      if (chapter !== undefined) structuredLocator.chapter = chapter;
+      const reportNumber = getAttr(structuredLocatorEl, "reportNumber");
+      if (reportNumber !== undefined) structuredLocator.reportNumber = Number.parseInt(reportNumber, 10);
+      witness.structuredLocator = structuredLocator;
+    }
+    return witness;
   });
 
   const claims = childElements(firstChildElement(root, "claims"), "claim").map((el) => {

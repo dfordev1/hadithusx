@@ -21,7 +21,7 @@
   ],
   "witnesses": [
     {
-      "id": "uh:witness:demo-intentions-1", "edition": "uh:edition:demonstration-a", "locator": "book 1, report 1", "language": "ar",
+      "id": "uh:witness:demo-intentions-1", "edition": "uh:edition:demonstration-a", "locator": "book 1, report 1", "structuredLocator": { "collectionLabel": "Demonstration Collection A", "book": "Kitab al-Fixture", "chapter": "Bab al-Structural-Test", "reportNumber": 1 }, "language": "ar",
       "isnads": [{
         "id": "uh:isnad:demo-intentions-1:a", "reviewState": "editor-reviewed",
         "route": [

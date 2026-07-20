@@ -75,6 +75,12 @@
         <xs:element name="witnesses"><xs:complexType><xs:sequence>
           <xs:element name="witness" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
             <xs:sequence>
+              <xs:element name="structuredLocator" minOccurs="0"><xs:complexType>
+                <xs:attribute name="collectionLabel" type="xs:string" use="required"/>
+                <xs:attribute name="book" type="xs:string" use="required"/>
+                <xs:attribute name="chapter" type="xs:string" use="optional"/>
+                <xs:attribute name="reportNumber" type="xs:positiveInteger" use="optional"/>
+              </xs:complexType></xs:element>
               <xs:element name="isnads"><xs:complexType><xs:sequence>
                 <xs:element name="isnad" minOccurs="1" maxOccurs="unbounded"><xs:complexType>
                   <xs:sequence>

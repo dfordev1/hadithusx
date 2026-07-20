@@ -60,10 +60,21 @@
       "properties": { "id": { "$ref": "#/$defs/id" }, "position": { "type": "integer", "minimum": 1 }, "text": { "type": "string", "minLength": 1 } },
       "additionalProperties": false
     },
+    "structuredLocator": {
+      "type": "object",
+      "required": ["collectionLabel", "book"],
+      "properties": {
+        "collectionLabel": { "type": "string", "minLength": 1 },
+        "book": { "type": "string", "minLength": 1 },
+        "chapter": { "type": "string", "minLength": 1 },
+        "reportNumber": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
     "witness": {
       "type": "object", "required": ["id", "edition", "locator", "isnads", "matn", "language", "reviewState", "provenance"],
       "properties": {
-        "id": { "$ref": "#/$defs/id" }, "edition": { "$ref": "#/$defs/id" }, "locator": { "type": "string" }, "language": { "const": "ar" },
+        "id": { "$ref": "#/$defs/id" }, "edition": { "$ref": "#/$defs/id" }, "locator": { "type": "string" }, "structuredLocator": { "$ref": "#/$defs/structuredLocator" }, "language": { "const": "ar" },
         "isnads": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/isnad" } },
         "matn": {
           "type": "object",
