@@ -1,0 +1,152 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { gunzipSync } from "node:zlib";
+
+// Vercel serverless adaptation of scripts/serve.mjs's dynamic /api/* routes.
+// Static files (html/js/css) are served directly by Vercel from outputDirectory=dist;
+// this function only handles the data-backed endpoints that scripts/serve.mjs computes
+// on request from the staged dist/ artifacts.
+
+const root = join(process.cwd(), "dist");
+const securityHeaders = {
+  "Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+  "Referrer-Policy": "no-referrer",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY"
+};
+
+let wholeCorpus;
+let parallelIndex;
+let narratorIndex;
+let narratorAuthorityIndex;
+let narratorAuthorityData;
+async function getWholeCorpus() {
+  if (!wholeCorpus) wholeCorpus = JSON.parse(gunzipSync(await readFile(join(root, "openiti-five-collections.json.gz"))).toString("utf8"));
+  return wholeCorpus;
+}
+async function getParallelIndex() {
+  if (!parallelIndex) parallelIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-parallel-candidates.json.gz"))).toString("utf8"));
+  return parallelIndex;
+}
+async function getNarratorIndex() {
+  if (!narratorIndex) narratorIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-narrator-mentions.json.gz"))).toString("utf8"));
+  return narratorIndex;
+}
+async function getNarratorAuthorityIndex() {
+  if (!narratorAuthorityIndex) narratorAuthorityIndex = JSON.parse(gunzipSync(await readFile(join(root, "openiti-narrator-authority-candidates.json.gz"))).toString("utf8"));
+  return narratorAuthorityIndex;
+}
+async function getNarratorAuthorityData() {
+  if (!narratorAuthorityData) narratorAuthorityData = JSON.parse(await readFile(join(root, "narrator-authority.json"), "utf8"));
+  return narratorAuthorityData;
+}
+const normalizeSearch = (value) => value.normalize("NFC").replace(/[ًٌٍَُِّْـ]/gu, "").replace(/[إأآٱ]/gu, "ا").toLocaleLowerCase("ar");
+const exactSearch = (value) => value.normalize("NFC").toLocaleLowerCase("ar");
+
+function send(response, status, body, extraHeaders) {
+  response.writeHead(status, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...securityHeaders, ...extraHeaders });
+  response.end(body === undefined ? undefined : JSON.stringify(body));
+}
+
+export default async function handler(request, response) {
+  try {
+    const requestUrl = new URL(request.url, `https://${request.headers.host}`);
+    const urlPath = decodeURIComponent(requestUrl.pathname);
+    const isHead = request.method === "HEAD";
+
+    if (urlPath === "/healthz") { send(response, 200, { status: "ok" }); return; }
+
+    if (urlPath === "/api/corpus") {
+      if (!new Set(["GET", "HEAD"]).has(request.method)) { response.writeHead(405, { Allow: "GET, HEAD", ...securityHeaders }); response.end(); return; }
+      const corpus = await getWholeCorpus();
+      const mode = requestUrl.searchParams.get("mode") === "exact" ? "exact" : "normalized";
+      const searchTransform = mode === "exact" ? exactSearch : normalizeSearch;
+      const query = searchTransform(requestUrl.searchParams.get("q")?.trim() || "");
+      const collection = requestUrl.searchParams.get("collection")?.trim() || "";
+      const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
+      const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
+      const matches = corpus.records.filter((record) => (!collection || record.sourceKey === collection) && (!query || searchTransform(`${record.reportNumber} ${record.book} ${record.chapter} ${record.normalizedText}`).includes(query)));
+      const start = (page - 1) * limit;
+      const payload = { format: "unified-hadith-corpus-search-0.2", query: requestUrl.searchParams.get("q") || "", mode, collection, page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit).map(({ rawOpenITI, ...record }) => record) };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/corpus/meta") {
+      const corpus = await getWholeCorpus();
+      const payload = { format: corpus.format, reportCount: corpus.reportCount, structureCoverage: corpus.structureCoverage, searchModes: ["normalized", "exact"], license: corpus.license, licenseUrl: corpus.licenseUrl, attribution: corpus.attribution, sources: corpus.sources };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/parallels") {
+      const report = requestUrl.searchParams.get("report")?.trim() || "";
+      if (!report) { send(response, 400, { error: "report is required" }); return; }
+      const limit = Math.min(20, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "10", 10) || 10));
+      const confidence = requestUrl.searchParams.get("confidence") || "";
+      const [corpus, parallels] = await Promise.all([getWholeCorpus(), getParallelIndex()]);
+      const records = new Map(corpus.records.map((record) => [record.id, record]));
+      const matches = parallels.candidates.filter((candidate) => (candidate.left === report || candidate.right === report) && (!confidence || candidate.confidence === confidence)).slice(0, limit).map((candidate) => {
+        const counterpartId = candidate.left === report ? candidate.right : candidate.left;
+        const counterpart = records.get(counterpartId);
+        return { ...candidate, counterpart: counterpart ? { id: counterpart.id, collectionLabel: counterpart.collectionLabel, reportNumber: counterpart.reportNumber, occurrence: counterpart.occurrence, normalizedText: counterpart.normalizedText } : null };
+      });
+      const payload = { format: "unified-hadith-parallel-search-0.1", sourceCorpusSha256: parallels.sourceCorpusSha256, report, total: parallels.candidates.filter((candidate) => candidate.left === report || candidate.right === report).length, returned: matches.length, candidates: matches };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/narrators/meta") {
+      const narrators = await getNarratorIndex();
+      const payload = { format: narrators.format, sourceCorpusSha256: narrators.sourceCorpusSha256, mentionCount: narrators.mentionCount, clusterCount: narrators.clusterCount, method: narrators.method };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/narrators") {
+      const narrators = await getNarratorIndex();
+      const q = normalizeSearch(requestUrl.searchParams.get("q")?.trim() || "");
+      const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
+      const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
+      const matches = narrators.clusters.filter((cluster) => !q || normalizeSearch(`${cluster.normalizedSurface} ${cluster.surfaceForms.join(" ")}`).includes(q));
+      const start = (page - 1) * limit;
+      const payload = { format: "unified-hadith-narrator-cluster-search-0.1", query: requestUrl.searchParams.get("q") || "", page, limit, total: matches.length, pages: Math.ceil(matches.length / limit), results: matches.slice(start, start + limit) };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/narrator-authority-candidates") {
+      const clusterId = requestUrl.searchParams.get("cluster")?.trim() || "";
+      if (!clusterId) { send(response, 400, { error: "cluster is required" }); return; }
+      const [authorityCandidates, authorityData] = await Promise.all([getNarratorAuthorityIndex(), getNarratorAuthorityData()]);
+      const persons = new Map(authorityData.persons.map((person) => [person.id, person]));
+      const matches = authorityCandidates.candidates.filter((candidate) => candidate.cluster === clusterId).map((candidate) => ({ ...candidate, personPreferredName: persons.get(candidate.person)?.preferredName || candidate.person }));
+      const payload = { format: "unified-hadith-narrator-authority-candidate-search-0.1", cluster: clusterId, sourceAuthoritySha256: authorityCandidates.sourceAuthoritySha256, sourceNarratorIndexSha256: authorityCandidates.sourceNarratorIndexSha256, total: matches.length, candidates: matches };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/narrator-authority/meta") {
+      const [authorityCandidates, authorityData] = await Promise.all([getNarratorAuthorityIndex(), getNarratorAuthorityData()]);
+      const payload = { format: authorityCandidates.format, personCount: authorityData.persons.length, candidateCount: authorityCandidates.candidateCount, chronologyWarningCount: authorityCandidates.chronologyWarningCount, method: authorityCandidates.method };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    if (urlPath === "/api/narrator-cluster") {
+      const id = requestUrl.searchParams.get("id")?.trim() || "";
+      if (!id) { send(response, 400, { error: "id is required" }); return; }
+      const narrators = await getNarratorIndex();
+      const cluster = narrators.clusters.find((item) => item.id === id);
+      if (!cluster) { send(response, 404, { error: "cluster not found" }); return; }
+      const examples = cluster.exampleMentions.map((mentionId) => narrators.mentions.find((mention) => mention.id === mentionId)).filter(Boolean);
+      const payload = { format: "unified-hadith-narrator-cluster-detail-0.1", cluster, examples };
+      send(response, 200, isHead ? undefined : payload);
+      return;
+    }
+
+    send(response, 404, { error: "not found" });
+  } catch (error) {
+    send(response, 500, { error: "internal error", message: error?.message || String(error) });
+  }
+}

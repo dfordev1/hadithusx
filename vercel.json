@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/handler.mjs": {
+      "includeFiles": "dist/**"
+    }
+  },
+  "rewrites": [
+    { "source": "/healthz", "destination": "/api/handler" },
+    { "source": "/api/(.*)", "destination": "/api/handler" }
+  ]
+}
