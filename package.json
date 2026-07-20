@@ -1,6 +1,6 @@
 {
   "name": "unified-hadith",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "description": "An evidence-first interchange standard and scholarly workbench for hadith studies.",
   "exports": {

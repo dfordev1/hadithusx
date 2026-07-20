@@ -28,7 +28,13 @@ export function proposeStructure(text) {
   const termMatches = [...chainText.matchAll(/(?<![\p{L}\p{M}])(حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني|سمعت|عن|قال)(?![\p{L}\p{M}])/gu)];
   const transmissionTerms = termMatches.map((match) => ({ term: match[0], start: match.index, end: match.index + match[0].length }));
   const branchMarkers = [...chainText.matchAll(/(?<![\p{L}\p{M}])ح(?=\s+و?(?:حدثنا|حدثني|أخبرنا|أخبرني|أنبأنا|أنبأني))/gu)].map((match, index) => ({ marker: match[0], start: match.index, end: match.index + match[0].length, beforeBranch: index + 1, afterBranch: index + 2 }));
-  const normalizeName = (value) => value.normalize("NFC").replace(/^[\s،:؛و]+|[\s،:؛.]+$/gu, "").replace(/\s+(?:رضي الله عنه(?:ما)?|رحمه الله|عليه السلام)(?:\s.*)?$/u, "").replace(/\s+/g, " ").trim();
+  // Strips trailing honorific formulas so they don't get captured as part of
+  // a narrator's surface name. Previously only handled "رضي الله عنه(ما)"
+  // (companions); a 27-agent content review found the Prophet's own
+  // salutation "صلى الله عليه وسلم" (and the "عليه الصلاة والسلام" variant)
+  // was left attached to surfaces like "النبي"/"رسول الله", inconsistent
+  // with the companion case right next to it in this same regex.
+  const normalizeName = (value) => value.normalize("NFC").replace(/^[\s،:؛و]+|[\s،:؛.]+$/gu, "").replace(/\s+(?:صلى الله عليه وسلم|عليه الصلاة والسلام|رضي الله عنه(?:ما)?|رحمه الله|عليه السلام)(?:\s.*)?$/u, "").replace(/\s+/g, " ").trim();
   const narratorMentions = [];
   for (let index = 0; index < termMatches.length; index++) {
     const term = termMatches[index][0], start = termMatches[index].index, termEnd = start + term.length;
@@ -37,7 +43,14 @@ export function proposeStructure(text) {
     const end = interveningMarker?.start ?? nextTermStart;
     const rawSurface = chainText.slice(termEnd, end);
     const surface = normalizeName(rawSurface);
-    if (!surface || surface.length > 220 || !/[\p{L}]/u.test(surface)) continue;
+    // The overlength check intentionally uses rawSurface (before honorific
+    // stripping), not the normalized surface: an implausibly long captured
+    // span is itself the signal that this is matn/commentary bleed-through
+    // rather than a real narrator name (see the known narratorMentions
+    // bleed limitation in docs/NEXT.md), and that signal shouldn't
+    // disappear just because a trailing honorific happened to get trimmed
+    // off the end of an otherwise-still-too-long span.
+    if (!surface || rawSurface.length > 220 || !/[\p{L}]/u.test(surface)) continue;
     narratorMentions.push({
       position: narratorMentions.length + 1,
       branch: 1 + branchMarkers.filter((marker) => marker.start < start).length,

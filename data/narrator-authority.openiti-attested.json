@@ -6819,17 +6819,17 @@
       "reviewState": "imported"
     },
     {
-      "id": "uh:person:wikidata-q188831",
-      "preferredName": "Sintanjin Station",
+      "id": "uh:person:wikidata-q312299",
+      "preferredName": "مالك بن أنس",
       "nameForms": [
         {
-          "text": "Sintanjin Station",
+          "text": "مالك بن أنس",
           "type": "preferred",
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q188831",
-            "quotation": "Sintanjin Station"
+            "locator": "Q312299",
+            "quotation": "مالك بن أنس"
           }
         },
         {
@@ -6838,7 +6838,7 @@
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q188831 seed Arabic",
+            "locator": "Q312299 seed Arabic",
             "quotation": "مالك بن أنس"
           }
         }
@@ -6846,17 +6846,17 @@
       "reviewState": "imported"
     },
     {
-      "id": "uh:person:wikidata-q193970",
-      "preferredName": "كازين",
+      "id": "uh:person:wikidata-q69326",
+      "preferredName": "أبو هريرة",
       "nameForms": [
         {
-          "text": "كازين",
+          "text": "أبو هريرة",
           "type": "preferred",
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q193970",
-            "quotation": "كازين"
+            "locator": "Q69326",
+            "quotation": "أبو هريرة"
           }
         },
         {
@@ -6865,7 +6865,7 @@
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q193970 seed Arabic",
+            "locator": "Q69326 seed Arabic",
             "quotation": "أبو هريرة"
           }
         }
@@ -6873,17 +6873,17 @@
       "reviewState": "imported"
     },
     {
-      "id": "uh:person:wikidata-q188915",
-      "preferredName": "المكتبة الوطنية الإسرائيلية",
+      "id": "uh:person:wikidata-q2046261",
+      "preferredName": "عبد الله بن عمر بن الخطاب",
       "nameForms": [
         {
-          "text": "المكتبة الوطنية الإسرائيلية",
+          "text": "عبد الله بن عمر بن الخطاب",
           "type": "preferred",
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q188915",
-            "quotation": "المكتبة الوطنية الإسرائيلية"
+            "locator": "Q2046261",
+            "quotation": "عبد الله بن عمر بن الخطاب"
           }
         },
         {
@@ -6892,7 +6892,7 @@
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q188915 seed Arabic",
+            "locator": "Q2046261 seed Arabic",
             "quotation": "عبد الله بن عمر"
           }
         }
@@ -6900,17 +6900,17 @@
       "reviewState": "imported"
     },
     {
-      "id": "uh:person:wikidata-q185356",
-      "preferredName": "بيغ جون قرير",
+      "id": "uh:person:wikidata-q76330",
+      "preferredName": "أنس بن مالك",
       "nameForms": [
         {
-          "text": "بيغ جون قرير",
+          "text": "أنس بن مالك",
           "type": "preferred",
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q185356",
-            "quotation": "بيغ جون قرير"
+            "locator": "Q76330",
+            "quotation": "أنس بن مالك"
           }
         },
         {
@@ -6919,7 +6919,7 @@
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q185356 seed Arabic",
+            "locator": "Q76330 seed Arabic",
             "quotation": "أنس بن مالك"
           }
         }
@@ -6927,17 +6927,17 @@
       "reviewState": "imported"
     },
     {
-      "id": "uh:person:wikidata-q297065",
-      "preferredName": "محمد أولجايتو",
+      "id": "uh:person:wikidata-q205788",
+      "preferredName": "سفيان الثوري",
       "nameForms": [
         {
-          "text": "محمد أولجايتو",
+          "text": "سفيان الثوري",
           "type": "preferred",
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q297065",
-            "quotation": "محمد أولجايتو"
+            "locator": "Q205788",
+            "quotation": "سفيان الثوري"
           }
         },
         {
@@ -6946,7 +6946,7 @@
           "language": "ar",
           "citation": {
             "source": "uh:source:wikidata-cc0",
-            "locator": "Q297065 seed Arabic",
+            "locator": "Q205788 seed Arabic",
             "quotation": "سفيان الثوري"
           }
         }
@@ -6956,29 +6956,71 @@
   ],
   "assertions": [
     {
-      "id": "uh:assertion:wikidata-q185356-death",
-      "subject": "uh:person:wikidata-q185356",
+      "id": "uh:assertion:wikidata-q312299-death",
+      "subject": "uh:person:wikidata-q312299",
       "predicate": "death",
-      "value": "1972",
+      "value": "0795",
       "assertedBy": "Wikidata CC0 import",
       "citation": {
         "source": "uh:source:wikidata-cc0",
-        "locator": "Q185356 P570",
-        "quotation": "1972-05-12T00:00:00Z"
+        "locator": "Q312299 P570",
+        "quotation": "0795-06-07T00:00:00Z"
       },
       "confidence": "possible",
       "reviewState": "imported"
     },
     {
-      "id": "uh:assertion:wikidata-q297065-death",
-      "subject": "uh:person:wikidata-q297065",
+      "id": "uh:assertion:wikidata-q69326-death",
+      "subject": "uh:person:wikidata-q69326",
       "predicate": "death",
-      "value": "1316",
+      "value": "0679",
       "assertedBy": "Wikidata CC0 import",
       "citation": {
         "source": "uh:source:wikidata-cc0",
-        "locator": "Q297065 P570",
-        "quotation": "1316-12-24T00:00:00Z"
+        "locator": "Q69326 P570",
+        "quotation": "0679-01-01T00:00:00Z"
+      },
+      "confidence": "possible",
+      "reviewState": "imported"
+    },
+    {
+      "id": "uh:assertion:wikidata-q2046261-death",
+      "subject": "uh:person:wikidata-q2046261",
+      "predicate": "death",
+      "value": "0693",
+      "assertedBy": "Wikidata CC0 import",
+      "citation": {
+        "source": "uh:source:wikidata-cc0",
+        "locator": "Q2046261 P570",
+        "quotation": "0693-01-01T00:00:00Z"
+      },
+      "confidence": "possible",
+      "reviewState": "imported"
+    },
+    {
+      "id": "uh:assertion:wikidata-q76330-death",
+      "subject": "uh:person:wikidata-q76330",
+      "predicate": "death",
+      "value": "0713",
+      "assertedBy": "Wikidata CC0 import",
+      "citation": {
+        "source": "uh:source:wikidata-cc0",
+        "locator": "Q76330 P570",
+        "quotation": "0713-01-01T00:00:00Z"
+      },
+      "confidence": "possible",
+      "reviewState": "imported"
+    },
+    {
+      "id": "uh:assertion:wikidata-q205788-death",
+      "subject": "uh:person:wikidata-q205788",
+      "predicate": "death",
+      "value": "0784",
+      "assertedBy": "Wikidata CC0 import",
+      "citation": {
+        "source": "uh:source:wikidata-cc0",
+        "locator": "Q205788 P570",
+        "quotation": "0784-01-01T00:00:00Z"
       },
       "confidence": "possible",
       "reviewState": "imported"

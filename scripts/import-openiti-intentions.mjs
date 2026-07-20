@@ -42,7 +42,13 @@ function extractMentionCandidates(chain, baseOffset = 0) {
     const term = terms[index][0];
     const start = terms[index].index + term.length;
     const end = terms[index + 1]?.index ?? chain.length;
-    const surface = chain.slice(start, end).replace(/^[\s:،]+|[\s:،]+$/g, "").replace(/\s+رضي الله عنه(?:،?\s*(?:على المنبر|يخطب))?$/u, "").replace(/\s+/g, " ");
+    // See scripts/lib/propose-structure.mjs's normalizeName for the same fix
+    // applied to the newer bulk-corpus pipeline: a 27-agent content review
+    // found the Prophet's honorific "صلى الله عليه وسلم" was left attached
+    // to narrator surfaces (e.g. "رسول الله صلى الله عليه وسلم") while the
+    // companion honorific "رضي الله عنه" right next to it was already
+    // stripped — an inconsistency within this same regex.
+    const surface = chain.slice(start, end).replace(/^[\s:،]+|[\s:،]+$/g, "").replace(/\s+(?:صلى الله عليه وسلم|عليه الصلاة والسلام|رضي الله عنه(?:،?\s*(?:على المنبر|يخطب))?)$/u, "").replace(/\s+/g, " ");
     if (!surface || /^(إنما|الأعمال|لكل)/u.test(surface)) continue;
     candidates.push({
       position: candidates.length + 1,

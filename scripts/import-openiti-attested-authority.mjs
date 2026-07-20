@@ -62,12 +62,24 @@ const persons = clusters.map((cluster, index) => {
 });
 
 // Optional CC0 Wikidata enrichment for a small curated Arabic label set.
+//
+// IMPORTANT — these QIDs were independently re-verified (fetching each
+// item's Wikidata label/description directly) after an external review
+// found the *previous* five QIDs in this list all resolved to unrelated
+// entities: a South Korean train station, casein (a milk protein), the
+// National Library of Israel, an American blues saxophonist, and a Mongol
+// Ilkhan — none of them the intended hadith narrator. Every QID below has
+// been checked to carry the expected Arabic label and a "human"/scholar
+// description before being kept. The SPARQL query below additionally
+// requires wdt:P31 (instance of) = wd:Q5 (human) as a defensive filter, so
+// a future mistaken or drifted QID is dropped rather than silently
+// imported as a person, even if this hand curation slips again.
 const wikidataSeed = [
-  { qid: "Q188831", arabic: "مالك بن أنس" },
-  { qid: "Q193970", arabic: "أبو هريرة" },
-  { qid: "Q188915", arabic: "عبد الله بن عمر" },
-  { qid: "Q185356", arabic: "أنس بن مالك" },
-  { qid: "Q297065", arabic: "سفيان الثوري" }
+  { qid: "Q312299", arabic: "مالك بن أنس" },
+  { qid: "Q69326", arabic: "أبو هريرة" },
+  { qid: "Q2046261", arabic: "عبد الله بن عمر" },
+  { qid: "Q76330", arabic: "أنس بن مالك" },
+  { qid: "Q205788", arabic: "سفيان الثوري" }
 ];
 
 const assertions = [];
@@ -77,6 +89,7 @@ try {
   const query = `
 SELECT ?person ?personLabel ?death WHERE {
   VALUES ?person { ${values} }
+  ?person wdt:P31 wd:Q5.
   OPTIONAL { ?person wdt:P570 ?death. }
   SERVICE wikibase:label { bd:serviceParam wikibase:language "ar,en". }
 }`;
