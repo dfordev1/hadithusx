@@ -22,16 +22,22 @@
     <label class="search-box"><span>Search</span><input id="global-search" type="search" placeholder="Arabic text, narrator, or report number" autocomplete="off"></label>
     <button id="export-review" class="primary-action" type="button">Export review</button>
   </div>
-  <nav aria-label="Workbench views">
-    <button data-view="dashboard">Overview</button>
-    <button data-view="witnesses">Witnesses</button>
-    <button data-view="graph">Isnad graph</button>
-    <button data-view="variants">Matn variants</button>
-    <button data-view="narrators">Identity review</button>
-    <button data-view="provenance">Provenance</button>
-    <a class="nav-link" href="corpus.html">Whole corpus</a>
-    <a class="nav-link" href="narrators.html">Narrator corpus</a>
-    <a class="nav-link" href="collaborate.html">Collaboration</a>
+  <p class="start-here">New here? Start with <strong>Overview</strong> below, or <a href="corpus.html">search the full corpus</a> using plain search boxes. Everything else is optional advanced tooling.</p>
+  <nav aria-label="Workbench views" class="simple-nav">
+    <button data-view="dashboard" class="primary-action" title="A few sample hadith reports, shown simply">Overview</button>
+    <button data-view="witnesses" title="See each report's full source text">Witnesses</button>
+    <a class="nav-link" href="corpus.html" title="Search all 26,727 reports">Search the full corpus</a>
+    <details class="more-tools">
+      <summary>More advanced views</summary>
+      <div class="more-tools-list">
+        <button data-view="graph" title="Diagram of who reported to whom">Isnad graph</button>
+        <button data-view="variants" title="Compare wording across collections">Matn variants</button>
+        <button data-view="narrators" title="Review machine-suggested narrator name matches">Identity review</button>
+        <button data-view="provenance" title="Where this data came from">Provenance</button>
+        <a class="nav-link" href="narrators.html">Narrator corpus (search all narrators)</a>
+        <a class="nav-link" href="collaborate.html">Collaboration workspace</a>
+      </div>
+    </details>
   </nav>
   <main>
     <section class="metrics" id="metrics" aria-label="Corpus summary"></section>
