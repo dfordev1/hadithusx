@@ -24,6 +24,7 @@ Work from the top downward unless a dependency or verified defect changes the or
 ## Phase 4 — scholarly collaboration
 
 - Local project/history/disagreement/export. **Done** (browser-local).
+- Signed-import merge protocol: real WebCrypto Ed25519 signing of exported snapshots (replacing the old bare content hash), plus a verified import path that lists attributed disagreements between an imported snapshot and the local project's own judgments without ever silently merging. **Scoped first increment done** — see docs/DONE.md. Still open: multi-file/multi-reviewer merge across more than two snapshots at once, a UI affordance to accept/reject individual imported disagreements into local history (currently display-only, by design, to avoid silent merges), and any notion of verified real-world reviewer identity (current signatures only prove same-browser-key continuity across exports, not who a person is).
 - Accounts, roles, assignments, server-backed queues, immutable multi-user revision. **Open.**
 
 ## Phase 5 — ecosystem

@@ -21,8 +21,18 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 
 ### Phase 4 — local collaboration
 
-- `web/collaborate.html` / `web/collaborate.js` provide local projects, revision history, disagreement retention, and content-hash signed snapshot export.
+- `web/collaborate.html` / `web/collaborate.js` provide local projects, revision history, disagreement retention, and signed snapshot export.
 - No accounts server is claimed; browser-local only.
+
+### Phase 4 addendum — signed-import merge protocol (scoped first increment)
+
+- `web/collaborate-crypto.mjs` (pure, DOM-free logic, importable from both the browser and Node): Ed25519 keypair generation, deterministic canonical-JSON payload signing, detached-signature verification, and `findAttributedDisagreements()` for comparing an imported snapshot's history against the local project's own most-recent judgment per `subjectId`.
+- `web/collaborate-crypto-browser.mjs`: thin wrapper adding the `localStorage`-backed per-browser keypair cache (private key never leaves the device; only `publicKeyJwk` is embedded in exports).
+- `web/collaborate.js`: export now generates/reuses a real WebCrypto Ed25519 keypair and signs the snapshot payload with a detached signature (`format` bumped to `unified-hadith-collaboration-snapshot-0.2`), replacing the old bare `contentSha256` field that was explicitly documented as "not a cryptographic identity proof." A new "Import signed snapshot" file input verifies the signature on load (rejecting with a visible error on tamper/malformed/wrong-key input, never throwing uncaught) and renders every subject where the imported reviewer's `decision`/`reviewState`/`confidence` differs from the local project's latest judgment as a labeled, attributed disagreement list. Imported decisions are **never** written into local history automatically — this is strictly a read-only comparison view, by design, per the evidence-before-interpretation principle.
+- `web/collaborate.html`: adds the import file input, status line, and disagreements panel, with copy explicitly caveating that the signature proves same-key continuity across a browser's exports, not a verified real-world reviewer identity (no accounts server exists in this release).
+- `tests/collaborate-crypto-tests.mjs` (new, 19 checks): canonical-JSON stability, keypair generation, sign/verify round-trip, rejection on wrong key / tampered payload / malformed signature, and conflict detection on a synthetic two-reviewer fixture (agreement, decision-only conflict, confidence-only conflict, imported-but-no-local-judgment, and "most recent local decision wins when a subject was revised locally").
+- `tests/web-tests.mjs` updated: the old `contentSha256` assertion is replaced with checks that the export path uses real Ed25519 signing, that import/verify wiring exists, and that the UI copy states imports are never silently merged.
+- Not done in this increment (left open, see docs/NEXT.md): merging more than two snapshots at once, any UI action to selectively pull an imported decision into local history, and any verified real-world identity binding for the signing key.
 
 ### Phase 5 — ecosystem foundations
 

@@ -43,7 +43,10 @@ check("narrator search is deep-linkable via URL hash without a self-triggered lo
 check("identity candidates show reasoning and never auto-merge", /candidate\.reason/.test(narratorApp) && !/acceptedIdentity\s*=\s*['"]/.test(narratorApp));
 check("identity decisions persist and export, retaining rejected alternatives", /localStorage\.setItem\(AUTHORITY_REVIEW_KEY/.test(narratorApp) && /unified-hadith-narrator-authority-review\.json/.test(narratorApp) && /never deleted on rejection/.test(narratorApp));
 check("collaboration workspace follows white theme", /href="styles\.css"/.test(collaborateHtml) && /theme-color" content="#ffffff"/.test(collaborateHtml));
-check("collaboration keeps local revision history and signed export", /unified-hadith-collaboration-v1/.test(collaborateApp) && /contentSha256/.test(collaborateApp) && /disputed/.test(collaborateHtml));
+check("collaboration keeps local revision history and signed export", /unified-hadith-collaboration-v1/.test(collaborateApp) && /signSnapshotPayload/.test(collaborateApp) && /disputed/.test(collaborateHtml));
+check("collaboration export uses real Ed25519 signatures, not a bare content hash", /Ed25519/.test(collaborateApp) && !/contentSha256/.test(collaborateApp));
+check("collaboration workspace can import and verify another reviewer's signed snapshot", /verifySnapshotSignature/.test(collaborateApp) && /import-snapshot/.test(collaborateHtml));
+check("imported snapshots are never silently merged, only surfaced as attributed disagreements", /findAttributedDisagreements/.test(collaborateApp) && /never merged/.test(collaborateHtml));
 check("main workbench links to collaboration workspace", /collaborate\.html/.test(html));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);

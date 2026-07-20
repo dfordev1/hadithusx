@@ -37,6 +37,13 @@
       </div>
     </section>
     <section class="panel">
+      <h2>Import signed snapshot</h2>
+      <p class="muted">Load another reviewer's exported snapshot. The Ed25519 signature is verified before anything is shown; imported decisions are never merged into local history automatically -- only shown as an attributed disagreement list when they differ from this project's own judgment for the same subject.</p>
+      <label>Snapshot file <input id="import-snapshot" type="file" accept="application/json"></label>
+      <p id="import-status" class="muted" aria-live="polite"></p>
+      <div id="disagreements" aria-live="polite"></div>
+    </section>
+    <section class="panel">
       <h2>Add decision</h2>
       <label>Subject id <input id="subject-id" type="text" placeholder="uh:authority-candidate:1"></label>
       <label>Decision
