@@ -40,6 +40,15 @@ check("structuredLocator round-trips when present, including optional chapter/re
   return JSON.stringify(canonical(back.structuredLocator)) === JSON.stringify(canonical(withLocator.structuredLocator)) && typeof back.structuredLocator.reportNumber === "number";
 })());
 check("structuredLocator stays absent on witnesses that never had one", original.witnesses.filter((w) => !w.structuredLocator).every((w) => !("structuredLocator" in roundTripped.witnesses.find((r) => r.id === w.id))));
+check("commentaries/gradings/crossReferences round-trip when present", (() => {
+  if (!original.commentaries?.length || !original.gradings?.length || !original.crossReferences?.length) return false;
+  return (
+    JSON.stringify(canonical(roundTripped.commentaries)) === JSON.stringify(canonical(original.commentaries)) &&
+    JSON.stringify(canonical(roundTripped.gradings)) === JSON.stringify(canonical(original.gradings)) &&
+    JSON.stringify(canonical(roundTripped.crossReferences)) === JSON.stringify(canonical(original.crossReferences))
+  );
+})());
+check("competing gradings can disagree without collapsing", original.gradings.some((g) => g.contradicts) && roundTripped.gradings.some((g) => g.contradicts));
 
 // --- Generated XML must validate against the XSD via xmllint ---
 const tmpDir = await mkdtemp(join(tmpdir(), "uh-xml-"));

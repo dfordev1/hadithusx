@@ -8,10 +8,15 @@ export function validateCorpus(corpus) {
   if (corpus.standardVersion !== "0.1") warn("standardVersion", "must be 0.1");
 
   const collections = ["agents", "works", "editions", "persons", "witnesses", "claims", "alignments"];
+  const optionalCollections = ["commentaries", "gradings", "crossReferences"];
   for (const key of collections) if (!Array.isArray(corpus[key])) warn(key, "must be an array");
+  for (const key of optionalCollections) if (corpus[key] !== undefined && !Array.isArray(corpus[key])) warn(key, "must be an array when present");
   if (errors.length) return errors;
 
-  const allRecords = collections.flatMap((key) => corpus[key].map((value) => ({ key, value })));
+  const allRecords = [
+    ...collections.flatMap((key) => corpus[key].map((value) => ({ key, value }))),
+    ...optionalCollections.flatMap((key) => (Array.isArray(corpus[key]) ? corpus[key].map((value) => ({ key, value })) : []))
+  ];
   const ids = new Map();
   for (const { key, value } of allRecords) {
     if (!ID.test(value.id ?? "")) warn(`${key}`, `invalid id ${value.id}`);
@@ -75,6 +80,33 @@ export function validateCorpus(corpus) {
     if (!REVIEWS.has(claim.reviewState)) warn(`${claim.id}.reviewState`, "invalid review state");
     if (claim.contradicts) requireRef(`${claim.id}.contradicts`, claim.contradicts, "claims");
     if (claim.supports) requireRef(`${claim.id}.supports`, claim.supports, "claims");
+  }
+
+  for (const commentary of corpus.commentaries || []) {
+    if (!ids.has(commentary.about) && !nestedIds.has(commentary.about) && !witnessIds.has(commentary.about) && !personIds.has(commentary.about)) {
+      warn(`${commentary.id}.about`, `unresolved about ${commentary.about}`);
+    }
+    if (!agents.has(commentary.assertedBy)) warn(`${commentary.id}.assertedBy`, "unresolved agent");
+    if (!CONFIDENCE.has(commentary.confidence)) warn(`${commentary.id}.confidence`, "invalid confidence");
+    if (!REVIEWS.has(commentary.reviewState)) warn(`${commentary.id}.reviewState`, "invalid review state");
+  }
+
+  for (const grading of corpus.gradings || []) {
+    if (!ids.has(grading.about) && !nestedIds.has(grading.about) && !witnessIds.has(grading.about)) {
+      warn(`${grading.id}.about`, `unresolved about ${grading.about}`);
+    }
+    if (!agents.has(grading.assertedBy)) warn(`${grading.id}.assertedBy`, "unresolved agent");
+    if (!CONFIDENCE.has(grading.confidence)) warn(`${grading.id}.confidence`, "invalid confidence");
+    if (!REVIEWS.has(grading.reviewState)) warn(`${grading.id}.reviewState`, "invalid review state");
+    if (grading.contradicts && !ids.has(grading.contradicts)) warn(`${grading.id}.contradicts`, `unresolved grading ${grading.contradicts}`);
+  }
+
+  for (const xref of corpus.crossReferences || []) {
+    if (!witnessIds.has(xref.from) && !ids.has(xref.from)) warn(`${xref.id}.from`, `unresolved from ${xref.from}`);
+    if (!witnessIds.has(xref.to) && !ids.has(xref.to)) warn(`${xref.id}.to`, `unresolved to ${xref.to}`);
+    if (!agents.has(xref.assertedBy)) warn(`${xref.id}.assertedBy`, "unresolved agent");
+    if (!CONFIDENCE.has(xref.confidence)) warn(`${xref.id}.confidence`, "invalid confidence");
+    if (!REVIEWS.has(xref.reviewState)) warn(`${xref.id}.reviewState`, "invalid review state");
   }
 
   for (const alignment of corpus.alignments) {

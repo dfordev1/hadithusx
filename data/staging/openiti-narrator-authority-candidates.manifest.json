@@ -1,12 +1,12 @@
 {
   "format": "unified-hadith-narrator-authority-candidates-0.1",
-  "sourceAuthoritySha256": "e684ca27a35c1b4d05eaaab6dee3f016e09e7ae680ba825d7d4648b5058f3cc6",
+  "sourceAuthoritySha256": "42c19e83a4cfd5d695508708b1f864be074c01f6abd2841943be61befb296b0b",
   "sourceNarratorIndexSha256": "46d181738a285dc4fddc9aef377467982a0131a524ab8fa4a046567eb0c75a22",
   "candidateCount": 0,
   "chronologyWarningCount": 1,
-  "uncompressedSha256": "73d880994262da5d2d96419923e957df377c6722d67c2740f4813cfeb5b455a4",
-  "compressedSha256": "fdad3886b16ce62ae9968608c4e65bada5b38822dfb9c15aaa0caff788dd834e",
-  "compressedBytes": 547,
+  "uncompressedSha256": "db8a4266be382aeccedfab1a8aa81762aac2f18ac036b366b329466b27a059d6",
+  "compressedSha256": "65a3fb0a8d21c8f3a48b3e01f084e9327822a5981780f7c00f597f85c4a4b614",
+  "compressedBytes": 548,
   "method": {
     "matching": "deterministic normalized Arabic surface comparison 0.1",
     "automaticIdentityResolution": false,

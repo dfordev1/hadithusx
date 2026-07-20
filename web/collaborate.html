@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Local scholarly collaboration workspace for Unified Hadith review projects.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Unified Hadith Collaboration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">LOCAL REVIEW WORKSPACE</p>
+      <h1>Collaboration</h1>
+      <p class="lede">Create a local project, record review decisions with history, keep disagreements visible, and export a signed snapshot. Nothing here rewrites source data.</p>
+    </div>
+    <div class="status"><span></span> Browser-local only</div>
+  </header>
+  <nav aria-label="Workbench views">
+    <a class="nav-link" href="index.html">Workbench</a>
+    <a class="nav-link" href="corpus.html">Whole corpus</a>
+    <a class="nav-link" href="narrators.html">Narrator corpus</a>
+    <a class="nav-link" href="collaborate.html" aria-current="page">Collaboration</a>
+  </nav>
+  <main id="content" tabindex="-1">
+    <section class="panel">
+      <h2>Project</h2>
+      <label>Project name <input id="project-name" type="text" maxlength="120" placeholder="e.g. Bukhari intentions review"></label>
+      <label>Reviewer label <input id="reviewer" type="text" maxlength="120" placeholder="e.g. local editor A"></label>
+      <label>Scholarly tradition note <input id="tradition" type="text" maxlength="120" placeholder="optional, e.g. school / method label"></label>
+      <div class="actions">
+        <button id="save-project" class="primary-action" type="button">Save project</button>
+        <button id="export-snapshot" type="button">Export signed snapshot</button>
+        <button id="clear-history" type="button">Clear local history</button>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Add decision</h2>
+      <label>Subject id <input id="subject-id" type="text" placeholder="uh:authority-candidate:1"></label>
+      <label>Decision
+        <select id="decision">
+          <option value="accepted">accepted</option>
+          <option value="rejected">rejected</option>
+          <option value="needs-evidence">needs-evidence</option>
+          <option value="disputed">disputed</option>
+        </select>
+      </label>
+      <label>Note <textarea id="note" rows="3" placeholder="Why this decision? Keep alternatives if disputed."></textarea></label>
+      <button id="add-decision" class="primary-action" type="button">Append to history</button>
+    </section>
+    <section class="panel">
+      <h2>Revision history</h2>
+      <p class="muted">Newest first. Rejected and disputed alternatives are retained.</p>
+      <div id="history" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer>Local collaboration only — no accounts server in this release. Export before clearing browser storage.</footer>
+  <script type="module" src="collaborate.js"></script>
+</body>
+</html>

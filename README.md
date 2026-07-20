@@ -1,116 +1,55 @@
-# Unified Hadith Workbench 1.11
+# Unified Hadith Workbench 2.0
 
-Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
+Unified Hadith is an evidence-first data standard and scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
-> Release status: production-ready research software with an imported, unverified pilot corpus. It is not a scholarly edition and must not be used to determine hadith authenticity.
+> Release status: **software-complete research platform** with imported/machine-suggested pilot data. It is not a scholarly edition and must not be used to determine hadith authenticity.
 
-## Production capabilities
+## What’s in 2.0
 
-- Twelve real source occurrences across Sahih al-Bukhari, Sunan Abi Dawud, Sunan Ibn Majah, Jamiʿ al-Tirmidhi, and Sunan al-Nasaʾi, imported from pinned OpenITI commits
-- Searchable working index of 26,727 numbered reports across those five editions
-- Paginated server API and white-theme whole-corpus browser
-- Exact and normalized Arabic search modes
-- Corpus-wide machine-proposed isnad/matn boundaries with exact evidence spans and measured coverage
-- 39,634 explainable cross-collection parallel-narration candidates
-- Non-destructive parallel-candidate review, persistence, and export
-- 156,330 occurrence-specific narrator mention candidates with exact evidence spans
-- 6,992 repeated name-form clusters explicitly separated from historical person identity
-- Searchable white-theme narrator evidence browser and bounded APIs
-- Deterministic narrator-authority candidate matching against the real cluster index, with chronology and broken-link warnings and a persistent human-review workflow that retains rejected alternatives (see `docs/NEXT.md` for what still requires a licensed biographical import)
-- Lossless JSON <-> XML conversion covering the full corpus model, validated against a schema that covers every field (see `spec/COMPATIBILITY.md` and `scripts/convert-corpus.mjs`)
-- Source-file and corpus checksums
-- Separate raw, normalized, isnad, and matn layers
-- Searchable witness reader and parallel matn comparison
-- Evidence-linked, occurrence-specific isnad graph
-- Explicit combined-chain branches with exact transmission-term source spans
-- In-app segmentation review and reversible correction-patch export
-- Reversible narrator identity suggestions with no automatic merging
-- Versioned narrator authority schema with mandatory source, locator, quotation, licensing, and provenance fields
-- Persistent local review decisions and JSON export
-- Responsive, keyboard-accessible white interface
-- Visible loading failures and a health endpoint
-- JSON Schema and XML Schema foundations
-- Stable, typed identifiers
-- Ordered and branching isnad representation
-- Separate narrator mentions and person identities
-- Token-addressable matn witnesses and variant alignments
-- Sourced claims with confidence and review status
-- Deterministic graph and workbench generation
-- Corpus, negative, release, and UI smoke tests
+- Everything from 1.7–1.11 (five-collection OpenITI index, parallels, narrator mentions, workbench, JSON↔XML interchange, validator CLI, deep links)
+- Commentary / grading / cross-reference model with disagreement retention
+- OpenITI-attested narrator authority vocabulary + optional Wikidata CC0 enrichment
+- Local collaboration workspace with revision history and hashed snapshot export
+- In-repo SDK (`sdk/index.mjs`) and GraphML/JSON-LD export
+- Governance and deployment docs
 
 ## Run it
 
 ```bash
+npm ci
 npm run check
 npm start
 ```
 
-Then open `http://localhost:8090`. `npm start` always rebuilds the release first.
+Then open `http://localhost:8090`.
 
-Whole-corpus browser: `http://localhost:8090/corpus.html`.
+- Whole corpus: `/corpus.html`
+- Narrators: `/narrators.html`
+- Collaboration: `/collaborate.html`
+- Health: `/healthz`
 
-Narrator mention browser: `http://localhost:8090/narrators.html`.
-
-Health check: `http://localhost:8090/healthz`.
-
-## Review workflow
-
-1. Open **Identity review**.
-2. Search or filter the suggestions.
-3. Mark each candidate as accepted, rejected, or needing evidence.
-4. Use **Export review** to save the decision bundle.
-
-Decisions stay in the browser until exported. Accepting a candidate records a review decision; it does not rewrite source data or silently create a person identity.
-
-## Interchange
-
-Convert a corpus document between the JSON and XML representations losslessly:
+## Key commands
 
 ```bash
-node scripts/convert-corpus.mjs to-xml data/corpus.json corpus.xml
-node scripts/convert-corpus.mjs to-json corpus.xml corpus-roundtrip.json
+npm run validate
+npm run convert:to-xml -- data/corpus.json tmp/corpus.xml
+npm run export:graph
+npm run import:attested-authority
+npm run match:narrator-authority
 ```
 
-See `spec/COMPATIBILITY.md` for the versioning policy and what the
-lossless-conversion guarantee does and doesn't promise.
+## Honest boundaries
 
-## Source reproducibility
-
-The pilot importer locks every source file to an OpenITI repository commit and SHA-256 checksum in `sources/source-lock.json`. The committed staging file allows clean builds without downloading upstream repositories.
-
-The whole-corpus index is distributed under OpenITI's CC BY-NC-SA 4.0 terms. See `THIRD_PARTY_NOTICES.md`; the software code remains MIT-licensed.
-
-To regenerate staging from upstream, clone repositories `0275AH`, `0300AH`, and `0325AH` into the checkout directories recorded by the lock file, check out their recorded commits, and run:
-
-```bash
-npm run import:openiti
-```
-
-## Repository map
-
-- `spec/` — normative design and identifier rules
-- `schema/` — JSON and XML schemas
-- `data/` — standard fixtures and real imported staging records
-- `docs/` — product goal, completed work, roadmap, and permanent white-theme contract
-- `scripts/` — validation, generation, and local server
-- `tests/` — positive and negative conformance tests
-- `web/` — dependency-free scholarly workbench
-
-The source records in `data/` are authoritative for this release. Generated files in `dist/` must be reproducible from them.
+- OpenITI indexes: CC BY-NC-SA 4.0 (`THIRD_PARTY_NOTICES.md`)
+- Code: MIT
+- Attested authority is **not** a verified biographical encyclopedia
+- Machine suggestions never auto-merge identities or invent authenticity grades
 
 ## Project continuity
 
 - [Product goal](docs/GOAL.md)
 - [Verified work completed](docs/DONE.md)
 - [Ordered next steps](docs/NEXT.md)
-- [White interface theme contract](docs/THEME.md)
-
-Read the theme contract before every interface change. `AGENTS.md` preserves these instructions for future development sessions.
-
-## Design principle
-
-The system records that a source or scholar made a claim. It does not silently convert that claim into universal truth. Automated boundaries and identity suggestions are research aids, never authenticity rulings.
-
-## Known scholarly boundary
-
-The software release is operationally production-ready. The pilot records remain `imported` or `machine-suggested`; narrator identities, biographical evidence, transmission continuity, and grading require qualified scholarly review before publication as verified data.
+- [Theme contract](docs/THEME.md)
+- [Governance](GOVERNANCE.md)
+- [Deployment](DEPLOYMENT.md)

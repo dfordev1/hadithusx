@@ -67,8 +67,32 @@ export function corpusToXml(corpus) {
           .join("")}</alignment>`
     )
     .join("");
+  const commentaries = Array.isArray(corpus.commentaries)
+    ? `<commentaries>${corpus.commentaries
+        .map(
+          (c) =>
+            `<commentary${attr("id", c.id)}${attr("about", c.about)}${attr("assertedBy", c.assertedBy)}${attr("citation", c.citation)}${attr("confidence", c.confidence)}${attr("reviewState", c.reviewState)}${attr("tradition", c.tradition)}><text>${escapeXml(c.text)}</text></commentary>`
+        )
+        .join("")}</commentaries>`
+    : "";
+  const gradings = Array.isArray(corpus.gradings)
+    ? `<gradings>${corpus.gradings
+        .map(
+          (g) =>
+            `<grading${attr("id", g.id)}${attr("about", g.about)}${attr("grade", g.grade)}${attr("gradeLabel", g.gradeLabel)}${attr("assertedBy", g.assertedBy)}${attr("citation", g.citation)}${attr("confidence", g.confidence)}${attr("reviewState", g.reviewState)}${attr("tradition", g.tradition)}${attr("contradicts", g.contradicts)}/>`
+        )
+        .join("")}</gradings>`
+    : "";
+  const crossReferences = Array.isArray(corpus.crossReferences)
+    ? `<crossReferences>${corpus.crossReferences
+        .map(
+          (x) =>
+            `<crossReference${attr("id", x.id)}${attr("from", x.from)}${attr("to", x.to)}${attr("relation", x.relation)}${attr("assertedBy", x.assertedBy)}${attr("citation", x.citation)}${attr("confidence", x.confidence)}${attr("reviewState", x.reviewState)}/>`
+        )
+        .join("")}</crossReferences>`
+    : "";
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<corpus${attr("standardVersion", corpus.standardVersion)}${attr("status", corpus.status)}><agents>${agents}</agents><works>${works}</works><editions>${editions}</editions><persons>${persons}</persons><witnesses>${witnesses}</witnesses><claims>${claims}</claims><alignments>${alignments}</alignments></corpus>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<corpus${attr("standardVersion", corpus.standardVersion)}${attr("status", corpus.status)}><agents>${agents}</agents><works>${works}</works><editions>${editions}</editions><persons>${persons}</persons><witnesses>${witnesses}</witnesses><claims>${claims}</claims><alignments>${alignments}</alignments>${commentaries}${gradings}${crossReferences}</corpus>\n`;
 }
 
 function childElements(el, tag) {
@@ -204,5 +228,61 @@ export function xmlToCorpus(xmlText) {
     reviewState: getRequiredAttr(el, "reviewState")
   }));
 
-  return { standardVersion: getRequiredAttr(root, "standardVersion"), status: getRequiredAttr(root, "status"), agents, works, editions, persons, witnesses, claims, alignments };
+  const result = { standardVersion: getRequiredAttr(root, "standardVersion"), status: getRequiredAttr(root, "status"), agents, works, editions, persons, witnesses, claims, alignments };
+
+  const commentariesEl = firstChildElement(root, "commentaries");
+  if (commentariesEl) {
+    result.commentaries = childElements(commentariesEl, "commentary").map((el) => {
+      const item = {
+        id: getRequiredAttr(el, "id"),
+        about: getRequiredAttr(el, "about"),
+        text: textOf(firstChildElement(el, "text")),
+        assertedBy: getRequiredAttr(el, "assertedBy"),
+        citation: getRequiredAttr(el, "citation"),
+        confidence: getRequiredAttr(el, "confidence"),
+        reviewState: getRequiredAttr(el, "reviewState")
+      };
+      const tradition = getAttr(el, "tradition");
+      if (tradition !== undefined) item.tradition = tradition;
+      return item;
+    });
+  }
+
+  const gradingsEl = firstChildElement(root, "gradings");
+  if (gradingsEl) {
+    result.gradings = childElements(gradingsEl, "grading").map((el) => {
+      const item = {
+        id: getRequiredAttr(el, "id"),
+        about: getRequiredAttr(el, "about"),
+        grade: getRequiredAttr(el, "grade"),
+        assertedBy: getRequiredAttr(el, "assertedBy"),
+        citation: getRequiredAttr(el, "citation"),
+        confidence: getRequiredAttr(el, "confidence"),
+        reviewState: getRequiredAttr(el, "reviewState")
+      };
+      const gradeLabel = getAttr(el, "gradeLabel");
+      if (gradeLabel !== undefined) item.gradeLabel = gradeLabel;
+      const tradition = getAttr(el, "tradition");
+      if (tradition !== undefined) item.tradition = tradition;
+      const contradicts = getAttr(el, "contradicts");
+      if (contradicts !== undefined) item.contradicts = contradicts;
+      return item;
+    });
+  }
+
+  const crossReferencesEl = firstChildElement(root, "crossReferences");
+  if (crossReferencesEl) {
+    result.crossReferences = childElements(crossReferencesEl, "crossReference").map((el) => ({
+      id: getRequiredAttr(el, "id"),
+      from: getRequiredAttr(el, "from"),
+      to: getRequiredAttr(el, "to"),
+      relation: getRequiredAttr(el, "relation"),
+      assertedBy: getRequiredAttr(el, "assertedBy"),
+      citation: getRequiredAttr(el, "citation"),
+      confidence: getRequiredAttr(el, "confidence"),
+      reviewState: getRequiredAttr(el, "reviewState")
+    }));
+  }
+
+  return result;
 }

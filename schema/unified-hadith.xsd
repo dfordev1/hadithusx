@@ -167,6 +167,47 @@
             <xs:attribute name="reviewState" type="reviewType" use="required"/>
           </xs:complexType></xs:element>
         </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="commentaries" minOccurs="0"><xs:complexType><xs:sequence>
+          <xs:element name="commentary" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:sequence><xs:element name="text" type="xs:string"/></xs:sequence>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="about" type="idType" use="required"/>
+            <xs:attribute name="assertedBy" type="idType" use="required"/>
+            <xs:attribute name="citation" type="xs:string" use="required"/>
+            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+            <xs:attribute name="tradition" type="xs:string" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="gradings" minOccurs="0"><xs:complexType><xs:sequence>
+          <xs:element name="grading" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="about" type="idType" use="required"/>
+            <xs:attribute name="grade" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="sahih"/><xs:enumeration value="hasan"/><xs:enumeration value="daif"/><xs:enumeration value="mawdu"/><xs:enumeration value="other"/><xs:enumeration value="unspecified"/></xs:restriction></xs:simpleType></xs:attribute>
+            <xs:attribute name="gradeLabel" type="xs:string" use="optional"/>
+            <xs:attribute name="assertedBy" type="idType" use="required"/>
+            <xs:attribute name="citation" type="xs:string" use="required"/>
+            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+            <xs:attribute name="tradition" type="xs:string" use="optional"/>
+            <xs:attribute name="contradicts" type="idType" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="crossReferences" minOccurs="0"><xs:complexType><xs:sequence>
+          <xs:element name="crossReference" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="from" type="idType" use="required"/>
+            <xs:attribute name="to" type="idType" use="required"/>
+            <xs:attribute name="relation" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="same-report"/><xs:enumeration value="parallel"/><xs:enumeration value="commentary-on"/><xs:enumeration value="abridgement-of"/><xs:enumeration value="see-also"/></xs:restriction></xs:simpleType></xs:attribute>
+            <xs:attribute name="assertedBy" type="idType" use="required"/>
+            <xs:attribute name="citation" type="xs:string" use="required"/>
+            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
       </xs:sequence>
       <xs:attribute name="standardVersion" type="xs:string" use="required" fixed="0.1"/>
       <xs:attribute name="status" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="demonstration"/><xs:enumeration value="draft"/><xs:enumeration value="reviewed"/><xs:enumeration value="published"/></xs:restriction></xs:simpleType></xs:attribute>

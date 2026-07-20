@@ -14,6 +14,8 @@ const corpusHtml = await readFile(new URL("web/corpus.html", root), "utf8");
 const corpusApp = await readFile(new URL("web/corpus.js", root), "utf8");
 const narratorHtml = await readFile(new URL("web/narrators.html", root), "utf8");
 const narratorApp = await readFile(new URL("web/narrators.js", root), "utf8");
+const collaborateHtml = await readFile(new URL("web/collaborate.html", root), "utf8");
+const collaborateApp = await readFile(new URL("web/collaborate.js", root), "utf8");
 
 const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);
@@ -40,6 +42,9 @@ check("corpus search is deep-linkable via URL hash without a self-triggered loop
 check("narrator search is deep-linkable via URL hash without a self-triggered loop", /history\.replaceState/.test(narratorApp) && /addEventListener\("hashchange"/.test(narratorApp) && /applySearchHashToForm/.test(narratorApp));
 check("identity candidates show reasoning and never auto-merge", /candidate\.reason/.test(narratorApp) && !/acceptedIdentity\s*=\s*['"]/.test(narratorApp));
 check("identity decisions persist and export, retaining rejected alternatives", /localStorage\.setItem\(AUTHORITY_REVIEW_KEY/.test(narratorApp) && /unified-hadith-narrator-authority-review\.json/.test(narratorApp) && /never deleted on rejection/.test(narratorApp));
+check("collaboration workspace follows white theme", /href="styles\.css"/.test(collaborateHtml) && /theme-color" content="#ffffff"/.test(collaborateHtml));
+check("collaboration keeps local revision history and signed export", /unified-hadith-collaboration-v1/.test(collaborateApp) && /contentSha256/.test(collaborateApp) && /disputed/.test(collaborateHtml));
+check("main workbench links to collaboration workspace", /collaborate\.html/.test(html));
 
 const buttonViews = [...html.matchAll(/data-view="([^"]+)"/g)].map((match) => match[1]);
 for (const view of buttonViews) check(`view exists: ${view}`, new RegExp(`(?:function\\s+${view}|${view}:\\s*graphView|\\b${view}\ ?[,}])`).test(app));

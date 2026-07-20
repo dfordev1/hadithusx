@@ -14,3 +14,13 @@ The whole-corpus working index and imported pilot witnesses are derived from the
 Unified Hadith preserves the OpenITI source version identifiers, repository commits, checksums, and collection labels in generated manifests. Redistribution and derived use of the corpus data must comply with the non-commercial and share-alike terms. The Unified Hadith software code is separately licensed under MIT.
 
 The imported source text is research data of varying quality. Its inclusion does not constitute scholarly verification of transcription, segmentation, narrator identity, or hadith authenticity.
+
+## Wikidata (optional authority enrichment)
+
+Selected labels and death dates in `data/narrator-authority.openiti-attested.json` may be enriched from Wikidata.
+
+- Project: https://www.wikidata.org/
+- License: Creative Commons CC0 1.0 Universal
+- License text: https://creativecommons.org/publicdomain/zero/1.0/
+
+Wikidata values remain `reviewState: imported` and are not scholar-verified rijāl judgments.

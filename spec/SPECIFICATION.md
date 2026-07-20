@@ -27,7 +27,7 @@ A `witness` contains bibliographic location, one or more ordered isnads, and an 
 
 Bibliographic location has two representations, which may both be present. `locator` is a required free-text string (e.g. `"book 1, report 1"`) and is always the fallback: any edition can be located with it even before structured parsing exists for that source. `structuredLocator` is an optional object (`collectionLabel`, `book`, required; `chapter`, `reportNumber`, optional) for editions where collection/book/chapter/report-number structure has been parsed out — this mirrors the fields the whole-corpus importer (`scripts/import-openiti-corpus.mjs`) already extracts for its own search index. A witness with only `locator` is not less conformant than one with both; `structuredLocator` is additive, not a replacement.
 
-Note on scope: `structuredLocator` currently models bibliographic addressing only. Commentary, grading, and cross-reference systems referenced in `docs/NEXT.md` Phase 2 are not yet part of the model.
+`structuredLocator` models bibliographic addressing. Optional top-level `commentaries`, `gradings`, and `crossReferences` arrays model scholarly annotation layers without overloading witness fields. Competing grades may `contradict` each other; traditions may be labeled without forcing consensus.
 
 ### Narrator mention and person
 
@@ -36,6 +36,14 @@ An isnad node preserves the exact name as found in the witness. Its `identityAss
 ### Claim
 
 A claim is a reified assertion: subject, predicate, object, asserting agent, citation, method, confidence, and review state. Claims may support or contradict other claims.
+
+### Commentary, grading, and cross-reference
+
+- `commentary` attaches attributed notes to a witness or person id.
+- `grading` records an attributed grade (`sahih` / `hasan` / `daif` / `mawdu` / `other` / `unspecified`) with optional tradition and contradiction links.
+- `crossReference` links two ids with a typed relation (`same-report`, `parallel`, `commentary-on`, `abridgement-of`, `see-also`).
+
+These layers never rewrite source text and never auto-promote machine suggestions to scholar-verified status.
 
 ### Alignment
 

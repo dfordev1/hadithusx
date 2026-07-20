@@ -2,97 +2,503 @@
   "standardVersion": "0.1",
   "status": "demonstration",
   "agents": [
-    { "id": "uh:agent:prototype-editor", "type": "organization", "name": "Unified Hadith prototype team" },
-    { "id": "uh:agent:prototype-generator", "type": "software", "name": "Unified Hadith generator", "version": "0.1.0" }
+    {
+      "id": "uh:agent:prototype-editor",
+      "type": "organization",
+      "name": "Unified Hadith prototype team"
+    },
+    {
+      "id": "uh:agent:prototype-generator",
+      "type": "software",
+      "name": "Unified Hadith generator",
+      "version": "0.1.0"
+    }
   ],
   "works": [
-    { "id": "uh:work:demonstration-collection-a", "title": { "ar": "مجموعة تجريبية أ", "en": "Demonstration Collection A" } },
-    { "id": "uh:work:demonstration-collection-b", "title": { "ar": "مجموعة تجريبية ب", "en": "Demonstration Collection B" } }
+    {
+      "id": "uh:work:demonstration-collection-a",
+      "title": {
+        "ar": "مجموعة تجريبية أ",
+        "en": "Demonstration Collection A"
+      }
+    },
+    {
+      "id": "uh:work:demonstration-collection-b",
+      "title": {
+        "ar": "مجموعة تجريبية ب",
+        "en": "Demonstration Collection B"
+      }
+    }
   ],
   "editions": [
-    { "id": "uh:edition:demonstration-a", "work": "uh:work:demonstration-collection-a", "label": "Structural fixture A", "sourceType": "demonstration", "citation": "Purpose-built schema fixture; not a scholarly source.", "license": "CC0-1.0" },
-    { "id": "uh:edition:demonstration-b", "work": "uh:work:demonstration-collection-b", "label": "Structural fixture B", "sourceType": "demonstration", "citation": "Purpose-built schema fixture; not a scholarly source.", "license": "CC0-1.0" }
+    {
+      "id": "uh:edition:demonstration-a",
+      "work": "uh:work:demonstration-collection-a",
+      "label": "Structural fixture A",
+      "sourceType": "demonstration",
+      "citation": "Purpose-built schema fixture; not a scholarly source.",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "uh:edition:demonstration-b",
+      "work": "uh:work:demonstration-collection-b",
+      "label": "Structural fixture B",
+      "sourceType": "demonstration",
+      "citation": "Purpose-built schema fixture; not a scholarly source.",
+      "license": "CC0-1.0"
+    }
   ],
   "persons": [
-    { "id": "uh:person:demo-compiler-a", "preferredName": "المصنف أ", "nameForms": ["المصنف أ"], "reviewState": "editor-reviewed", "notes": "Fictional fixture person." },
-    { "id": "uh:person:demo-teacher-one", "preferredName": "الشيخ الأول", "nameForms": ["الشيخ الأول", "شيخنا الأول"], "reviewState": "editor-reviewed", "notes": "Fictional fixture person used to test aliases." },
-    { "id": "uh:person:demo-transmitter-two", "preferredName": "الراوي الثاني", "nameForms": ["الراوي الثاني"], "reviewState": "editor-reviewed", "notes": "Fictional fixture person." },
-    { "id": "uh:person:demo-authority", "preferredName": "صاحب القول", "nameForms": ["صاحب القول"], "reviewState": "editor-reviewed", "notes": "Fictional fixture person." }
+    {
+      "id": "uh:person:demo-compiler-a",
+      "preferredName": "المصنف أ",
+      "nameForms": [
+        "المصنف أ"
+      ],
+      "reviewState": "editor-reviewed",
+      "notes": "Fictional fixture person."
+    },
+    {
+      "id": "uh:person:demo-teacher-one",
+      "preferredName": "الشيخ الأول",
+      "nameForms": [
+        "الشيخ الأول",
+        "شيخنا الأول"
+      ],
+      "reviewState": "editor-reviewed",
+      "notes": "Fictional fixture person used to test aliases."
+    },
+    {
+      "id": "uh:person:demo-transmitter-two",
+      "preferredName": "الراوي الثاني",
+      "nameForms": [
+        "الراوي الثاني"
+      ],
+      "reviewState": "editor-reviewed",
+      "notes": "Fictional fixture person."
+    },
+    {
+      "id": "uh:person:demo-authority",
+      "preferredName": "صاحب القول",
+      "nameForms": [
+        "صاحب القول"
+      ],
+      "reviewState": "editor-reviewed",
+      "notes": "Fictional fixture person."
+    }
   ],
   "witnesses": [
     {
-      "id": "uh:witness:demo-intentions-1", "edition": "uh:edition:demonstration-a", "locator": "book 1, report 1", "structuredLocator": { "collectionLabel": "Demonstration Collection A", "book": "Kitab al-Fixture", "chapter": "Bab al-Structural-Test", "reportNumber": 1 }, "language": "ar",
-      "isnads": [{
-        "id": "uh:isnad:demo-intentions-1:a", "reviewState": "editor-reviewed",
-        "route": [
-          { "id": "uh:mention:demo-intentions-1:a:01", "position": 1, "surface": "المصنف أ", "transmissionTerm": "حدثنا", "identityAssertions": [{ "id": "uh:identity:demo-intentions-1:a:01", "person": "uh:person:demo-compiler-a", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] },
-          { "id": "uh:mention:demo-intentions-1:a:02", "position": 2, "surface": "الشيخ الأول", "transmissionTerm": "عن", "identityAssertions": [{ "id": "uh:identity:demo-intentions-1:a:02", "person": "uh:person:demo-teacher-one", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] },
-          { "id": "uh:mention:demo-intentions-1:a:03", "position": 3, "surface": "الراوي الثاني", "transmissionTerm": "سمعت", "identityAssertions": [{ "id": "uh:identity:demo-intentions-1:a:03", "person": "uh:person:demo-transmitter-two", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] },
-          { "id": "uh:mention:demo-intentions-1:a:04", "position": 4, "surface": "صاحب القول", "transmissionTerm": "يقول", "identityAssertions": [{ "id": "uh:identity:demo-intentions-1:a:04", "person": "uh:person:demo-authority", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] }
-        ]
-      }],
-      "matn": { "diplomatic": "إنما الأعمال بالنيات", "tokens": [
-        { "id": "uh:token:demo-intentions-1:001", "position": 1, "text": "إنما" },
-        { "id": "uh:token:demo-intentions-1:002", "position": 2, "text": "الأعمال" },
-        { "id": "uh:token:demo-intentions-1:003", "position": 3, "text": "بالنيات" }
-      ] },
-      "reviewState": "editor-reviewed", "provenance": { "createdBy": "uh:agent:prototype-editor", "method": "manual structural fixture", "createdAt": "2026-07-14", "derivedFrom": "No historical source; demonstration only." }
-    },
-    {
-      "id": "uh:witness:demo-intentions-2", "edition": "uh:edition:demonstration-b", "locator": "book 2, report 7", "language": "ar",
-      "isnads": [{
-        "id": "uh:isnad:demo-intentions-2:a", "reviewState": "editor-reviewed",
-        "route": [
-          { "id": "uh:mention:demo-intentions-2:a:01", "position": 1, "surface": "شيخنا الأول", "transmissionTerm": "أخبرنا", "identityAssertions": [{ "id": "uh:identity:demo-intentions-2:a:01", "person": "uh:person:demo-teacher-one", "assertedBy": "uh:agent:prototype-editor", "confidence": "probable", "reviewState": "editor-reviewed", "evidence": "Alias-resolution fixture." }] },
-          { "id": "uh:mention:demo-intentions-2:a:02", "position": 2, "surface": "الراوي الثاني", "transmissionTerm": "عن", "identityAssertions": [{ "id": "uh:identity:demo-intentions-2:a:02", "person": "uh:person:demo-transmitter-two", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] },
-          { "id": "uh:mention:demo-intentions-2:a:03", "position": 3, "surface": "صاحب القول", "transmissionTerm": "قال", "identityAssertions": [{ "id": "uh:identity:demo-intentions-2:a:03", "person": "uh:person:demo-authority", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] }
-        ]
-      }],
-      "matn": { "diplomatic": "الأعمال بالنية", "tokens": [
-        { "id": "uh:token:demo-intentions-2:001", "position": 1, "text": "الأعمال" },
-        { "id": "uh:token:demo-intentions-2:002", "position": 2, "text": "بالنية" }
-      ] },
-      "reviewState": "editor-reviewed", "provenance": { "createdBy": "uh:agent:prototype-editor", "method": "manual structural fixture", "createdAt": "2026-07-14", "derivedFrom": "No historical source; demonstration only." }
-    },
-    {
-      "id": "uh:witness:demo-intentions-3", "edition": "uh:edition:demonstration-b", "locator": "book 2, report 8", "language": "ar",
+      "id": "uh:witness:demo-intentions-1",
+      "edition": "uh:edition:demonstration-a",
+      "locator": "book 1, report 1",
+      "structuredLocator": {
+        "collectionLabel": "Demonstration Collection A",
+        "book": "Kitab al-Fixture",
+        "chapter": "Bab al-Structural-Test",
+        "reportNumber": 1
+      },
+      "language": "ar",
       "isnads": [
         {
-          "id": "uh:isnad:demo-intentions-3:a", "reviewState": "machine-suggested",
+          "id": "uh:isnad:demo-intentions-1:a",
+          "reviewState": "editor-reviewed",
           "route": [
-            { "id": "uh:mention:demo-intentions-3:a:01", "position": 1, "surface": "الشيخ الأول", "transmissionTerm": "حدثنا", "identityAssertions": [{ "id": "uh:identity:demo-intentions-3:a:01", "person": "uh:person:demo-teacher-one", "assertedBy": "uh:agent:prototype-generator", "confidence": "possible", "reviewState": "machine-suggested", "evidence": "String similarity only." }] },
-            { "id": "uh:mention:demo-intentions-3:a:02", "position": 2, "surface": "صاحب القول", "transmissionTerm": "عن", "identityAssertions": [{ "id": "uh:identity:demo-intentions-3:a:02", "person": "uh:person:demo-authority", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] }
-          ]
-        },
-        {
-          "id": "uh:isnad:demo-intentions-3:b", "reviewState": "editor-reviewed",
-          "route": [
-            { "id": "uh:mention:demo-intentions-3:b:01", "position": 1, "surface": "الراوي الثاني", "transmissionTerm": "بلغني عن", "identityAssertions": [{ "id": "uh:identity:demo-intentions-3:b:01", "person": "uh:person:demo-transmitter-two", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] },
-            { "id": "uh:mention:demo-intentions-3:b:02", "position": 2, "surface": "صاحب القول", "transmissionTerm": "قال", "identityAssertions": [{ "id": "uh:identity:demo-intentions-3:b:02", "person": "uh:person:demo-authority", "assertedBy": "uh:agent:prototype-editor", "confidence": "certain", "reviewState": "editor-reviewed", "evidence": "Fixture definition." }] }
+            {
+              "id": "uh:mention:demo-intentions-1:a:01",
+              "position": 1,
+              "surface": "المصنف أ",
+              "transmissionTerm": "حدثنا",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-1:a:01",
+                  "person": "uh:person:demo-compiler-a",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-1:a:02",
+              "position": 2,
+              "surface": "الشيخ الأول",
+              "transmissionTerm": "عن",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-1:a:02",
+                  "person": "uh:person:demo-teacher-one",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-1:a:03",
+              "position": 3,
+              "surface": "الراوي الثاني",
+              "transmissionTerm": "سمعت",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-1:a:03",
+                  "person": "uh:person:demo-transmitter-two",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-1:a:04",
+              "position": 4,
+              "surface": "صاحب القول",
+              "transmissionTerm": "يقول",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-1:a:04",
+                  "person": "uh:person:demo-authority",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            }
           ]
         }
       ],
-      "matn": { "diplomatic": "لكل عمل نية", "tokens": [
-        { "id": "uh:token:demo-intentions-3:001", "position": 1, "text": "لكل" },
-        { "id": "uh:token:demo-intentions-3:002", "position": 2, "text": "عمل" },
-        { "id": "uh:token:demo-intentions-3:003", "position": 3, "text": "نية" }
-      ] },
-      "reviewState": "machine-suggested", "provenance": { "createdBy": "uh:agent:prototype-generator", "method": "machine-generated branching-chain fixture", "createdAt": "2026-07-14", "derivedFrom": "No historical source; demonstration only." }
+      "matn": {
+        "diplomatic": "إنما الأعمال بالنيات",
+        "tokens": [
+          {
+            "id": "uh:token:demo-intentions-1:001",
+            "position": 1,
+            "text": "إنما"
+          },
+          {
+            "id": "uh:token:demo-intentions-1:002",
+            "position": 2,
+            "text": "الأعمال"
+          },
+          {
+            "id": "uh:token:demo-intentions-1:003",
+            "position": 3,
+            "text": "بالنيات"
+          }
+        ]
+      },
+      "reviewState": "editor-reviewed",
+      "provenance": {
+        "createdBy": "uh:agent:prototype-editor",
+        "method": "manual structural fixture",
+        "createdAt": "2026-07-14",
+        "derivedFrom": "No historical source; demonstration only."
+      }
+    },
+    {
+      "id": "uh:witness:demo-intentions-2",
+      "edition": "uh:edition:demonstration-b",
+      "locator": "book 2, report 7",
+      "language": "ar",
+      "isnads": [
+        {
+          "id": "uh:isnad:demo-intentions-2:a",
+          "reviewState": "editor-reviewed",
+          "route": [
+            {
+              "id": "uh:mention:demo-intentions-2:a:01",
+              "position": 1,
+              "surface": "شيخنا الأول",
+              "transmissionTerm": "أخبرنا",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-2:a:01",
+                  "person": "uh:person:demo-teacher-one",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "probable",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Alias-resolution fixture."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-2:a:02",
+              "position": 2,
+              "surface": "الراوي الثاني",
+              "transmissionTerm": "عن",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-2:a:02",
+                  "person": "uh:person:demo-transmitter-two",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-2:a:03",
+              "position": 3,
+              "surface": "صاحب القول",
+              "transmissionTerm": "قال",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-2:a:03",
+                  "person": "uh:person:demo-authority",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "matn": {
+        "diplomatic": "الأعمال بالنية",
+        "tokens": [
+          {
+            "id": "uh:token:demo-intentions-2:001",
+            "position": 1,
+            "text": "الأعمال"
+          },
+          {
+            "id": "uh:token:demo-intentions-2:002",
+            "position": 2,
+            "text": "بالنية"
+          }
+        ]
+      },
+      "reviewState": "editor-reviewed",
+      "provenance": {
+        "createdBy": "uh:agent:prototype-editor",
+        "method": "manual structural fixture",
+        "createdAt": "2026-07-14",
+        "derivedFrom": "No historical source; demonstration only."
+      }
+    },
+    {
+      "id": "uh:witness:demo-intentions-3",
+      "edition": "uh:edition:demonstration-b",
+      "locator": "book 2, report 8",
+      "language": "ar",
+      "isnads": [
+        {
+          "id": "uh:isnad:demo-intentions-3:a",
+          "reviewState": "machine-suggested",
+          "route": [
+            {
+              "id": "uh:mention:demo-intentions-3:a:01",
+              "position": 1,
+              "surface": "الشيخ الأول",
+              "transmissionTerm": "حدثنا",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-3:a:01",
+                  "person": "uh:person:demo-teacher-one",
+                  "assertedBy": "uh:agent:prototype-generator",
+                  "confidence": "possible",
+                  "reviewState": "machine-suggested",
+                  "evidence": "String similarity only."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-3:a:02",
+              "position": 2,
+              "surface": "صاحب القول",
+              "transmissionTerm": "عن",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-3:a:02",
+                  "person": "uh:person:demo-authority",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "uh:isnad:demo-intentions-3:b",
+          "reviewState": "editor-reviewed",
+          "route": [
+            {
+              "id": "uh:mention:demo-intentions-3:b:01",
+              "position": 1,
+              "surface": "الراوي الثاني",
+              "transmissionTerm": "بلغني عن",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-3:b:01",
+                  "person": "uh:person:demo-transmitter-two",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            },
+            {
+              "id": "uh:mention:demo-intentions-3:b:02",
+              "position": 2,
+              "surface": "صاحب القول",
+              "transmissionTerm": "قال",
+              "identityAssertions": [
+                {
+                  "id": "uh:identity:demo-intentions-3:b:02",
+                  "person": "uh:person:demo-authority",
+                  "assertedBy": "uh:agent:prototype-editor",
+                  "confidence": "certain",
+                  "reviewState": "editor-reviewed",
+                  "evidence": "Fixture definition."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "matn": {
+        "diplomatic": "لكل عمل نية",
+        "tokens": [
+          {
+            "id": "uh:token:demo-intentions-3:001",
+            "position": 1,
+            "text": "لكل"
+          },
+          {
+            "id": "uh:token:demo-intentions-3:002",
+            "position": 2,
+            "text": "عمل"
+          },
+          {
+            "id": "uh:token:demo-intentions-3:003",
+            "position": 3,
+            "text": "نية"
+          }
+        ]
+      },
+      "reviewState": "machine-suggested",
+      "provenance": {
+        "createdBy": "uh:agent:prototype-generator",
+        "method": "machine-generated branching-chain fixture",
+        "createdAt": "2026-07-14",
+        "derivedFrom": "No historical source; demonstration only."
+      }
     }
   ],
   "claims": [
-    { "id": "uh:claim:demo-reliability-001", "subject": "uh:person:demo-teacher-one", "predicate": "hasEvaluation", "object": "trustworthy (fictional positive evaluation)", "assertedBy": "uh:agent:prototype-editor", "citation": "Demonstration claim, section A", "confidence": "certain", "reviewState": "editor-reviewed" },
-    { "id": "uh:claim:demo-reliability-002", "subject": "uh:person:demo-teacher-one", "predicate": "hasEvaluation", "object": "identity requires further investigation (fictional qualification)", "assertedBy": "uh:agent:prototype-editor", "citation": "Demonstration claim, section B", "confidence": "possible", "reviewState": "disputed", "contradicts": "uh:claim:demo-reliability-001" }
+    {
+      "id": "uh:claim:demo-reliability-001",
+      "subject": "uh:person:demo-teacher-one",
+      "predicate": "hasEvaluation",
+      "object": "trustworthy (fictional positive evaluation)",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration claim, section A",
+      "confidence": "certain",
+      "reviewState": "editor-reviewed"
+    },
+    {
+      "id": "uh:claim:demo-reliability-002",
+      "subject": "uh:person:demo-teacher-one",
+      "predicate": "hasEvaluation",
+      "object": "identity requires further investigation (fictional qualification)",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration claim, section B",
+      "confidence": "possible",
+      "reviewState": "disputed",
+      "contradicts": "uh:claim:demo-reliability-001"
+    }
   ],
   "alignments": [
     {
-      "id": "uh:alignment:demo-intentions-family-001", "type": "possible-parallel",
+      "id": "uh:alignment:demo-intentions-family-001",
+      "type": "possible-parallel",
       "members": [
-        { "witness": "uh:witness:demo-intentions-1", "tokens": ["uh:token:demo-intentions-1:001", "uh:token:demo-intentions-1:002", "uh:token:demo-intentions-1:003"] },
-        { "witness": "uh:witness:demo-intentions-2", "tokens": ["uh:token:demo-intentions-2:001", "uh:token:demo-intentions-2:002"] },
-        { "witness": "uh:witness:demo-intentions-3", "tokens": ["uh:token:demo-intentions-3:001", "uh:token:demo-intentions-3:002", "uh:token:demo-intentions-3:003"] }
+        {
+          "witness": "uh:witness:demo-intentions-1",
+          "tokens": [
+            "uh:token:demo-intentions-1:001",
+            "uh:token:demo-intentions-1:002",
+            "uh:token:demo-intentions-1:003"
+          ]
+        },
+        {
+          "witness": "uh:witness:demo-intentions-2",
+          "tokens": [
+            "uh:token:demo-intentions-2:001",
+            "uh:token:demo-intentions-2:002"
+          ]
+        },
+        {
+          "witness": "uh:witness:demo-intentions-3",
+          "tokens": [
+            "uh:token:demo-intentions-3:001",
+            "uh:token:demo-intentions-3:002",
+            "uh:token:demo-intentions-3:003"
+          ]
+        }
       ],
-      "assertedBy": "uh:agent:prototype-editor", "confidence": "possible", "reviewState": "editor-reviewed"
+      "assertedBy": "uh:agent:prototype-editor",
+      "confidence": "possible",
+      "reviewState": "editor-reviewed"
+    }
+  ],
+  "commentaries": [
+    {
+      "id": "uh:commentary:demo-intentions-1",
+      "about": "uh:witness:demo-intentions-1",
+      "text": "Demonstration commentary: this fixture report is not a historical edition.",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration commentary note A",
+      "confidence": "certain",
+      "reviewState": "editor-reviewed",
+      "tradition": "demo-tradition-a"
+    }
+  ],
+  "gradings": [
+    {
+      "id": "uh:grading:demo-intentions-1-a",
+      "about": "uh:witness:demo-intentions-1",
+      "grade": "other",
+      "gradeLabel": "fixture-only (not a scholarly grade)",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration grading note A",
+      "confidence": "possible",
+      "reviewState": "editor-reviewed",
+      "tradition": "demo-tradition-a"
+    },
+    {
+      "id": "uh:grading:demo-intentions-1-b",
+      "about": "uh:witness:demo-intentions-1",
+      "grade": "unspecified",
+      "gradeLabel": "competing fixture grade for disagreement support",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration grading note B",
+      "confidence": "uncertain",
+      "reviewState": "disputed",
+      "tradition": "demo-tradition-b",
+      "contradicts": "uh:grading:demo-intentions-1-a"
+    }
+  ],
+  "crossReferences": [
+    {
+      "id": "uh:xref:demo-intentions-1-2",
+      "from": "uh:witness:demo-intentions-1",
+      "to": "uh:witness:demo-intentions-2",
+      "relation": "parallel",
+      "assertedBy": "uh:agent:prototype-editor",
+      "citation": "Demonstration cross-reference A",
+      "confidence": "possible",
+      "reviewState": "editor-reviewed"
     }
   ]
 }
