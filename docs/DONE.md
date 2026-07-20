@@ -41,12 +41,19 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - `GOVERNANCE.md` and `DEPLOYMENT.md` document versioning and hosting boundaries.
 - `tests/sdk-tests.mjs` covers SDK + graph export.
 
-### Phase 3 — structural-parsing conformance (first increment)
+### Phase 3a — structural-parsing conformance (first increment)
 
 - `scripts/lib/propose-structure.mjs` extracts `proposeStructure()` (isnad/matn segmentation + narrator-mention extraction) out of `scripts/import-openiti-corpus.mjs` into an importable module; the importer script now delegates to it with identical behavior (verified by `npm run check` staying green through the refactor).
 - `sources/conformance/openitiBukhari.fixture.json` records 15 hand-verified Sahih al-Bukhari reports pulled from the real, checksum-pinned OpenITI `0275AH` source in `sources/source-lock.json` (reports 2, 3, 5, 6, 7, 8, 9, 15, 32, 59, 214, 230, 240, 291, 335), spanning multiple book/chapter boundaries and including 8 multi-branch (`ح`) isnads. Each record's expected `boundaryMethod`, `chainSpan.text`, `matnSpan.text`, and `narratorMentions` (branch/transmissionTerm/surface) were confirmed by reading the Arabic source text, not generated blind from the function's own output.
 - `tests/structural-conformance-tests.mjs` runs `proposeStructure()` on each fixture report and diffs against the hand-verified expectation, printing a per-field accuracy report and failing below configurable thresholds (boundaryMethod 100%, chainSpan 90%, matnSpan 80%, narratorMentions 80%); wired into `npm test` via `package.json`.
 - **Scope limits, stated honestly (see docs/NEXT.md):** only Bukhari has a fixture (15 of ~7,300 reports in that source; the other four locked collections have none yet); the harness is not wired into `import:corpus` as a trust gate, only into `npm test`; two known heuristic gaps (unquoted-matn boundary detection, narrator-surface bleed on complex multi-branch reports with embedded citations) are recorded in the fixture rather than fixed in this increment.
+### Phase 3b — isnad-cum-matn cluster analysis (first increment)
+
+- `scripts/lib/isnad-cluster-analysis.mjs` provides pure, unit-tested functions: in-corpus matn-similarity pairing (reusing `scripts/discover-parallels.mjs`'s shared-four-word-sequence/token-overlap method), a filter that resolves accepted-or-high-confidence staged cross-collection parallel candidates against known witness ids, deterministic union-find clustering, and union isnad-chain-graph construction with per-narrator transmission fan-out.
+- `scripts/analyze-isnad-clusters.mjs` runs this against `data/corpus.json` and stages `data/staging/common-link-candidates.json` (+ checksum-bound manifest) of `commonLinkCandidate` evidence objects — always `reviewState: "machine-suggested"`, always `acceptedAsCommonLink: null`, always citing the exact isnad chains they were computed from.
+- `tests/common-link-candidate-tests.mjs` (32 checks) verifies fan-out direction/gating logic, non-auto-fact behavior, citation completeness, and determinism against both synthetic fixtures and the real staged output.
+- **Honest limitation, not fixed in this increment:** the staged cross-collection parallel candidates (`data/staging/openiti-parallel-candidates.json.gz`, `openiti:` id namespace) do not share an id space with `data/corpus.json` (`uh:witness:` namespace) and the bulk OpenITI corpus has no schema-validated isnad chains yet, so the cross-dataset join path is implemented and tested but resolves to zero real pairs today. On the current `data/corpus.json` demonstration fixture, the in-corpus path finds one matn-similar pair but zero qualifying `commonLinkCandidate` records (no branching narrator meets the fan-out/chain-count thresholds) — this is verified as the correct, non-fabricated output, not a bug. See `spec/ISNAD_CLUSTER_ANALYSIS.md` for the full explanation.
+- No UI/API changes; no schema changes. Staging-only artifact, same pattern as the narrator-authority candidate staging files.
 
 ## Earlier releases (1.7–1.11)
 

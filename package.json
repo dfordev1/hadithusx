@@ -8,7 +8,7 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && node tests/structural-conformance-tests.mjs && node tests/collaborate-crypto-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
+    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && node tests/structural-conformance-tests.mjs && node tests/collaborate-crypto-tests.mjs && node tests/common-link-candidate-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
     "build": "node scripts/build.mjs",
     "convert:to-xml": "node scripts/convert-corpus.mjs to-xml",
     "convert:to-json": "node scripts/convert-corpus.mjs to-json",
@@ -19,7 +19,8 @@
     "discover:parallels": "node scripts/discover-parallels.mjs",
     "build:narrators": "node scripts/build-narrator-mentions.mjs",
     "match:narrator-authority": "node scripts/match-narrator-authority.mjs",
-    "refresh:data": "npm run import:corpus && npm run discover:parallels && npm run build:narrators && npm run match:narrator-authority && npm run import:attested-authority",
+    "analyze:isnad-clusters": "node scripts/analyze-isnad-clusters.mjs",
+    "refresh:data": "npm run import:corpus && npm run discover:parallels && npm run build:narrators && npm run match:narrator-authority && npm run import:attested-authority && npm run analyze:isnad-clusters",
     "check": "npm run validate && npm test",
     "prestart": "npm run build --silent",
     "start": "node scripts/serve.mjs"

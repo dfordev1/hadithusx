@@ -1,0 +1,27 @@
+{
+  "format": "unified-hadith-common-link-candidates-0.1",
+  "sourceCorpusSha256": "bf2a67afd92be34d44e3302aa1ec57a5d576de2746c3150b052adcc1991be704",
+  "sourceStagedParallelCandidatesSha256": "ae467420afbd13d3b43e557759e1e37e68547a418a65b2e17dd96dd9daac47ba",
+  "matnSimilarPairCount": 1,
+  "matnSimilarClusterCount": 1,
+  "clusters": [
+    {
+      "id": "cluster:1",
+      "witnesses": [
+        "uh:witness:demo-intentions-1",
+        "uh:witness:demo-intentions-2"
+      ]
+    }
+  ],
+  "candidateCount": 0,
+  "candidates": [],
+  "method": {
+    "matnSimilarity": "in-corpus shared normalized four-word sequences with token-overlap thresholds 0.1, plus (when present) staged accepted-or-high-confidence openiti parallel candidates resolved against known witness ids",
+    "isnadJoin": "union isnad chain graph across all witnesses in a matn-similar cluster; nodes are resolved narrator identities where available, otherwise raw mention surface text",
+    "fanOutDefinition": "route position 1 is the narrator closest to the compiler; higher positions are older. Fan-out for narrator X is the count of distinct younger (lower-position) narrators X's mentions transmit to (inform), across all isnad chains in the cluster -- the direction in which a classical common link is defined",
+    "minimumFanOut": 2,
+    "minimumChainCount": 2,
+    "automaticCommonLinkResolution": false,
+    "knownGap": "data/staging/openiti-parallel-candidates.json.gz uses the openiti: id namespace from the bulk imported five-collection corpus, which today has no isnad chain data and no overlapping ids with data/corpus.json's uh:witness: namespace. The staged-candidate join path exists and is exercised by tests, but currently resolves to zero pairs against real data until the two datasets are unified under one id space (tracked in docs/NEXT.md)."
+  }
+}
