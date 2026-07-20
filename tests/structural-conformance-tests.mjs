@@ -18,7 +18,7 @@
 // This is a machine-suggestion QUALITY gate, not a correctness proof: every
 // narratorMentions entry proposeStructure emits is still reviewState
 // "machine-suggested" and still requires a human identityAssertion before it
-// becomes a fact (see scripts/lib/validate-corpus.mjs). This harness only
+// becomes a fact (see sdk/lib/validate-corpus.mjs). This harness only
 // keeps the *segmentation heuristic itself* from silently regressing.
 
 import { readFile } from "node:fs/promises";

@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { validateCorpus } from "../scripts/lib/validate-corpus.mjs";
+import { validateCorpus } from "../sdk/lib/validate-corpus.mjs";
 
 const original = JSON.parse(await readFile(new URL("../data/corpus.json", import.meta.url), "utf8"));
 const clone = () => structuredClone(original);

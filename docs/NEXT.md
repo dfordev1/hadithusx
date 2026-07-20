@@ -34,7 +34,8 @@ Work from the top downward unless a dependency or verified defect changes the or
 ## Phase 5 — ecosystem
 
 - In-repo SDK + GraphML/JSON-LD export + governance/deployment docs. **Done** as foundations.
-- Published npm package, independent implementations, formal external review invitation process. **Open.**
+- Self-contained, installable `sdk/` package (`@unified-hadith/sdk`) with its own `package.json`, bundled fixture corpus, README quickstart, and a pack/extract/import test proving no import escapes the package directory. **Done** (see DONE.md). Verified with `npm pack` and `npm publish --dry-run`; **not actually published** to the public npm registry — that step (registry account, org scope decision, semver policy for 0.x→1.0) is still open.
+- Independent implementations, formal external review invitation process. **Open.**
 
 ## Interface requirement for every phase
 

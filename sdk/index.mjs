@@ -1,16 +1,18 @@
-// Lightweight out-of-repo SDK surface for Unified Hadith tooling.
-// Consumers can import from this module or invoke the CLI scripts documented
-// in spec/COMPATIBILITY.md.
+// Self-contained SDK surface for Unified Hadith tooling.
+// Everything this package needs lives under sdk/ (this file, sdk/lib/*,
+// sdk/fixtures/*) so the package can be extracted, packed, and installed
+// on its own — see sdk/README.md for a quickstart and spec/COMPATIBILITY.md
+// for the broader interchange standard this SDK implements.
 
-export { validateCorpus } from "../scripts/lib/validate-corpus.mjs";
-export { corpusToXml, xmlToCorpus } from "../scripts/lib/xml-interchange.mjs";
+export { validateCorpus } from "./lib/validate-corpus.mjs";
+export { corpusToXml, xmlToCorpus } from "./lib/xml-interchange.mjs";
 export {
   normalizeArabicSurface,
   matchNarratorAuthorityCandidates,
   detectChronologyWarnings
-} from "../scripts/lib/narrator-authority.mjs";
+} from "./lib/narrator-authority.mjs";
 
-export const SDK_VERSION = "2.0.0";
+export const SDK_VERSION = "0.1.0";
 export const STANDARD_VERSION = "0.1";
 
 export function createReviewExport({ projectId, reviewer, decisions, notes = [] }) {

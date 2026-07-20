@@ -1,6 +1,6 @@
 // CLI: validate a Unified Hadith corpus document (and optionally a narrator
 // authority document) against the JSON Schemas plus the semantic rules in
-// scripts/lib/validate-corpus.mjs.
+// sdk/lib/validate-corpus.mjs.
 //
 // Usage:
 //   node scripts/validate.mjs                                   # data/corpus.json + data/narrator-authority.fixture.json (default, used by `npm run validate` and CI)
@@ -14,7 +14,7 @@
 import { readFile } from "node:fs/promises";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { validateCorpus } from "./lib/validate-corpus.mjs";
+import { validateCorpus } from "../sdk/lib/validate-corpus.mjs";
 
 const [, , corpusArg, authorityArg] = process.argv;
 const corpusPath = corpusArg ?? new URL("../data/corpus.json", import.meta.url);

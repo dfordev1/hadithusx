@@ -11,7 +11,7 @@
 import { createHash } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { matchNarratorAuthorityCandidates, detectChronologyWarnings } from "./lib/narrator-authority.mjs";
+import { matchNarratorAuthorityCandidates, detectChronologyWarnings } from "../sdk/lib/narrator-authority.mjs";
 
 const root = new URL("../", import.meta.url);
 const minOccurrences = Number(process.argv[2] || 10);

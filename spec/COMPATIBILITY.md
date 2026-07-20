@@ -27,7 +27,7 @@ any release while the standard version stays fixed).
 
 ## What "lossless" means here
 
-`scripts/lib/xml-interchange.mjs` converts a corpus document between the JSON
+`sdk/lib/xml-interchange.mjs` converts a corpus document between the JSON
 and XML representations of the *same* `standardVersion` losslessly: every
 field round-trips through `JSON -> XML -> JSON` unchanged, verified by
 `tests/interchange-tests.mjs` against real corpus data and validated against
@@ -44,13 +44,13 @@ documents that exercise every required field, several optional fields, and
 (via `tests/run-tests.mjs`) nine specific invalid-document cases that a
 conforming validator must reject. An external implementation can use these
 same fixtures to check its own validator's behavior against
-`scripts/lib/validate-corpus.mjs`'s documented pass/fail cases.
+`sdk/lib/validate-corpus.mjs`'s documented pass/fail cases.
 
 ## Command-line tools for external integration
 
 - `node scripts/validate.mjs` — validates `data/corpus.json` and
   `data/narrator-authority.fixture.json` against their JSON Schemas plus the
-  semantic rules in `scripts/lib/validate-corpus.mjs`. Exits non-zero on any
+  semantic rules in `sdk/lib/validate-corpus.mjs`. Exits non-zero on any
   failure, with each error printed as `path: message`.
 - `node scripts/convert-corpus.mjs to-xml <input.json> <output.xml>` and
   `node scripts/convert-corpus.mjs to-json <input.xml> <output.json>` — convert

@@ -7,10 +7,10 @@
 //
 // The conversion is lossless in both directions for any document that
 // conforms to schema/unified-hadith.schema.json / schema/unified-hadith.xsd
-// (see scripts/lib/xml-interchange.mjs and tests/interchange-tests.mjs).
+// (see sdk/lib/xml-interchange.mjs and tests/interchange-tests.mjs).
 
 import { readFile, writeFile } from "node:fs/promises";
-import { corpusToXml, xmlToCorpus } from "./lib/xml-interchange.mjs";
+import { corpusToXml, xmlToCorpus } from "../sdk/lib/xml-interchange.mjs";
 
 const [, , mode, inputPath, outputPath] = process.argv;
 

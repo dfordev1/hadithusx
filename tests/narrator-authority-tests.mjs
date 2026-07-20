@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
-import { matchNarratorAuthorityCandidates, detectChronologyWarnings, normalizeArabicSurface } from "../scripts/lib/narrator-authority.mjs";
+import { matchNarratorAuthorityCandidates, detectChronologyWarnings, normalizeArabicSurface } from "../sdk/lib/narrator-authority.mjs";
 
 const checks = [];
 const check = (name, condition) => checks.push([name, Boolean(condition)]);

@@ -3,7 +3,7 @@ import { mkdtemp, readFile, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
-import { corpusToXml, xmlToCorpus } from "../scripts/lib/xml-interchange.mjs";
+import { corpusToXml, xmlToCorpus } from "../sdk/lib/xml-interchange.mjs";
 
 const run = promisify(execFile);
 const checks = [];

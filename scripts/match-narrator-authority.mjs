@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { matchNarratorAuthorityCandidates, detectChronologyWarnings } from "./lib/narrator-authority.mjs";
+import { matchNarratorAuthorityCandidates, detectChronologyWarnings } from "../sdk/lib/narrator-authority.mjs";
 
 const root = new URL("../", import.meta.url);
 const authorityText = await readFile(new URL("data/narrator-authority.fixture.json", root), "utf8");

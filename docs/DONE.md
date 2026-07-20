@@ -2,6 +2,17 @@
 
 This file records verified outcomes, not plans or untested claims. Update it only after the relevant checks pass.
 
+## Increment — standalone, installable `sdk/` package
+
+- `sdk/` is now a self-contained directory: it has its own `sdk/package.json` (`@unified-hadith/sdk`, not private, `main`/`exports` pointing at `./index.mjs`, explicit `files` list), and the three helper modules the SDK depends on (`validate-corpus.mjs`, `xml-interchange.mjs`, `narrator-authority.mjs`) were moved from `scripts/lib/` into `sdk/lib/` (`git mv`, preserving history). `sdk/index.mjs` now imports only from `./lib/*`, so nothing in the package reaches outside `sdk/`.
+- Every prior consumer of `scripts/lib/*` (`scripts/validate.mjs`, `scripts/convert-corpus.mjs`, `tests/run-tests.mjs`, `tests/interchange-tests.mjs`, `tests/narrator-authority-tests.mjs`, `spec/COMPATIBILITY.md`) was updated to import from `sdk/lib/*` instead; `scripts/lib/` no longer exists.
+- `sdk/fixtures/demo-corpus.json` bundles the existing `status: "demonstration"` corpus (already synthetic placeholder data, not scholarly content) so the package is testable/usable without the rest of the repo.
+- `sdk/README.md` gives a ~10-line quickstart: read the bundled fixture, `validateCorpus`, round-trip `corpusToXml`/`xmlToCorpus`, plus a short list of what is (and, explicitly, is not) in the package.
+- `tests/sdk-tests.mjs` now also runs `npm pack --json` inside `sdk/`, asserts the tarball's file list is exactly `index.mjs`, `package.json`, `README.md`, `lib/*.mjs`, `fixtures/*.json` (nothing from outside `sdk/`), extracts the tarball to a temp directory outside the repo, runs `npm install` there for the package's own declared dependency (`@xmldom/xmldom`), and then runs a subprocess from that temp directory that imports the extracted package and calls `validateCorpus`/`corpusToXml`/`xmlToCorpus`/`matchNarratorAuthorityCandidates` — proving the packed tarball is self-sufficient, not just that the source tree happens to still resolve inside the monorepo.
+- `npm publish --dry-run` run manually inside `sdk/` and inspected: tarball contains exactly the 7 expected files, package metadata is correct. **Not actually published** to the public npm registry, per instructions.
+- Root `npm run check` passes with 0 failures after a clean `rm -rf node_modules dist && npm install`.
+- Not done in this increment: no CI publish workflow, no npm org/registry account setup, no semver policy decision for eventually moving `sdk/` past `0.x`, and `sdk/lib/narrator-authority.mjs` / `validate-corpus.mjs` still only operate on the same demonstration-scope data as before — no new scholarly content was added or fabricated.
+
 ## Release 2.0.0 — software-complete research platform
 
 ### Phase 1 — attested authority (licensed surfaces + optional Wikidata)
@@ -15,7 +26,7 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 ### Phase 2 — commentary / grading / cross-reference + interchange
 
 - `schema/unified-hadith.schema.json` and `schema/unified-hadith.xsd` model optional `commentaries`, `gradings`, and `crossReferences`.
-- `scripts/lib/xml-interchange.mjs` round-trips the new layers losslessly.
+- `sdk/lib/xml-interchange.mjs` round-trips the new layers losslessly.
 - `data/corpus.json` exercises competing grades (disagreement retained).
 - CLI validator, converters, and compatibility policy remain in place from 1.9–1.11.
 
