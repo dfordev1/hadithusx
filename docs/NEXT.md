@@ -41,11 +41,40 @@ sensible, reviewable output against genuine historical data instead of the fixtu
 
 ## Phase 2 — full hadith interchange
 
-- Finalize the normative JSON and XML specifications.
-- Model collection, book, chapter, report numbering, commentary, grading, and cross-reference systems without overloading fields.
-- Add lossless converters and round-trip tests.
-- Publish conformance fixtures and a compatibility policy.
-- Create a command-line validator and documented integration API.
+- Finalize the normative JSON and XML specifications. **Partially done.**
+  `schema/unified-hadith.xsd` now covers the full model field-for-field with
+  `schema/unified-hadith.schema.json` (agents, works, editions, persons,
+  witnesses/isnads/mentions/identityAssertions, matn/tokens, provenance,
+  claims, alignments) rather than only the earlier witness/isnad/mention/matn
+  skeleton. "Finalize" still implies the standard leaving `0.x` status per
+  `spec/COMPATIBILITY.md`; that requires broader real-world exercise first
+  (see Phase 3).
+- Model collection, book, chapter, report numbering, commentary, grading, and
+  cross-reference systems without overloading fields. **Not started.** The
+  current model has a flat `witness.locator` string rather than structured
+  collection/book/chapter/report-number fields; the whole-corpus importer
+  (`scripts/import-openiti-corpus.mjs`) already parses these out for its own
+  index, but that structure has not been folded back into the core
+  `standardVersion: 0.1` model yet.
+- Add lossless converters and round-trip tests. **Done.**
+  `scripts/lib/xml-interchange.mjs` converts every field in both directions;
+  `scripts/convert-corpus.mjs` is the CLI entry point
+  (`to-xml`/`to-json`); `tests/interchange-tests.mjs` round-trips the real
+  corpus fixture through JSON -> XML -> JSON and asserts exact structural
+  equality, plus validates the generated XML against
+  `schema/unified-hadith.xsd` with `xmllint`.
+- Publish conformance fixtures and a compatibility policy. **Done.**
+  `spec/COMPATIBILITY.md` documents the `standardVersion` scheme, what
+  "lossless" is and isn't a promise about, and points at `data/corpus.json` /
+  `data/narrator-authority.fixture.json` as the fixtures an external
+  implementation can validate against.
+- Create a command-line validator and documented integration API. **Partially
+  done.** `node scripts/validate.mjs` and `node scripts/convert-corpus.mjs`
+  are documented in `spec/COMPATIBILITY.md` as subprocess-invokable CLI tools
+  with no network dependency. Still open: `scripts/validate.mjs` currently
+  hardcodes its input paths rather than accepting a file argument like
+  `convert-corpus.mjs` does, and there is no published npm package / SDK for
+  out-of-repo consumers yet (that's Phase 5).
 
 ## Phase 3 — corpus expansion
 

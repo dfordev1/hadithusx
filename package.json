@@ -1,12 +1,14 @@
 {
   "name": "unified-hadith",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "private": true,
   "description": "An evidence-first interchange standard and scholarly workbench for hadith studies.",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
+    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/interchange-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
     "build": "node scripts/build.mjs",
+    "convert:to-xml": "node scripts/convert-corpus.mjs to-xml",
+    "convert:to-json": "node scripts/convert-corpus.mjs to-json",
     "import:openiti": "node scripts/import-openiti-intentions.mjs",
     "import:corpus": "node scripts/import-openiti-corpus.mjs",
     "discover:parallels": "node scripts/discover-parallels.mjs",
@@ -22,6 +24,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@xmldom/xmldom": "^0.9.10",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1"
   }

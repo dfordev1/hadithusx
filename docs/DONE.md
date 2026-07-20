@@ -102,9 +102,46 @@ This file records verified outcomes, not plans or untested claims. Update it onl
   chronology-warning logic. Real narrator identity resolution against actual
   biographical sources is still open — see `docs/NEXT.md`.
 
+## Release 1.9
+
+### Full hadith interchange — Phase 2 (partial)
+
+- `schema/unified-hadith.xsd` was rewritten to cover the complete corpus model
+  field-for-field with `schema/unified-hadith.schema.json` — agents, works,
+  editions, persons, witnesses (isnads, mentions, identity assertions), matn
+  and tokens, provenance, claims, and alignments — replacing the earlier
+  witness/isnad/mention/matn-only skeleton.
+- `scripts/lib/xml-interchange.mjs` implements lossless `corpusToXml()` /
+  `xmlToCorpus()` covering every field in that schema, including optional
+  fields (present fields round-trip, absent fields stay absent rather than
+  being invented as empty strings).
+- `scripts/convert-corpus.mjs` is a documented CLI (`to-xml` / `to-json`) for
+  external tools to convert corpus documents without depending on the
+  workbench web app.
+- `tests/interchange-tests.mjs` (8 checks) round-trips the real
+  `data/corpus.json` fixture through JSON -> XML -> JSON, asserts exact
+  structural equality, validates the generated XML against
+  `schema/unified-hadith.xsd` with `xmllint`, and confirms malformed XML
+  throws instead of silently producing a partial corpus.
+- `spec/COMPATIBILITY.md` is new: it defines the `MAJOR.MINOR` versioning
+  policy for `standardVersion`, states precisely what the lossless-conversion
+  guarantee does and doesn't cover, documents the conformance fixtures, and
+  lists the two CLI tools external implementations can invoke directly.
+- **Not done in this release:** collection/book/chapter/report-number
+  structure is still a flat `locator` string in the core model rather than
+  first-class fields (the whole-corpus importer already parses this
+  structure for its own index, but it hasn't been folded back into
+  `standardVersion: 0.1`); `scripts/validate.mjs` still hardcodes its input
+  paths instead of accepting a file argument; there is no published SDK or
+  npm package for external consumers (Phase 5). See `docs/NEXT.md`.
+
+Full suite verified clean from a fresh install: `npm run check` passes with
+zero failures across schema validation and all test files, including the new
+interchange tests.
+
 ## Current honest status
 
-The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source.
+The software is production-ready research infrastructure for its present scope. The imported records are still an unverified pilot corpus, not a critical edition and not an authenticity judgment. Narrator identities, boundaries, branching interpretations, and scholarly claims require qualified review. The narrator authority matching, chronology-warning, and review-workflow infrastructure added in 1.8 is real and tested, but it currently operates over non-historical fixture data — it has not yet been exercised against an actual imported biographical source. The 1.9 interchange work (XML schema, lossless converter, compatibility policy) is real and tested against the existing fixture corpus, but the standard remains pre-1.0: report-numbering structure is still flat, and no external implementation has yet round-tripped a document independently written against the spec.
 
 ## Interface confirmation
 

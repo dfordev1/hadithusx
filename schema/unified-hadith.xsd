@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!--
+    Full XML representation of the Unified Hadith corpus model, mirroring
+    schema/unified-hadith.schema.json field-for-field. This supersedes the
+    earlier witness/isnad/mention/matn-only skeleton (docs/NEXT.md Phase 2:
+    "Finalize the normative JSON and XML specifications").
+
+    scripts/lib/xml-interchange.mjs converts losslessly in both directions;
+    tests/interchange-tests.mjs round-trips every witness in data/corpus.json
+    through JSON -> XML -> JSON and asserts structural equality, and
+    validates the generated XML against this schema with xmllint.
+  -->
   <xs:simpleType name="idType">
     <xs:restriction base="xs:string"><xs:pattern value="uh:[a-z]+:[a-z0-9][a-z0-9:.-]*"/></xs:restriction>
   </xs:simpleType>
@@ -8,27 +19,151 @@
       <xs:enumeration value="imported"/><xs:enumeration value="machine-suggested"/><xs:enumeration value="editor-reviewed"/><xs:enumeration value="scholar-verified"/><xs:enumeration value="disputed"/><xs:enumeration value="rejected"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="confidenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="certain"/><xs:enumeration value="probable"/><xs:enumeration value="possible"/><xs:enumeration value="uncertain"/><xs:enumeration value="unknown"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:element name="corpus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="witness" minOccurs="1" maxOccurs="unbounded">
-          <xs:complexType>
+        <xs:element name="agents"><xs:complexType><xs:sequence>
+          <xs:element name="agent" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="type" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="person"/><xs:enumeration value="organization"/><xs:enumeration value="software"/></xs:restriction></xs:simpleType></xs:attribute>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="version" type="xs:string" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="works"><xs:complexType><xs:sequence>
+          <xs:element name="work" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
             <xs:sequence>
-              <xs:element name="isnad" minOccurs="1" maxOccurs="unbounded">
-                <xs:complexType><xs:sequence>
-                  <xs:element name="mention" minOccurs="1" maxOccurs="unbounded">
-                    <xs:complexType mixed="true"><xs:attribute name="id" type="idType" use="required"/><xs:attribute name="position" type="xs:positiveInteger" use="required"/><xs:attribute name="transmissionTerm" type="xs:string"/></xs:complexType>
-                  </xs:element>
-                </xs:sequence><xs:attribute name="id" type="idType" use="required"/><xs:attribute name="reviewState" type="reviewType" use="required"/></xs:complexType>
-              </xs:element>
-              <xs:element name="matn" type="xs:string"/>
+              <xs:element name="title"><xs:complexType>
+                <xs:attribute name="ar" type="xs:string" use="required"/>
+                <xs:attribute name="en" type="xs:string" use="required"/>
+              </xs:complexType></xs:element>
             </xs:sequence>
-            <xs:attribute name="id" type="idType" use="required"/><xs:attribute name="edition" type="idType" use="required"/><xs:attribute name="locator" type="xs:string" use="required"/><xs:attribute name="reviewState" type="reviewType" use="required"/>
-          </xs:complexType>
-        </xs:element>
+            <xs:attribute name="id" type="idType" use="required"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="editions"><xs:complexType><xs:sequence>
+          <xs:element name="edition" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="work" type="idType" use="required"/>
+            <xs:attribute name="label" type="xs:string" use="required"/>
+            <xs:attribute name="sourceType" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="manuscript"/><xs:enumeration value="print"/><xs:enumeration value="digital"/><xs:enumeration value="demonstration"/></xs:restriction></xs:simpleType></xs:attribute>
+            <xs:attribute name="citation" type="xs:string" use="required"/>
+            <xs:attribute name="license" type="xs:string" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="persons"><xs:complexType><xs:sequence>
+          <xs:element name="person" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:sequence>
+              <xs:element name="nameForm" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="preferredName" type="xs:string" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+            <xs:attribute name="notes" type="xs:string" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="witnesses"><xs:complexType><xs:sequence>
+          <xs:element name="witness" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:sequence>
+              <xs:element name="isnads"><xs:complexType><xs:sequence>
+                <xs:element name="isnad" minOccurs="1" maxOccurs="unbounded"><xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="mention" minOccurs="1" maxOccurs="unbounded"><xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="surface" type="xs:string"/>
+                        <xs:element name="identityAssertions"><xs:complexType><xs:sequence>
+                          <xs:element name="identityAssertion" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+                            <xs:attribute name="id" type="idType" use="required"/>
+                            <xs:attribute name="person" type="idType" use="required"/>
+                            <xs:attribute name="assertedBy" type="idType" use="required"/>
+                            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+                            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+                            <xs:attribute name="evidence" type="xs:string" use="optional"/>
+                          </xs:complexType></xs:element>
+                        </xs:sequence></xs:complexType></xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="id" type="idType" use="required"/>
+                      <xs:attribute name="position" type="xs:positiveInteger" use="required"/>
+                      <xs:attribute name="transmissionTerm" type="xs:string" use="required"/>
+                    </xs:complexType></xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id" type="idType" use="required"/>
+                  <xs:attribute name="reviewState" type="reviewType" use="required"/>
+                </xs:complexType></xs:element>
+              </xs:sequence></xs:complexType></xs:element>
+
+              <xs:element name="matn"><xs:complexType>
+                <xs:sequence>
+                  <xs:element name="token" minOccurs="1" maxOccurs="unbounded"><xs:complexType>
+                    <xs:simpleContent><xs:extension base="xs:string">
+                      <xs:attribute name="id" type="idType" use="required"/>
+                      <xs:attribute name="position" type="xs:positiveInteger" use="required"/>
+                    </xs:extension></xs:simpleContent>
+                  </xs:complexType></xs:element>
+                </xs:sequence>
+                <xs:attribute name="diplomatic" type="xs:string" use="required"/>
+              </xs:complexType></xs:element>
+
+              <xs:element name="provenance"><xs:complexType>
+                <xs:attribute name="createdBy" type="idType" use="required"/>
+                <xs:attribute name="method" type="xs:string" use="required"/>
+                <xs:attribute name="createdAt" type="xs:string" use="required"/>
+                <xs:attribute name="derivedFrom" type="xs:string" use="optional"/>
+              </xs:complexType></xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="edition" type="idType" use="required"/>
+            <xs:attribute name="locator" type="xs:string" use="required"/>
+            <xs:attribute name="language" type="xs:string" use="required" fixed="ar"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="claims"><xs:complexType><xs:sequence>
+          <xs:element name="claim" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="subject" type="idType" use="required"/>
+            <xs:attribute name="predicate" type="xs:string" use="required"/>
+            <xs:attribute name="object" type="xs:string" use="required"/>
+            <xs:attribute name="assertedBy" type="idType" use="required"/>
+            <xs:attribute name="citation" type="xs:string" use="required"/>
+            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+            <xs:attribute name="supports" type="idType" use="optional"/>
+            <xs:attribute name="contradicts" type="idType" use="optional"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
+
+        <xs:element name="alignments"><xs:complexType><xs:sequence>
+          <xs:element name="alignment" minOccurs="0" maxOccurs="unbounded"><xs:complexType>
+            <xs:sequence>
+              <xs:element name="member" minOccurs="2" maxOccurs="unbounded"><xs:complexType>
+                <xs:sequence>
+                  <xs:element name="token" type="idType" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="witness" type="idType" use="required"/>
+              </xs:complexType></xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="idType" use="required"/>
+            <xs:attribute name="type" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="exact"/><xs:enumeration value="orthographic"/><xs:enumeration value="abbreviated"/><xs:enumeration value="expanded"/><xs:enumeration value="paraphrase"/><xs:enumeration value="same-event"/><xs:enumeration value="possible-parallel"/></xs:restriction></xs:simpleType></xs:attribute>
+            <xs:attribute name="assertedBy" type="idType" use="required"/>
+            <xs:attribute name="confidence" type="confidenceType" use="required"/>
+            <xs:attribute name="reviewState" type="reviewType" use="required"/>
+          </xs:complexType></xs:element>
+        </xs:sequence></xs:complexType></xs:element>
       </xs:sequence>
       <xs:attribute name="standardVersion" type="xs:string" use="required" fixed="0.1"/>
-      <xs:attribute name="status" type="xs:string" use="required"/>
+      <xs:attribute name="status" use="required"><xs:simpleType><xs:restriction base="xs:string"><xs:enumeration value="demonstration"/><xs:enumeration value="draft"/><xs:enumeration value="reviewed"/><xs:enumeration value="published"/></xs:restriction></xs:simpleType></xs:attribute>
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -1,4 +1,4 @@
-# Unified Hadith Workbench 1.8
+# Unified Hadith Workbench 1.9
 
 Unified Hadith is an evidence-first data standard and prototype scholarly workbench for hadith studies. It keeps source text, editorial interpretation, narrator identity, scholarly judgment, and machine-generated suggestions as separate, traceable layers.
 
@@ -17,6 +17,7 @@ Unified Hadith is an evidence-first data standard and prototype scholarly workbe
 - 6,992 repeated name-form clusters explicitly separated from historical person identity
 - Searchable white-theme narrator evidence browser and bounded APIs
 - Deterministic narrator-authority candidate matching against the real cluster index, with chronology and broken-link warnings and a persistent human-review workflow that retains rejected alternatives (see `docs/NEXT.md` for what still requires a licensed biographical import)
+- Lossless JSON <-> XML conversion covering the full corpus model, validated against a schema that covers every field (see `spec/COMPATIBILITY.md` and `scripts/convert-corpus.mjs`)
 - Source-file and corpus checksums
 - Separate raw, normalized, isnad, and matn layers
 - Searchable witness reader and parallel matn comparison
@@ -60,6 +61,18 @@ Health check: `http://localhost:8090/healthz`.
 4. Use **Export review** to save the decision bundle.
 
 Decisions stay in the browser until exported. Accepting a candidate records a review decision; it does not rewrite source data or silently create a person identity.
+
+## Interchange
+
+Convert a corpus document between the JSON and XML representations losslessly:
+
+```bash
+node scripts/convert-corpus.mjs to-xml data/corpus.json corpus.xml
+node scripts/convert-corpus.mjs to-json corpus.xml corpus-roundtrip.json
+```
+
+See `spec/COMPATIBILITY.md` for the versioning policy and what the
+lossless-conversion guarantee does and doesn't promise.
 
 ## Source reproducibility
 
