@@ -8,7 +8,7 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
+    "test": "node tests/run-tests.mjs && node tests/corpus-tests.mjs && node tests/parallel-tests.mjs && node tests/narrator-tests.mjs && node tests/narrator-authority-tests.mjs && node tests/attested-authority-tests.mjs && node tests/interchange-tests.mjs && node tests/sdk-tests.mjs && node tests/structural-conformance-tests.mjs && npm run build --silent && node tests/web-tests.mjs && node tests/release-tests.mjs",
     "build": "node scripts/build.mjs",
     "convert:to-xml": "node scripts/convert-corpus.mjs to-xml",
     "convert:to-json": "node scripts/convert-corpus.mjs to-json",

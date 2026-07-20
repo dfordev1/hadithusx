@@ -31,6 +31,13 @@ This file records verified outcomes, not plans or untested claims. Update it onl
 - `GOVERNANCE.md` and `DEPLOYMENT.md` document versioning and hosting boundaries.
 - `tests/sdk-tests.mjs` covers SDK + graph export.
 
+### Phase 3 — structural-parsing conformance (first increment)
+
+- `scripts/lib/propose-structure.mjs` extracts `proposeStructure()` (isnad/matn segmentation + narrator-mention extraction) out of `scripts/import-openiti-corpus.mjs` into an importable module; the importer script now delegates to it with identical behavior (verified by `npm run check` staying green through the refactor).
+- `sources/conformance/openitiBukhari.fixture.json` records 15 hand-verified Sahih al-Bukhari reports pulled from the real, checksum-pinned OpenITI `0275AH` source in `sources/source-lock.json` (reports 2, 3, 5, 6, 7, 8, 9, 15, 32, 59, 214, 230, 240, 291, 335), spanning multiple book/chapter boundaries and including 8 multi-branch (`ح`) isnads. Each record's expected `boundaryMethod`, `chainSpan.text`, `matnSpan.text`, and `narratorMentions` (branch/transmissionTerm/surface) were confirmed by reading the Arabic source text, not generated blind from the function's own output.
+- `tests/structural-conformance-tests.mjs` runs `proposeStructure()` on each fixture report and diffs against the hand-verified expectation, printing a per-field accuracy report and failing below configurable thresholds (boundaryMethod 100%, chainSpan 90%, matnSpan 80%, narratorMentions 80%); wired into `npm test` via `package.json`.
+- **Scope limits, stated honestly (see docs/NEXT.md):** only Bukhari has a fixture (15 of ~7,300 reports in that source; the other four locked collections have none yet); the harness is not wired into `import:corpus` as a trust gate, only into `npm test`; two known heuristic gaps (unquoted-matn boundary detection, narrator-surface bleed on complex multi-branch reports with embedded citations) are recorded in the fixture rather than fixed in this increment.
+
 ## Earlier releases (1.7–1.11)
 
 Retained: five-collection OpenITI index (26,727 reports), parallel discovery, narrator mention evidence, workbench UI, checksum locks, CI, deep-linkable search, general-purpose validator CLI, structured bibliographic locators, narrator-authority matching against the structural fixture.
