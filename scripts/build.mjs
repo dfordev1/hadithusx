@@ -18,9 +18,17 @@ await cp(new URL("data/staging/openiti-parallel-candidates.json.gz", root), new 
 await cp(new URL("data/staging/openiti-parallel-candidates.manifest.json", root), new URL("parallel-manifest.json", dist));
 await cp(new URL("data/staging/openiti-narrator-mentions.json.gz", root), new URL("openiti-narrator-mentions.json.gz", dist));
 await cp(new URL("data/staging/openiti-narrator-mentions.manifest.json", root), new URL("narrator-manifest.json", dist));
-await cp(new URL("data/staging/openiti-narrator-authority-candidates.json.gz", root), new URL("openiti-narrator-authority-candidates.json.gz", dist));
-await cp(new URL("data/staging/openiti-narrator-authority-candidates.manifest.json", root), new URL("narrator-authority-candidates-manifest.json", dist));
-await cp(new URL("data/narrator-authority.fixture.json", root), new URL("narrator-authority.json", dist));
+// Production serves the real OpenITI-attested authority dataset (405 real
+// persons + Wikidata CC0 enrichment) and its matched candidates, NOT the
+// structural test fixture (data/narrator-authority.fixture.json — 2 dummy
+// persons used only by tests/narrator-authority-tests.mjs for chronology
+// unit tests). Serving the fixture in production silently made the live
+// narrator-authority feature return 0 candidates for all 6,992 real
+// clusters, since none of them match the fixture's dummy names. See
+// docs/DONE.md for the fix history.
+await cp(new URL("data/staging/openiti-attested-authority-candidates.json.gz", root), new URL("openiti-narrator-authority-candidates.json.gz", dist));
+await cp(new URL("data/staging/openiti-attested-authority-candidates.manifest.json", root), new URL("narrator-authority-candidates-manifest.json", dist));
+await cp(new URL("data/narrator-authority.openiti-attested.json", root), new URL("narrator-authority.json", dist));
 
 const nodes = corpus.persons.map((person) => ({ id: person.id, label: person.preferredName, type: "person", reviewState: person.reviewState }));
 const edges = [];

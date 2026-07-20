@@ -8,6 +8,11 @@ import { gunzipSync } from "node:zlib";
 // on request from the staged dist/ artifacts.
 
 const root = join(process.cwd(), "dist");
+// Caps the search query length before it drives a linear scan/substring
+// search across the in-memory dataset on every request, bounding the
+// per-request CPU cost regardless of how long a client's `q` parameter is.
+const MAX_QUERY_LENGTH = 200;
+const clampQuery = (value) => (value || "").slice(0, MAX_QUERY_LENGTH);
 const securityHeaders = {
   "Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
   "Referrer-Policy": "no-referrer",
@@ -61,7 +66,7 @@ export default async function handler(request, response) {
       const corpus = await getWholeCorpus();
       const mode = requestUrl.searchParams.get("mode") === "exact" ? "exact" : "normalized";
       const searchTransform = mode === "exact" ? exactSearch : normalizeSearch;
-      const query = searchTransform(requestUrl.searchParams.get("q")?.trim() || "");
+      const query = searchTransform(clampQuery(requestUrl.searchParams.get("q")?.trim()));
       const collection = requestUrl.searchParams.get("collection")?.trim() || "";
       const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
       const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
@@ -105,7 +110,7 @@ export default async function handler(request, response) {
 
     if (urlPath === "/api/narrators") {
       const narrators = await getNarratorIndex();
-      const q = normalizeSearch(requestUrl.searchParams.get("q")?.trim() || "");
+      const q = normalizeSearch(clampQuery(requestUrl.searchParams.get("q")?.trim()));
       const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
       const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
       const matches = narrators.clusters.filter((cluster) => !q || normalizeSearch(`${cluster.normalizedSurface} ${cluster.surfaceForms.join(" ")}`).includes(q));
@@ -147,6 +152,11 @@ export default async function handler(request, response) {
 
     send(response, 404, { error: "not found" });
   } catch (error) {
-    send(response, 500, { error: "internal error", message: error?.message || String(error) });
+    // Never echo the raw exception message: Node fs errors in particular
+    // include absolute filesystem paths (e.g. "ENOENT ... /var/task/dist/...")
+    // which would disclose deployment-environment details to any
+    // unauthenticated caller. Log server-side for debugging instead.
+    console.error("unhandled error in api/handler.mjs:", error);
+    send(response, 500, { error: "internal error" });
   }
 }

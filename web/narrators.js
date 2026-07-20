@@ -30,10 +30,20 @@ async function loadAuthorityCandidates(card) {
   authoritySourceNarratorIndexSha256 = data.sourceNarratorIndexSha256;
   target.innerHTML = data.candidates.length
     ? `<div class="authority-list"><p class="warning">Machine-suggested identity candidates only. No score performs an automatic merge; every link requires human review.</p>${data.candidates
-        .map(
-          (candidate) =>
-            `<article class="authority-candidate" data-authority-candidate="${escapeHtml(candidate.id)}"><div><strong lang="ar" dir="rtl">${escapeHtml(candidate.personPreferredName)}</strong> <span class="badge machine-suggested">${escapeHtml(candidate.confidence)}</span> <span class="badge" data-review-state>${escapeHtml(authorityReview[candidate.id]?.decision || "pending")}</span></div><p>${escapeHtml(candidate.reason)} (score ${candidate.score})</p><p class="id">${escapeHtml(candidate.id)} · name form: ${escapeHtml(candidate.personNameForm)}</p><div class="review-actions"><button data-authority-decision="accept-candidate">Accept candidate</button><button data-authority-decision="reject">Reject</button><button data-authority-decision="needs-evidence">Needs evidence</button></div></article>`
-        )
+        .map((candidate) => {
+          const stored = authorityReview[candidate.id];
+          // Candidate ids are content-derived (person+nameForm+cluster), so
+          // they stay stable across data regenerations as long as that
+          // triple is unchanged. As a second safeguard, also compare the
+          // stored decision's recorded dataset checksums against the
+          // currently-loaded data: if either changed, the underlying
+          // matching data was regenerated and the old decision is shown as
+          // stale rather than silently reused, so a reviewer can re-verify
+          // it instead of trusting a possibly-outdated judgment.
+          const isStale = stored && (stored.sourceAuthoritySha256 !== data.sourceAuthoritySha256 || stored.sourceNarratorIndexSha256 !== data.sourceNarratorIndexSha256);
+          const stateLabel = stored ? (isStale ? `${stored.decision} (stale — data changed, please re-verify)` : stored.decision) : "pending";
+          return `<article class="authority-candidate" data-authority-candidate="${escapeHtml(candidate.id)}"><div><strong lang="ar" dir="rtl">${escapeHtml(candidate.personPreferredName)}</strong> <span class="badge machine-suggested">${escapeHtml(candidate.confidence)}</span> <span class="badge${isStale ? " stale" : ""}" data-review-state>${escapeHtml(stateLabel)}</span></div><p>${escapeHtml(candidate.reason)} (score ${candidate.score})</p><p class="id">${escapeHtml(candidate.id)} · name form: ${escapeHtml(candidate.personNameForm)}</p><div class="review-actions"><button data-authority-decision="accept-candidate">Accept candidate</button><button data-authority-decision="reject">Reject</button><button data-authority-decision="needs-evidence">Needs evidence</button></div></article>`;
+        })
         .join("")}</div>`
     : '<p class="empty">No candidate identity links passed the current matching method for this cluster.</p>';
 }

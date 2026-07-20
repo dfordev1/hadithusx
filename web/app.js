@@ -102,6 +102,13 @@ async function start() {
       const active = button.dataset.view === currentView;
       button.classList.toggle("active", active);
       button.setAttribute("aria-current", active ? "page" : "false");
+      // The advanced views (graph/variants/narrators/provenance) live
+      // inside a <details class="more-tools"> disclosure on the
+      // simplified home page. Reaching one via a hash link or an
+      // in-content data-go button (not by opening the disclosure by
+      // hand) must still open it — otherwise the active view is
+      // rendered but its own nav entry stays hidden/collapsed.
+      if (active) button.closest("details.more-tools")?.setAttribute("open", "");
     });
   }
 

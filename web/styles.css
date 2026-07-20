@@ -21,7 +21,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-vi
 .toolbar { display:flex; gap:12px; align-items:end; justify-content:space-between; padding:14px max(24px,6vw); background:#fff; border-bottom:1px solid var(--line); }
 .start-here { margin:0; padding:10px max(24px,6vw); background:#f0f6f2; border-bottom:1px solid var(--line); font-size:14px; color:var(--ink); }
 .start-here a { color:var(--gold,#8a6a1f); }
-.simple-nav { flex-wrap:wrap; align-items:flex-start; overflow:visible; position:static; }
+.simple-nav { flex-wrap:wrap; align-items:flex-start; overflow:visible; position:sticky; top:0; z-index:4; }
 .simple-nav .primary-action { background:var(--gold,#8a6a1f); color:#fff; border-color:transparent; }
 .more-tools { margin-left:6px; }
 .more-tools summary { list-style:none; cursor:pointer; color:var(--muted); padding:9px 14px; border:1px solid var(--line); border-radius:7px; white-space:nowrap; }

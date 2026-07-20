@@ -6,6 +6,11 @@ import { gunzipSync } from "node:zlib";
 const port = Number(process.env.PORT || 8090);
 const root = new URL("../dist/", import.meta.url).pathname.replace(/^\/(.:)/, "$1");
 const mime = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml" };
+// Caps the search query length before it drives a linear scan/substring
+// search across the in-memory dataset on every request, bounding the
+// per-request CPU cost regardless of how long a client's `q` parameter is.
+const MAX_QUERY_LENGTH = 200;
+const clampQuery = (value) => (value || "").slice(0, MAX_QUERY_LENGTH);
 const securityHeaders = {
   "Content-Security-Policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
   "Referrer-Policy": "no-referrer",
@@ -54,7 +59,7 @@ createServer(async (request, response) => {
       const corpus = await getWholeCorpus();
       const mode = requestUrl.searchParams.get("mode") === "exact" ? "exact" : "normalized";
       const searchTransform = mode === "exact" ? exactSearch : normalizeSearch;
-      const query = searchTransform(requestUrl.searchParams.get("q")?.trim() || "");
+      const query = searchTransform(clampQuery(requestUrl.searchParams.get("q")?.trim()));
       const collection = requestUrl.searchParams.get("collection")?.trim() || "";
       const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
       const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
@@ -97,7 +102,7 @@ createServer(async (request, response) => {
     }
     if (urlPath === "/api/narrators") {
       const narrators = await getNarratorIndex();
-      const q = normalizeSearch(requestUrl.searchParams.get("q")?.trim() || "");
+      const q = normalizeSearch(clampQuery(requestUrl.searchParams.get("q")?.trim()));
       const page = Math.max(1, Number.parseInt(requestUrl.searchParams.get("page") || "1", 10) || 1);
       const limit = Math.min(50, Math.max(1, Number.parseInt(requestUrl.searchParams.get("limit") || "20", 10) || 20));
       const matches = narrators.clusters.filter((cluster) => !q || normalizeSearch(`${cluster.normalizedSurface} ${cluster.surfaceForms.join(" ")}`).includes(q));

@@ -104,8 +104,13 @@ function firstChildElement(el, tag) {
   return childElements(el, tag)[0] ?? null;
 }
 const getAttr = (el, name) => {
-  const value = el.getAttribute(name);
-  return value === "" || value === null ? undefined : value;
+  // A present-but-empty attribute (value === "") is a legitimate value,
+  // distinct from an absent one. Using hasAttribute() to detect absence
+  // (rather than collapsing "" and null together) keeps XML->JSON parsing
+  // lossless for optional string fields explicitly set to "" — otherwise
+  // corpusToXml()'s faithful `field=""` serialization gets silently
+  // dropped back to undefined on the way in.
+  return el.hasAttribute(name) ? el.getAttribute(name) : undefined;
 };
 const getRequiredAttr = (el, name) => el.getAttribute(name);
 const textOf = (el) => (el ? el.textContent : "");

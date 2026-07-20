@@ -47,10 +47,42 @@ function proposeStructure(text) {
       reviewState: "machine-suggested"
     });
   }
+  // The matn portion (everything after `chainEnd`) can still contain
+  // artifacts that `clean()`'s line-based stripping missed:
+  //   - leftover "@MATN@" boundary markers: proposeStructure only needs
+  //     the *first* occurrence to detect the chain/matn boundary; a
+  //     report can contain more than one (e.g. Tirmidhi reports quoting a
+  //     second narration), and later occurrences were previously left in
+  //     the displayed text verbatim.
+  //   - a stray digit glued directly onto a closing quotation mark at the
+  //     very end of the matn (an OpenITI footnote/reference marker that
+  //     survived `clean()`'s line-based stripping because it wasn't on
+  //     its own recognized line). Scoped narrowly to end-of-string
+  //     immediately after a closing quote, since legitimate Arabic prose
+  //     essentially never ends with a bare digit touching the quote mark
+  //     with no separating space — this avoids stripping real numerals
+  //     that appear elsewhere in the text.
+  // `chainText` (0..chainEnd) is never affected by either artifact — the
+  // first "@MATN@"/quote occurrence IS the boundary, so nothing before it
+  // needs cleaning. To keep the corpus's surface-preservation guarantee
+  // (offsets are always exact code-point positions into the *returned*
+  // text) intact, the cleaned matn text is used to rebuild a canonical
+  // `text` alongside consistently recomputed spans, rather than cleaning
+  // matnSpan.text while leaving the original (still-dirty) text/offsets
+  // as the record's normalizedText.
+  const cleanMatnText = (value) => value
+    .replace(/@MATN@/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/([»"])\s*\d+\s*$/u, "$1");
+  const matnText = matnStart >= 0 ? cleanMatnText(text.slice(matnStart)) : "";
+  const canonicalText = matnStart >= 0 ? (matnText ? `${chainText} ${matnText}` : chainText) : chainText;
+  const matnSpanStart = chainText.length + 1;
   return {
+    text: canonicalText,
     boundaryMethod: method,
-    chainSpan: { start: 0, end: chainEnd, text: text.slice(0, chainEnd) },
-    matnSpan: matnStart >= 0 ? { start: matnStart, end: text.length, text: text.slice(matnStart).trim() } : null,
+    chainSpan: { start: 0, end: chainEnd, text: chainText },
+    matnSpan: matnStart >= 0 && matnText ? { start: matnSpanStart, end: matnSpanStart + matnText.length, text: matnText } : null,
     transmissionTerms,
     branchMarkers,
     branchCount: branchMarkers.length + 1,
@@ -88,12 +120,18 @@ for (const source of sources) {
     const start = headings[index].index + headings[index][0].length;
     const end = headings[index + 1]?.index ?? text.length;
     const rawOpenITI = text.slice(start, end).trim();
-    const normalizedText = clean(rawOpenITI);
-    if (!normalizedText) continue;
+    const cleanedText = clean(rawOpenITI);
+    if (!cleanedText) continue;
     const reportNumber = parseNumber(reportMatch[1]);
     const occurrence = (reportOccurrences.get(reportNumber) ?? 0) + 1;
     reportOccurrences.set(reportNumber, occurrence);
-    const structure = proposeStructure(normalizedText);
+    const structure = proposeStructure(cleanedText);
+    // normalizedText is the canonical text proposeStructure rebuilt (with
+    // leftover "@MATN@" markers and trailing footnote-digit artifacts
+    // stripped from the matn portion) so it stays exactly in sync with
+    // structure.chainSpan/matnSpan/narratorMentions offsets.
+    const normalizedText = structure.text;
+    delete structure.text;
     records.push({
       id: `openiti:${source.version}:${reportNumber}${occurrence > 1 ? `:occurrence-${occurrence}` : ""}`,
       sourceKey: source.sourceKey,

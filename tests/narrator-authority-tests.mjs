@@ -23,7 +23,7 @@ const cluster = (id, normalizedSurface, occurrenceCount = 5) => ({ id, normalize
   check("single-token ambiguous match scores lower than exact", candidates.find((c) => c.cluster === "uh:cluster:2")?.score < 1);
   check("unrelated cluster produces no candidate", !candidates.some((c) => c.cluster === "uh:cluster:3"));
   check("no candidate ever auto-resolves identity", candidates.every((c) => c.acceptedIdentity === null && c.reviewState === "machine-suggested"));
-  check("candidate ids are unique and sequential", candidates.every((c, index) => c.id === `uh:authority-candidate:${index + 1}`));
+  check("candidate ids are unique and content-derived (stable across regenerations)", new Set(candidates.map((c) => c.id)).size === candidates.length && candidates.every((c) => c.id === `uh:authority-candidate:${c.person}:${c.personNameForm}:${c.cluster}`));
 }
 
 {

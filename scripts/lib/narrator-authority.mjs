@@ -14,6 +14,8 @@ export const normalizeArabicSurface = (value) =>
     .normalize("NFC")
     .replace(/[ًٌٍَُِّْـ]/gu, "")
     .replace(/[إأآٱ]/gu, "ا")
+    .replace(/[ىی]/gu, "ي")
+    .replace(/[ؤئ]/gu, "ء")
     .replace(/ة/gu, "ه")
     .replace(/[^\p{L}\p{N}\s]/gu, " ")
     .replace(/\s+/g, " ")
@@ -58,8 +60,14 @@ export function matchNarratorAuthorityCandidates(persons, clusters) {
           }
         }
         if (!score) continue;
+        // Content-derived id: stable across regenerations as long as the
+        // (person, nameForm type, cluster) triple stays the same, unlike a
+        // sort-position index which shifts whenever persons/clusters data
+        // changes and would silently reattach a stored human review
+        // decision (keyed by this id in web/narrators.js localStorage) to
+        // an unrelated candidate. See docs/DONE.md for the fix history.
         candidates.push({
-          id: `uh:authority-candidate:${candidates.length + 1}`,
+          id: `uh:authority-candidate:${person.id}:${nameForm.type}:${cluster.id}`,
           person: person.id,
           personNameForm: nameForm.type,
           cluster: cluster.id,
@@ -75,9 +83,6 @@ export function matchNarratorAuthorityCandidates(persons, clusters) {
     }
   }
   candidates.sort((a, b) => b.score - a.score || a.person.localeCompare(b.person) || a.cluster.localeCompare(b.cluster));
-  candidates.forEach((candidate, index) => {
-    candidate.id = `uh:authority-candidate:${index + 1}`;
-  });
   return candidates;
 }
 
